@@ -1,10 +1,13 @@
+import { Typography, useTheme } from "@material-ui/core";
 import react from "react";
 
 function Home() {
 
+    const theme = useTheme();
+
     return <>
         <header className="App-header">
-            <text>Home</text>
+            <Typography color="primary">Home</Typography>
         </header>
     </>
 }

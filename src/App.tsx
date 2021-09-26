@@ -1,12 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
 import Routes from "./core/routes";
+import ThemeProvider from '@material-ui/styles/ThemeProvider';
+import theme from './core/theme';
 
 function App() {
   return (
-    <div className="App">
-      <Routes />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Routes />
+      </div>
+    </ThemeProvider>
   );
 }
 
