@@ -1,4 +1,4 @@
-import { Typography, useTheme } from "@material-ui/core";
+import { Box, Typography, useTheme } from "@material-ui/core";
 import react from "react";
 
 function Home() {
@@ -6,9 +6,7 @@ function Home() {
     const theme = useTheme();
 
     return <>
-        <header className="App-header">
-            <Typography color="primary">Home</Typography>
-        </header>
+        <img src="/homeBackround.png" />
     </>
 }
 
