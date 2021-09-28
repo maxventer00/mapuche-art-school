@@ -1,3 +1,4 @@
+import { blue, red } from '@material-ui/core/colors';
 import { createTheme } from '@material-ui/core/styles'
 
 const theme = createTheme({
@@ -13,7 +14,7 @@ const theme = createTheme({
     },
     typography: {
         fontFamily: ['Lato', 'Prata'].join(',')
-    }
+    },
 })
 
-export default theme
+export default theme;
