@@ -1,9 +1,13 @@
 .App {
   text-align: center;
 
+  /* filter: brightness(70%);
+   */
   /* background-image: url("images/homeBackgroundPlaceholder.jpg");
   background-repeat: no-repeat;
   background-size: cover; */
+
+  background-color: darkgray;
 
   height: 100vh;
 }
