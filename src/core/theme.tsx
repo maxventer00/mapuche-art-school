@@ -4,12 +4,12 @@ const theme = createTheme({
     palette: {
         // Lighter brown
         primary: {
-            main: '#F7ECE1',
-            dark: '#B59474',
+            main: '#B8A088',
+            dark: '#8A7866',
         },
         // Darker Brown (For accents)
         secondary: {
-            light: '#B59474',
+            light: '#8A7866',
             main: '#AC5435',
         },
     },
@@ -22,11 +22,13 @@ const theme = createTheme({
 theme.overrides = {
     MuiTypography: {
         h2: {
+            color: "white",
             fontFamily: "Prata",
             fontSize: "48px",
             marginBottom: "55px",
         },
         h4: {
+            color: "white",
             fontFamily: "Lato",
             fontSize: "32px",
             marginBottom: "70px",
