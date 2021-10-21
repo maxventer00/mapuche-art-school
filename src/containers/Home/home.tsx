@@ -1,6 +1,7 @@
 import { Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import theme from "../../core/theme";
 
 // Way to add EXTRA css values
@@ -11,6 +12,8 @@ const useStyles = makeStyles((theme) => ({
 function Home() {
 
     const classes = useStyles()
+
+    const history = useHistory()
 
     return <>
         <Typography
@@ -28,8 +31,12 @@ function Home() {
         </Typography>
 
         <div>
-            <Button variant="contained" size="large">
-                Contained Button
+            <Button 
+                variant="contained" 
+                size="large"
+                onClick={() => history.push("/login")}
+            >
+                Login Page
             </Button>
         </div>
 
