@@ -4,7 +4,7 @@ const theme = createTheme({
     palette: {
         // Lighter brown
         primary: {
-            main: '#F7ECE1',
+            main: '#AC5435',
             dark: '#B59474',
         },
         // Darker Brown (For accents)
@@ -52,7 +52,7 @@ theme.overrides = {
             }
         },
         outlined: {
-            backgroundColor: "transparent",
+            backgroundColor: theme.palette.secondary.light,
             color: "white",
             boxShadow: "none",
             borderWidth: "2px",
@@ -65,7 +65,7 @@ theme.overrides = {
             width: "500px",
             marginTop: "20px",
             '&:hover': {
-                backgroundColor: theme.palette.secondary.light,
+                backgroundColor: theme.palette.secondary.main,
             }
         }
     },
