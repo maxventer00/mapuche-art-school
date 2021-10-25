@@ -1,4 +1,9 @@
-import { createTheme } from '@material-ui/core/styles'
+import { createTheme } from '@mui/material'
+
+const primaryMain = '#B8A088'
+const primaryDark = '#8A7866'
+const secondaryLight = '#8A7866'
+const secondaryMain = '#AC5435'
 
 const theme = createTheme({
     palette: {
@@ -16,61 +21,67 @@ const theme = createTheme({
     typography: {
         fontFamily: ['Lato', 'Prata'].join(',')
     },
+    components: {
+        MuiTypography: {
+            styleOverrides: {
+                root: {
+                    h2: {
+                        color: "white",
+                        fontFamily: "Prata",
+                        fontSize: "48px",
+                        marginBottom: "55px",
+                    },
+                    h4: {
+                        color: "white",
+                        fontFamily: "Lato",
+                        fontSize: "32px",
+                        marginBottom: "70px",
+                    }
+                }
+            }
+        },
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    contained: {
+                        backgroundColor: primaryMain,
+                        color: "white",
+                        boxShadow: "none",
+                        borderWidth: "5px",
+                        borderColor: "white",
+                        fontFamily: "Lato",
+                        fontStyle: "normal",
+                        fontWeight: "bold",
+                        fontSize: "25px",
+                        lineHeight: "30px",
+                        width: "500px",
+                        marginTop: "20px",
+                        '&:hover': {
+                            backgroundColor: primaryDark,
+                            boxShadow: "none",
+                        }
+                    },
+                    outlined: {
+                        backgroundColor: "transparent",
+                        color: "white",
+                        boxShadow: "none",
+                        borderWidth: "2px",
+                        borderColor: "white",
+                        fontFamily: "Lato",
+                        fontStyle: "normal",
+                        fontWeight: "bold",
+                        fontSize: "25px",
+                        lineHeight: "30px",
+                        width: "500px",
+                        marginTop: "20px",
+                        '&:hover': {
+                            backgroundColor: secondaryLight,
+                        }
+                    }
+                },
+            }
+        }
+    }
 })
-
-// This is where we can style buttons, text fields, etc
-theme.overrides = {
-    MuiTypography: {
-        h2: {
-            color: "white",
-            fontFamily: "Prata",
-            fontSize: "48px",
-            marginBottom: "55px",
-        },
-        h4: {
-            color: "white",
-            fontFamily: "Lato",
-            fontSize: "32px",
-            marginBottom: "70px",
-        }
-    },
-    MuiButton: {
-        contained: {
-            backgroundColor: theme.palette.primary.main,
-            color: "white",
-            boxShadow: "none",
-            borderWidth: "5px",
-            borderColor: "white",
-            fontFamily: "Lato",
-            fontStyle: "normal",
-            fontWeight: "bold",
-            fontSize: "25px",
-            lineHeight: "30px",
-            width: "500px",
-            marginTop: "20px",
-            '&:hover': {
-                backgroundColor: theme.palette.primary.dark,
-                boxShadow: "none",
-            }
-        },
-        outlined: {
-            backgroundColor: "transparent",
-            color: "white",
-            boxShadow: "none",
-            borderWidth: "2px",
-            borderColor: "white",
-            fontFamily: "Lato",
-            fontStyle: "normal",
-            fontWeight: "bold",
-            fontSize: "25px",
-            lineHeight: "30px",
-            width: "500px",
-            marginTop: "20px",
-            '&:hover': {
-                backgroundColor: theme.palette.secondary.light,
-            }
-        }
-    },
-};
 
 export default theme;
