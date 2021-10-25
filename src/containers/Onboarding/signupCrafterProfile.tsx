@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) =>
 const classes = useStyles()
 const history = useHistory()
 
-function SignupCrafterProfile() {
+export default function SignupCrafterProfile() {
     return <>
         <div className={classes.backgroundImg}>
             <div className={classes.tempNav}>

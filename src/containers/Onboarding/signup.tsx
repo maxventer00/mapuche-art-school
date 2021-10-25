@@ -27,7 +27,7 @@ const classes = useStyles()
 
 const history = useHistory()
 
-function Signup() {
+export default function Signup() {
     return <> 
         <div className={classes.tempNav}>
             navbar

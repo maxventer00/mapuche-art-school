@@ -1,4 +1,5 @@
-import { Typography, Button, createStyles, makeStyles, TextField } from "@mui/material";
+import { Typography, Button, TextField } from "@mui/material";
+import { createStyles, makeStyles } from '@mui/styles';
 import React from "react";
 import { useHistory } from "react-router-dom";
 import theme from "../../core/theme";
@@ -54,7 +55,7 @@ const classes = useStyles()
 
 const history = useHistory()
 
-function Login() {
+export default function Login() {
     return <> 
         <div className={classes.bgImg}>
             <div className={classes.tempNav}>

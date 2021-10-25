@@ -54,7 +54,7 @@ const classes = useStyles()
 
 const history = useHistory()
 
-function SignupCrafter() {
+export default function SignupCrafter() {
     return <>
         <div className={classes.backgroundImg}>
             <div className={classes.tempNav}>

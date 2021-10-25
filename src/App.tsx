@@ -1,6 +1,6 @@
 import './App.css';
 import Routes from "./core/routes";
-import ThemeProvider from '@material-ui/styles/ThemeProvider';
+import { ThemeProvider } from '@mui/material/styles';
 import theme from './core/theme';
 
 function App() {
