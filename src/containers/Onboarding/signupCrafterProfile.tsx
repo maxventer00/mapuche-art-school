@@ -1,13 +1,13 @@
-import { Button, makeStyles, TextField, Typography } from "@material-ui/core";
+import { Typography, Button, TextField } from "@mui/material";
+import { createStyles, makeStyles } from '@mui/styles';
 import React from "react";
 import crafter from "../../images/crafter.png"
 import profilePlaceholder from "../../images/profilePlaceholder.png"
 import theme from "../../core/theme";
 import { useHistory } from "react-router";
 
-export default function SignupCrafterProfile() {
-
-    const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) =>
+    createStyles({
         tempNav: {
             backgroundColor: '#ffffff',
             height: 50,
@@ -67,11 +67,13 @@ export default function SignupCrafterProfile() {
             color: '#767676',
             fontSize: 22,
         },
-    }))
+    }),
+);
 
-    const classes = useStyles()
-    const history = useHistory()
+const classes = useStyles()
+const history = useHistory()
 
+function SignupCrafterProfile() {
     return <>
         <div className={classes.backgroundImg}>
             <div className={classes.tempNav}>
@@ -94,7 +96,7 @@ export default function SignupCrafterProfile() {
                         float: 'left',
                         marginBottom: 50,
                     }}
-                 />
+                />
 
                 <Typography 
                     variant="h4"

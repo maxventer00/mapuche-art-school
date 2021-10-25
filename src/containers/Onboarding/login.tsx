@@ -1,12 +1,12 @@
-import { Box, Button, makeStyles, TextField, Typography } from "@material-ui/core";
+import { Typography, Button, createStyles, makeStyles, TextField } from "@mui/material";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import theme from "../../core/theme";
 import loginBackground from "../../images/loginBackground.png"
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-export default function Login() {
-
-    const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) =>
+    createStyles({
         tempNav: {
             backgroundColor: '#ffffff',
             height: 50,
@@ -47,12 +47,14 @@ export default function Login() {
             color: '#767676',
             fontSize: 25,
         },
-    }))
+    }),
+);
     
-    const classes = useStyles()
-    
-    const history = useHistory()
+const classes = useStyles()
 
+const history = useHistory()
+
+function Login() {
     return <> 
         <div className={classes.bgImg}>
             <div className={classes.tempNav}>

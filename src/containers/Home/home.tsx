@@ -1,4 +1,3 @@
-import { Button, Typography } from "@material-ui/core";
 import { createStyles, makeStyles } from '@mui/styles';
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
@@ -17,7 +16,6 @@ const useStyles = makeStyles((theme) =>
         backgroundColor: '#ffffff',
         height: 50,
     },
-
     h1_header:
     {
       fontSize:50,
@@ -71,11 +69,7 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
-const theme = createTheme();
-
-
 function Home() {
- 
 
     const classes = useStyles()
 

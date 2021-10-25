@@ -1,12 +1,12 @@
-import { Button, makeStyles, TextField, Typography } from "@material-ui/core";
+import { Typography, Button, TextField } from "@mui/material";
+import { createStyles, makeStyles } from '@mui/styles';
 import React from "react";
 import crafter from "../../images/crafter.png"
 import theme from "../../core/theme";
 import { useHistory } from "react-router";
 
-export default function SignupCrafter() {
-
-    const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) =>
+    createStyles({
         tempNav: {
             backgroundColor: '#ffffff',
             height: 50,
@@ -47,11 +47,14 @@ export default function SignupCrafter() {
             color: '#767676',
             fontSize: 22,
         },
-    }))
+    }),
+);
 
-    const classes = useStyles()
-    const history = useHistory()
+const classes = useStyles()
 
+const history = useHistory()
+
+function SignupCrafter() {
     return <>
         <div className={classes.backgroundImg}>
             <div className={classes.tempNav}>

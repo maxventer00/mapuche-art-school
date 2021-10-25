@@ -1,16 +1,9 @@
-import { Button, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { createStyles, makeStyles } from '@mui/styles';
 import { useEffect } from "react";
 import theme from "../../core/theme";
-export {}
-// Way to add EXTRA css values
-const useStyles = makeStyles((theme) => ({
-
-}))
+import { Typography, Button } from "@mui/material";
 
 function Marketplace() {
-
-    const classes = useStyles()
 
     return <>
         <Typography
