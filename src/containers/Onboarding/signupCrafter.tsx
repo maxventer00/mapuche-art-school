@@ -1,8 +1,7 @@
-import { Typography, Button, TextField } from "@mui/material";
+import { Typography, Button, TextField, createTheme } from "@mui/material";
 import { createStyles, makeStyles } from '@mui/styles';
 import React from "react";
 import crafter from "../../images/crafter.png"
-import theme from "../../core/theme";
 import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) =>
@@ -50,11 +49,14 @@ const useStyles = makeStyles((theme) =>
     }),
 );
 
-const classes = useStyles()
-
-const history = useHistory()
+const theme = createTheme()
 
 export default function SignupCrafter() {
+    
+    const classes = useStyles()
+
+    const history = useHistory()
+
     return <>
         <div className={classes.backgroundImg}>
             <div className={classes.tempNav}>

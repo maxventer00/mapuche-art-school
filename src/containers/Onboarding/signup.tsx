@@ -1,7 +1,6 @@
-import { Typography, Button, TextField } from "@mui/material";
+import { Typography, Button, TextField, createTheme } from "@mui/material";
 import { createStyles, makeStyles } from '@mui/styles';
 import React from "react";
-import theme from "../../core/theme";
 import cusSignup from "../../images/cusSignup.png"
 import craftSignup from "../../images/craftSignup.png"
 import { useHistory } from "react-router-dom";
@@ -22,12 +21,15 @@ const useStyles = makeStyles((theme) =>
         },
     }),
 );
-    
-const classes = useStyles()
 
-const history = useHistory()
+const theme = createTheme()
 
 export default function Signup() {
+
+    const classes = useStyles()
+
+    const history = useHistory()
+
     return <> 
         <div className={classes.tempNav}>
             navbar

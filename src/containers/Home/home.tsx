@@ -69,6 +69,8 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
+const theme = createTheme()
+
 function Home() {
 
     const classes = useStyles()
@@ -77,7 +79,7 @@ function Home() {
 
     return <>
     
-    <Container disableGutters maxWidth={false}  className={`${classes.container}`}>
+    <Container disableGutters maxWidth={false} className={`${classes.container}`}>
     <div className={classes.tempNav}>
                 navbar
     </div>

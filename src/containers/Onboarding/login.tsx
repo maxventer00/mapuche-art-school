@@ -1,8 +1,7 @@
-import { Typography, Button, TextField } from "@mui/material";
+import { Typography, Button, TextField, Container } from "@mui/material";
 import { createStyles, makeStyles } from '@mui/styles';
 import React from "react";
 import { useHistory } from "react-router-dom";
-import theme from "../../core/theme";
 import loginBackground from "../../images/loginBackground.png"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -50,12 +49,15 @@ const useStyles = makeStyles((theme) =>
         },
     }),
 );
-    
-const classes = useStyles()
 
-const history = useHistory()
+const theme = createTheme()
 
 export default function Login() {
+        
+    const classes = useStyles()
+
+    const history = useHistory()
+
     return <> 
         <div className={classes.bgImg}>
             <div className={classes.tempNav}>
