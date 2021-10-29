@@ -1,13 +1,12 @@
-import { Box, Button, makeStyles, TextField, Typography } from "@material-ui/core";
+import { Typography, Button, TextField, createTheme } from "@mui/material";
+import { createStyles, makeStyles } from '@mui/styles';
 import React from "react";
-import theme from "../../core/theme";
 import cusSignup from "../../images/cusSignup.png"
 import craftSignup from "../../images/craftSignup.png"
 import { useHistory } from "react-router-dom";
 
-export default function Signup() {
-
-    const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) =>
+    createStyles({
         tempNav: {
             backgroundColor: '#ffffff',
             height: 50,
@@ -20,8 +19,13 @@ export default function Signup() {
             backgroundImage: "url(" + craftSignup + ")",
             maxHeight: '50%',
         },
-    }))
-    
+    }),
+);
+
+const theme = createTheme()
+
+export default function Signup() {
+
     const classes = useStyles()
 
     const history = useHistory()

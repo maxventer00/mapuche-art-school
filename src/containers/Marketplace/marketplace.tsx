@@ -1,46 +1,37 @@
-import { Button, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { createStyles, makeStyles } from '@mui/styles';
 import { useEffect } from "react";
 import theme from "../../core/theme";
-
-// Way to add EXTRA css values
-const useStyles = makeStyles((theme) => ({
-  '@global':{
-    body:{
-      backgroundColor:"#F7ECE1"
-    }
-},
-otherstyles:{
-  //  other styles ....
-},
-
-}))
+import { Typography, Button } from "@mui/material";
 
 function Marketplace() {
 
-  const classes = useStyles()
+    return <>
+        <Typography
+            variant="h2"
+            color="secondary"
+        >
+            test Title Text Secondary
+        </Typography>
 
-  return <>
-      <Typography
-          variant="h2"
-          color="secondary"
-      >
-          Marketplace
-      </Typography>
+        <Typography
+            variant="h4"
+            color="secondary"
+        >
+          test   Body Text Secondary
+        </Typography>
 
-      <Typography
-          variant="h4"
-          color="secondary"
-      >
-          Body Text Secondary
-      </Typography>
+        <div>
+            <Button variant="contained" size="large">
+                2nd Contained Button
+            </Button>
+        </div>
 
-      <div>
-          <Button variant="outlined" size="large">
-              Contact Us
-          </Button>
-      </div>
-  </>
+        <div>
+            <Button variant="outlined" size="large">
+                2nd Outlined Button
+            </Button>
+        </div>
+    </>
 }
 
 export default Marketplace;
