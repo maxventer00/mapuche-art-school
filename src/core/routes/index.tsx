@@ -18,11 +18,11 @@ function Routes() {
         <Router>
             <Switch>
                 <Route exact path="/">
-                    <Redirect to="/home" />
+                    <Redirect to="/marketplace" />
                 </Route>
                 <Route path="/marketplace" exact component={Marketplace} />
-                <Route path="/home" exact component={Home} />
-                <Route path="/login" exact component={Login} />
+                //<Route path="/home" exact component={Home} />
+                //<Route path="/login" exact component={Login} />
                 <Route path="/signup" exact component={Signup} />
                 <Route path="/signup/customer" exact component={SignupCustomer} />
                 <Route path="/signup/crafter" exact component={SignupCrafter} />

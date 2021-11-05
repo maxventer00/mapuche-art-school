@@ -1,37 +1,141 @@
 import { createStyles, makeStyles } from '@mui/styles';
 import { useEffect } from "react";
-import theme from "../../core/theme";
-import { Typography, Button } from "@mui/material";
+import { Typography, Button, Container, createTheme, TextField, Paper } from "@mui/material";
+import { useHistory } from 'react-router';
+import homapageBackground from "../../images/homeBackground.png"
+import { Box } from '@mui/system';
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    tempNav: {
+        backgroundColor: '#ffffff',
+        height: 50,
+    },
+    h1_header:
+    {
+      fontSize:50,
+      color:'#ffffff',
+      padding:15,
+      paddingTop:70,
+      fontFamily: 'Beth Ellen, cursive'
+    },
+    description:
+    {
+      color:'#ffffff',
+      margin:'auto',
+      textAlign:"center",
+      marginTop:20,
+      fontSize:18,
+      display:"inline-block",
+      width: 600,
+      padding:15,
+      overflow: "hidden",
+      textOverflow:"ellipsis",
+      wordWrap: "break-word",
+      fontFamily: 'ABeeZee, sans-serif',
+    },
+
+    contactUs:{
+      width: 200,
+      height:50,
+      fontFamily: 'ABeeZee, sans-serif',
+      textTransform: 'none',
+      marginTop:30,
+    },
+
+    container: {
+        backgroundImage: "url(" + homapageBackground + ")",
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        height:1180,
+        padding:0,
+        maxHeight:1180,
+        
+      },
+      marketContainer: {
+        height: 1180,
+        padding:0,
+        maxHeight:1180,
+        backgroundColor: '#F7ECE1',
+        
+      },
+      tint:
+      {
+        maxHeight:1180,
+        padding:0,
+        height:1180,
+        backgroundColor: "rgba(0,0,0,.6)",
+      }
+  }),
+);
+
+const theme = createTheme()
 
 function Marketplace() {
 
+    const classes = useStyles()
+
+    const history = useHistory()
+
     return <>
-        <Typography
-            variant="h2"
-            color="secondary"
+    
+    <Container disableGutters maxWidth={false} className={`${classes.container}`}>
+    <div className={classes.tempNav}>
+                navbar
+    </div>
+    <h1 className={ `${classes.h1_header}`}>Marketplace</h1>
+    
+    <span className={ `${classes.description}`}>marketplace text placeholder</span>
+    
+    
+    </Container>
+    <div className={ `${classes.contactUs}`}>
+    <Paper elevation={3}/>
+       <Button 
+         size="large"
+         variant="outlined"
+         style={{
+             maxWidth: 700,
+             marginTop: 0,
+             marginLeft:  900,
+             marginRight: 'auto',
+             marginBottom: 500,
+         }}
         >
-            test Title Text Secondary
-        </Typography>
+            Contact Us
+            
+        </Button>
+         
+    </div>
 
-        <Typography
-            variant="h4"
-            color="secondary"
-        >
-          test   Body Text Secondary
-        </Typography>
 
-        <div>
-            <Button variant="contained" size="large">
-                2nd Contained Button
-            </Button>
-        </div>
 
-        <div>
-            <Button variant="outlined" size="large">
-                2nd Outlined Button
-            </Button>
-        </div>
+<Container  disableGutters maxWidth={false} className={`${classes.marketContainer}`}>
+<h1 className={ `${classes.h1_header}`}>Marketplace</h1>
+
+<Paper elevation={3}>
+<Box
+      sx={{
+        width: 1/4,
+        marginLeft: 30,
+        marginRight: 20,
+        paddingLeft:50,
+        height: 350,
+        backgroundColor: '#ffffff',
+        '&:hover': {
+          backgroundColor: '#ffffff',
+        },
+      }}
+    />
+</Paper>
+</Container>
+
+//TRY MAKE MARKETPLACE BOX FIT BETTER AND NOT WHOLE SCREEN WIDTH
+
+
     </>
 }
+
 
 export default Marketplace;
