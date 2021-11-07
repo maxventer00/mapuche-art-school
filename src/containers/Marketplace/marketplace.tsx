@@ -48,15 +48,15 @@ const useStyles = makeStyles((theme) =>
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        height:1180,
+        height:800,
         padding:0,
         maxHeight:1180,
         
       },
       marketContainer: {
-        height: 1180,
-        padding:0,
-        maxHeight:1180,
+        position: 'relative',
+        width: '100%',
+        height: 2000,
         backgroundColor: '#F7ECE1',
         
       },
@@ -91,7 +91,6 @@ function Marketplace() {
     
     </Container>
     <div className={ `${classes.contactUs}`}>
-    <Paper elevation={3}/>
        <Button 
          size="large"
          variant="outlined"
@@ -111,17 +110,16 @@ function Marketplace() {
 
 
 
-<Container  disableGutters maxWidth={false} className={`${classes.marketContainer}`}>
+<Container disableGutters maxWidth={false} className={`${classes.marketContainer}`}>
 <h1 className={ `${classes.h1_header}`}>Marketplace</h1>
 
-<Paper elevation={3}>
+<Paper elevation={5}>
 <Box
       sx={{
-        width: 1/4,
-        marginLeft: 30,
-        marginRight: 20,
-        paddingLeft:50,
-        height: 350,
+        position: 'absolute',
+        height: 900,
+        width: '20%',
+        marginLeft: '5%',  
         backgroundColor: '#ffffff',
         '&:hover': {
           backgroundColor: '#ffffff',
