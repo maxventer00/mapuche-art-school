@@ -9,10 +9,13 @@ import {
   Paper,
   Card,
   CardContent,
+  CardMedia,
+  autocompleteClasses,
 } from "@mui/material";
 import { useHistory } from "react-router";
 import homapageBackground from "../../images/homeBackground.png";
 import { Box } from "@mui/system";
+import itemTest from "../../images/itemTest.png";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -64,11 +67,6 @@ const useStyles = makeStyles((theme) =>
       width: "100%",
       height: 1500,
       backgroundColor: "#F7ECE1",
-    },
-    img: {
-      backgroundImage: "url(" + itemTest + ")",
-      width: "100%",
-      height: "50%",
     },
     tint: {
       maxHeight: 1180,
@@ -132,14 +130,17 @@ function Marketplace() {
             backgroundColor: "#ffffff",
           }}
         >
+          {/*image not centered*/} 
+          <CardMedia
+          style={{height: 100,width: 100, paddingTop: "5%", alignSelf: "center"}}  
+        component="img"
+        src={itemTest}
+        alt="Tool"
+      /> 
           <CardContent>
-
-            <div className={`${classes.img}`}>
-            
-              </div>
             <Typography sx={{ fontSize: 32 }}
               color="text.secondary"
-              paddingTop="60%"
+              paddingTop="10%"
             >
               Item one         {/*get item name here*/} 
             </Typography>
