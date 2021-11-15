@@ -132,7 +132,7 @@ function Marketplace() {
         >
           {/*image not centered*/} 
           <CardMedia
-          style={{height: 100,width: 100, paddingTop: "5%", alignSelf: "center"}}  
+          style={{height: 100,width: 100, paddingTop: "5%", justifyContent: "center", display: "flex", marginLeft: "auto", marginRight: "auto"}}  
         component="img"
         src={itemTest}
         alt="Tool"
