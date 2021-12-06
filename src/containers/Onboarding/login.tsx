@@ -1,9 +1,10 @@
 import { Typography, Button, TextField, Container } from "@mui/material";
 import { createStyles, makeStyles } from '@mui/styles';
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import loginBackground from "../../images/loginBackground.png"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import app from "../../base";
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -55,8 +56,22 @@ const theme = createTheme()
 export default function Login() {
         
     const classes = useStyles()
-
     const history = useHistory()
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const Login = async () => {
+        try {
+            // Login user
+            await app
+                .auth()
+                .signInWithEmailAndPassword(email, password);
+            history.push("/");
+        } catch (error) {
+            alert(error);
+        }
+    }
 
     return <> 
         <div className={classes.bgImg}>
@@ -86,6 +101,7 @@ export default function Login() {
                         root: classes.label,
                         },
                     }}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
                 <TextField 
                     className={classes.textFld}
@@ -101,6 +117,7 @@ export default function Login() {
                         root: classes.label,
                         },
                     }}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
                 <Typography 
                     className={classes.smallBody}
@@ -112,7 +129,7 @@ export default function Login() {
                 <Button
                     size="large"
                     variant="contained"
-                    onClick={() => history.push("/home")}
+                    onClick={() => Login()}
                 >
                     Login
                 </Button>

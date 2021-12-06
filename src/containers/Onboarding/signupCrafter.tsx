@@ -1,6 +1,6 @@
 import { Typography, Button, TextField, createTheme } from "@mui/material";
 import { createStyles, makeStyles } from '@mui/styles';
-import React from "react";
+import React, { useState } from "react";
 import crafter from "../../images/crafter.png"
 import { useHistory } from "react-router";
 
@@ -54,8 +54,32 @@ const theme = createTheme()
 export default function SignupCrafter() {
     
     const classes = useStyles()
-
     const history = useHistory()
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [password2, setPassword2] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+
+    const submitPage = () => {
+        if (password === password2) {
+            history.push({
+                pathname: "/signup/crafter/profile",
+                    state: {
+                        email,
+                        firstName,
+                        lastName,
+                        password,
+                    }
+                }
+            )
+        }
+        else {
+            alert("Passwords don't match");
+        }
+    }
+
 
     return <>
         <div className={classes.backgroundImg}>
@@ -85,6 +109,7 @@ export default function SignupCrafter() {
                         root: classes.label,
                         },
                     }}
+                    onChange={(e) => setFirstName(e.target.value)}
                 />
 
                 <TextField 
@@ -101,6 +126,7 @@ export default function SignupCrafter() {
                         root: classes.label,
                         },
                     }}
+                    onChange={(e) => setLastName(e.target.value)}
                 />
 
                 <TextField 
@@ -117,6 +143,7 @@ export default function SignupCrafter() {
                         root: classes.label,
                         },
                     }}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
                 <TextField 
                     className={classes.textFld}
@@ -132,6 +159,7 @@ export default function SignupCrafter() {
                         root: classes.label,
                         },
                     }}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
                 <TextField 
                     className={classes.textFld}
@@ -147,12 +175,13 @@ export default function SignupCrafter() {
                         root: classes.label,
                         },
                     }}
+                    onChange={(e) => setPassword2(e.target.value)}
                 />
 
                 <Button
                     size="large"
                     variant="contained"
-                    onClick={() => history.push("/signup/crafter/profile")}
+                    onClick={() => submitPage()}
                     style={{
                         marginTop: 50,
                     }}

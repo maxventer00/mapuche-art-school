@@ -1,9 +1,10 @@
 import { Typography, Button, TextField, createTheme } from "@mui/material";
 import { createStyles, makeStyles } from '@mui/styles';
-import React from "react";
+import React, { useState } from "react";
 import crafter from "../../images/crafter.png"
 import profilePlaceholder from "../../images/profilePlaceholder.png"
-import { useHistory } from "react-router";
+import { useHistory, withRouter, useLocation } from "react-router";
+import app from "../../base";
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -71,11 +72,45 @@ const useStyles = makeStyles((theme) =>
 
 const theme = createTheme()
 
+interface LocationState {
+    email: string;
+    password: string,
+    firstName: string,
+    lastName: string,
+}
+
 export default function SignupCrafterProfile() {
     
     const classes = useStyles()
-
     const history = useHistory()
+    const location = useLocation<LocationState>();
+
+    const [photoURL, setPhotoURL] = useState("");
+
+    const SignUp = async () => {
+        try {
+            // Sign up user
+            await app
+                .auth()
+                .createUserWithEmailAndPassword(location.state.email, location.state.password);
+
+            // Update their display name
+            await app
+                .auth()
+                .onAuthStateChanged(function(user) {
+                    if (user) {
+                        user.updateProfile({
+                        displayName: location.state.firstName + ' ' + location.state.lastName,
+                        photoURL: photoURL,
+                        }).then(function() {
+                        history.push("/");
+                        });     
+                    }
+                });
+        } catch (error) {
+            alert(error);
+        }
+    }
 
     return <>
         <div className={classes.backgroundImg}>
@@ -115,7 +150,6 @@ export default function SignupCrafterProfile() {
                 <Button
                     size="large"
                     variant="outlined"
-                    // onClick={() => history.push("/signup")}
                     style={{
                         marginTop: 90,
                         maxWidth: 250,
@@ -181,7 +215,7 @@ export default function SignupCrafterProfile() {
                     <Button
                         size="large"
                         variant="contained"
-                        onClick={() => history.push("/home")}
+                        onClick={() => SignUp()}
                         style={{
                             marginTop: 50,
                             maxWidth: 300,
