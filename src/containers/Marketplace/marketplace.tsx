@@ -11,11 +11,13 @@ import {
   CardContent,
   CardMedia,
   autocompleteClasses,
+  Grid,
 } from "@mui/material";
 import { useHistory } from "react-router";
 import homapageBackground from "../../images/homeBackground.png";
 import { Box } from "@mui/system";
 import itemTest from "../../images/itemTest.png";
+import { Filter } from './filter';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -27,7 +29,7 @@ const useStyles = makeStyles((theme) =>
       fontSize: 50,
       color: "#ffffff",
       padding: 15,
-      paddingTop: 70,
+      paddingTop: 20,
       fontFamily: "Beth Ellen, cursive",
     },
     description: {
@@ -67,12 +69,25 @@ const useStyles = makeStyles((theme) =>
       width: "100%",
       height: 1500,
       backgroundColor: "#F7ECE1",
+      display: "flex",
+      flexGrowing: 1,
+    },
+    filterContainer: {
+      position: "absolute",
+      height: 900,
+      maxWidth: 300,
+      backgroundColor: "#FFFFFF",
+      
     },
     tint: {
       maxHeight: 1180,
       padding: 0,
       height: 1180,
       backgroundColor: "rgba(0,0,0,.6)",
+    },
+    paper: {
+      padding: 20,
+      textAlign: "center"
     },
   })
 );
@@ -86,6 +101,7 @@ function Marketplace() {
 
   return (
     <>
+      {/* Header Container */}
       <Container
         disableGutters
         maxWidth={false}
@@ -99,6 +115,9 @@ function Marketplace() {
         </span>
       </Container>
 
+
+
+      {/* Marketplace Container */}
       <Container
         disableGutters
         maxWidth={false}
@@ -106,53 +125,27 @@ function Marketplace() {
       >
         <h1 className={`${classes.h1_header}`}>Marketplace</h1>
 
-        <Box
-          sx={{
-            position: "absolute",
-            height: 900,
-            width: "20%",
-            marginLeft: "5%",
-            backgroundColor: "#ffffff",
-            "&:hover": {
-              backgroundColor: "#ffffff",
-            },
-          }}
-        />
+        {/* Filters Container */}
+        <Container maxWidth={false} className={`${classes.filterContainer}`}>
+        </Container>
 
-        <Card
-          sx={{
-            minWidth: 275,
-            maxWidth: 275,
-            marginLeft: "35%",
-            minHeight: 275,
-            maxHeight: 275,
-            marginTop: "0%",
-            backgroundColor: "#ffffff",
-          }}
-        >
-          {/*image not centered*/} 
-          <CardMedia
-          style={{height: 100,width: 100, paddingTop: "5%", justifyContent: "center", display: "flex", marginLeft: "auto", marginRight: "auto"}}  
-        component="img"
-        src={itemTest}
-        alt="Tool"
-      /> 
-          <CardContent>
-            <Typography sx={{ fontSize: 32 }}
-              color="text.secondary"
-              paddingTop="10%"
-            >
-              Item one         {/*get item name here*/} 
-            </Typography>
-            <Typography 
-              sx={{ fontSize: 24 }}
-              
-            >
-              $ 12.00           {/*get item price here*/} 
-            </Typography>
-          </CardContent>
-        </Card>
+        {/* Marketplace grid container */}
+        <Container   >
+        <Grid container spacing={2}>
+          <Grid item xs={3} sx={{ position: "relative", marginLeft: 30 }}>
+            <Paper className={`${classes.paper}`} sx={{ height: 200, width: 150 }}>xs=12 sm=6</Paper>
+          </Grid>
+          <Grid item xs={3} sx={{ position: "relative"}}>
+            <Paper className={`${classes.paper}`} sx={{ height: 200, width: 150 }}>xs=12 sm=6</Paper>
+          </Grid>
+          <Grid item xs={3} sx={{ position: "relative" }}>
+            <Paper className={`${classes.paper}`} sx={{ height: 200, width: 150 }}>xs=12 sm=6</Paper>
+          </Grid>
+        </Grid>
+        </Container>
 
+      </Container>
+      <Container>
         <div className={`${classes.contactUs}`}>
           <Button
             size="large"
