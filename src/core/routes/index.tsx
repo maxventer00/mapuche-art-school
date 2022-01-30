@@ -13,6 +13,7 @@ import SignupCustomer from "../../containers/Onboarding/signupCustomer";
 import SignupCrafter from "../../containers/Onboarding/signupCrafter";
 import SignupCrafterProfile from "../../containers/Onboarding/signupCrafterProfile";
 import { AuthProvider } from "../../Auth";
+import CrafterProfile from "../../containers/crafter/crafterProfile";
 
 function Routes() {
     return (
@@ -24,6 +25,7 @@ function Routes() {
                     </Route>
                     <Route path="/marketplace" exact component={Marketplace} />
                     <Route path="/home" exact component={Home} />
+                    <Route path="/profile/crafter" exact component={CrafterProfile} />
                     <Route path="/login" exact component={Login} />
                     <Route path="/signup" exact component={Signup} />
                     <Route path="/signup/customer" exact component={SignupCustomer} />
