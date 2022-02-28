@@ -1,7 +1,7 @@
-import './App.css';
+import "./App.css";
 import Routes from "./core/routes";
-import { ThemeProvider } from '@mui/material/styles';
-import theme from './core/theme';
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./core/theme";
 
 function App() {
   return (
@@ -12,5 +12,4 @@ function App() {
     </ThemeProvider>
   );
 }
-
 export default App;

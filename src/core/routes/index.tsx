@@ -1,9 +1,9 @@
 import React from "react";
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect,
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
 } from "react-router-dom";
 import Marketplace from "../../containers/Marketplace/marketplace";
 import Home from "../../containers/Home/home";
@@ -15,25 +15,28 @@ import SignupCrafterProfile from "../../containers/Onboarding/signupCrafterProfi
 import { AuthProvider } from "../../Auth";
 
 function Routes() {
-    return (
-        <AuthProvider>
-            <Router>
-                <Switch>
-                    <Route exact path="/">
-                        <Redirect to="/home" />
-                    </Route>
-                    <Route path="/marketplace" exact component={Marketplace} />
-                    <Route path="/home" exact component={Home} />
-                    <Route path="/login" exact component={Login} />
-                    <Route path="/signup" exact component={Signup} />
-                    <Route path="/signup/customer" exact component={SignupCustomer} />
-                    <Route path="/signup/crafter" exact component={SignupCrafter} />
-                    <Route path="/signup/crafter/profile" exact component={SignupCrafterProfile} />
-                </Switch>
-            </Router>
-        </AuthProvider>
-    );
+  return (
+    <AuthProvider>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+          <Route path="/marketplace" exact component={Marketplace} />
+          <Route path="/home" exact component={Home} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/signup/customer" exact component={SignupCustomer} />
+          <Route path="/signup/crafter" exact component={SignupCrafter} />
+          <Route
+            path="/signup/crafter/profile"
+            exact
+            component={SignupCrafterProfile}
+          />
+        </Switch>
+      </Router>
+    </AuthProvider>
+  );
 }
 
 export default Routes;
-
