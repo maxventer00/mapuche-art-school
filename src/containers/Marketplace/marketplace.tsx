@@ -21,7 +21,7 @@ import { useHistory } from "react-router";
 import homapageBackground from "../../images/homeBackground.png";
 import { Box } from "@mui/system";
 import itemTest from "../../images/itemTest.png";
-//import { Filter } from './filter';
+import Footer from "../Shared/footer";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) =>
       height: 50,
     },
     h1_header: {
-      fontSize: 50,
+      fontSize: 64,
       color: "#ffffff",
       padding: 15,
       paddingTop: 20,
@@ -57,6 +57,7 @@ const useStyles = makeStyles((theme) =>
       fontFamily: "ABeeZee, sans-serif",
       textTransform: "none",
       marginTop: 30,
+      justifyItems: "center",
     },
 
     container: {
@@ -92,6 +93,11 @@ const useStyles = makeStyles((theme) =>
     paper: {
       padding: 20,
       textAlign: "center"
+    },
+    marketplaceImg: {
+      width: "50%",
+      height: "50%",
+      marginLeft: "25%"
     },
   })
 );
@@ -192,26 +198,23 @@ function Marketplace() {
       >
         <h1 className={`${classes.h1_header}`}>Marketplace</h1>
 
-        {/* Filters Container */}
-        {/* <Container maxWidth={false} className={`${classes.filterContainer}`}>
-       </Container> */}
 
         {/* Marketplace grid container */}
         <Container>
           <Grid container justifyContent="center" alignItems="center" >
-            <List sx={{ columns: 4, gap: 5 }}>
+            <List sx={{ columns: 4, gap: 8 }}>
               {shopData.map((item => (
                 <ListItem key={item.name}>
-                  <Card sx={{ maxWidth: 400, maxHeight: 225, borderRadius: 4 }}>
-                    <CardActionArea sx={{ display: 'flex' }}>
+                  <Card sx={{ maxWidth: 400, maxHeight: 400, borderRadius: 5 }}>
+                    <CardActionArea sx={{ display: 'column' }}>
                       <CardMedia
                         component="img"
-                        height="150"
+                        height="200"
                         width="100"
                         image={item.image}
                         alt="No Image Available"
                       />
-                      <CardContent sx={{ flexDirection: "column" }}>
+                      <CardContent sx={{ flexDirection: "row" }}>
                         <Grid container justifyContent="space-between">
                           <Typography gutterBottom variant="h5" component="div" color="#AC5435">
                             {item.name}
@@ -252,24 +255,9 @@ function Marketplace() {
         </Grid> */}
 
       </Container>
-      <Container>
-        <div className={`${classes.contactUs}`}>
-          <Button
-            size="large"
-            variant="outlined"
-            style={{
-              maxWidth: 700,
-              marginTop: 1000,
-              marginLeft: "auto",
-              marginRight: "auto",
-              justifyContent: "center",
-              marginBottom: 0,
-            }}
-          >
-            Contact Us
-          </Button>
-        </div>
-      </Container>
+
+      
+
     </>
   );
 }
