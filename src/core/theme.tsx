@@ -9,12 +9,12 @@ const theme = createTheme({
     palette: {
         // Lighter brown
         primary: {
-            main: '#B8A088',
-            dark: '#8A7866',
+            main: '#AC5435',
+            dark: '#B59474',
         },
         // Darker Brown (For accents)
         secondary: {
-            light: '#8A7866',
+            light: '#B59474',
             main: '#AC5435',
         },
     },

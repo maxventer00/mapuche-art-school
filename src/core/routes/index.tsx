@@ -15,6 +15,23 @@ import SignupCrafterProfile from "../../containers/Onboarding/signupCrafterProfi
 import { AuthProvider } from "../../Auth";
 
 function Routes() {
+ Marketplace-layout
+    return (
+        <Router>
+            <Switch>
+                <Route exact path="/">
+                    <Redirect to="/marketplace" />
+                </Route>
+                <Route path="/marketplace" exact component={Marketplace} />
+                //<Route path="/home" exact component={Home} />
+                //<Route path="/login" exact component={Login} />
+                <Route path="/signup" exact component={Signup} />
+                <Route path="/signup/customer" exact component={SignupCustomer} />
+                <Route path="/signup/crafter" exact component={SignupCrafter} />
+                <Route path="/signup/crafter/profile" exact component={SignupCrafterProfile} />
+            </Switch>
+        </Router>
+    );
   return (
     <AuthProvider>
       <Router>
