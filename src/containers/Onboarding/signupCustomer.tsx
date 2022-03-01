@@ -1,8 +1,9 @@
 import { Typography, Button, TextField, createTheme } from "@mui/material";
 import { createStyles, makeStyles } from '@mui/styles';
-import React from "react";
+import React, { useCallback, useState } from "react";
 import customer from "../../images/customer.png"
-import { useHistory } from "react-router";
+import { useHistory, withRouter } from "react-router";
+import app from "../../base";
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -51,11 +52,45 @@ const useStyles = makeStyles((theme) =>
 
 const theme = createTheme()
 
-export default function SignupCrafter() {
+function SignupCrafter() {
 
     const classes = useStyles()
-
     const history = useHistory()
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [password2, setPassword2] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+
+    const SignUp = async () => {
+        if (password === password2) {
+            try {
+                // Sign up user
+                await app
+                    .auth()
+                    .createUserWithEmailAndPassword(email, password);
+
+                // Update their display name
+                await app
+                    .auth()
+                    .onAuthStateChanged(function(user) {
+                        if (user) {
+                        user.updateProfile({
+                            displayName: firstName + ' ' + lastName,
+                        }).then(function() {
+                            history.push("/");
+                        });     
+                        }
+                    });
+            } catch (error) {
+                alert(error);
+            }
+        }
+        else {
+            alert("Passwords don't match");
+        }
+    }
 
     return <>
         <div className={classes.backgroundImg}>
@@ -72,6 +107,7 @@ export default function SignupCrafter() {
 
             <div className={classes.fieldContainer}>
                 <TextField 
+                    id="firstName"
                     className={classes.textFld}
                     label="First Name" 
                     variant="filled" 
@@ -85,9 +121,11 @@ export default function SignupCrafter() {
                         root: classes.label,
                         },
                     }}
+                    onChange={(e) => setFirstName(e.target.value)}
                 />
 
                 <TextField 
+                    id="lastName"
                     className={classes.textFld}
                     label="Last Name" 
                     variant="filled" 
@@ -101,9 +139,11 @@ export default function SignupCrafter() {
                         root: classes.label,
                         },
                     }}
+                    onChange={(e) => setLastName(e.target.value)}
                 />
 
                 <TextField 
+                    id="email"
                     className={classes.textFld}
                     label="Email Address" 
                     variant="filled" 
@@ -117,8 +157,10 @@ export default function SignupCrafter() {
                         root: classes.label,
                         },
                     }}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
                 <TextField 
+                    id="password"
                     className={classes.textFld}
                     label="Password" 
                     variant="filled" 
@@ -132,8 +174,10 @@ export default function SignupCrafter() {
                         root: classes.label,
                         },
                     }}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
                 <TextField 
+                    id="password2"
                     className={classes.textFld}
                     label="Re-Enter Password" 
                     variant="filled" 
@@ -147,12 +191,13 @@ export default function SignupCrafter() {
                         root: classes.label,
                         },
                     }}
+                    onChange={(e) => setPassword2(e.target.value)}
                 />
 
                 <Button
                     size="large"
                     variant="contained"
-                    onClick={() => history.push("/home")}
+                    onClick={() => SignUp()}
                 >
                     Signup
                 </Button>
@@ -168,3 +213,5 @@ export default function SignupCrafter() {
         </div>
     </>
 }
+
+export default withRouter(SignupCrafter);
