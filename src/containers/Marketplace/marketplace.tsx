@@ -77,28 +77,13 @@ const useStyles = makeStyles((theme) =>
       display: "flex",
       flexGrowing: 1,
     },
-    filterContainer: {
-      position: "absolute",
-      height: 900,
-      maxWidth: 300,
-      backgroundColor: "#FFFFFF",
-
+    footerContainer:
+    {
+      backgroundSize: "cover",
+      height: 100,
+      marginTop: 300,
     },
-    tint: {
-      maxHeight: 1180,
-      padding: 0,
-      height: 1180,
-      backgroundColor: "rgba(0,0,0,.6)",
-    },
-    paper: {
-      padding: 20,
-      textAlign: "center"
-    },
-    marketplaceImg: {
-      width: "50%",
-      height: "50%",
-      marginLeft: "25%"
-    },
+   
   })
 );
 
@@ -241,22 +226,15 @@ function Marketplace() {
             </List>
           </Grid>
         </Container>
-          
-          {/* <Grid container spacing={2}>
-          <Grid item xs={3} sx={{ position: "relative", marginLeft: 30 }}>
-            <Paper className={`${classes.paper}`} sx={{ height: 200, width: 150 }}>xs=12 sm=6</Paper>
-          </Grid>
-          <Grid item xs={3} sx={{ position: "relative"}}>
-            <Paper className={`${classes.paper}`} sx={{ height: 200, width: 150 }}>xs=12 sm=6</Paper>
-          </Grid>
-          <Grid item xs={3} sx={{ position: "relative" }}>
-            <Paper className={`${classes.paper}`} sx={{ height: 200, width: 150 }}>xs=12 sm=6</Paper>
-          </Grid>
-        </Grid> */}
-
+            {/* Footer Container */}
+      <Container className={`${classes.footerContainer}`}>
+        <Footer />
+      </Container>
       </Container>
 
-      
+  
+
+
 
     </>
   );

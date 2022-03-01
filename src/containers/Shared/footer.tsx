@@ -1,11 +1,13 @@
 import React from "react";
 import { Container, Link, Grid, Box } from "@mui/material";
 
+// Footer not centred
+
 export default function Footer() {
     return <footer>
-        <Box bgcolor="#e7c6a5">
+        <Box bgcolor="fff" maxWidth={1000}>
             <Container maxWidth="lg">
-                <Grid container spacing={5}>
+                <Grid container spacing={10}>
                     <Grid item xs={12} sm={4}>
                         <Box borderBottom={1}>
                             Contact Us</Box>
