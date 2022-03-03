@@ -15,7 +15,7 @@ import SignupCrafterProfile from "../../containers/Onboarding/signupCrafterProfi
 import { AuthProvider } from "../../Auth";
 
 function Routes() {
- Marketplace-layout
+ 
     return (
         <Router>
             <Switch>
