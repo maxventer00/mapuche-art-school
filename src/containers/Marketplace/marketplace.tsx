@@ -15,13 +15,14 @@ import {
   autocompleteClasses,
   Grid,
   List,
-  ListItem
+  ListItem,
 } from "@mui/material";
 import { useHistory } from "react-router";
 import homapageBackground from "../../images/homeBackground.png";
 import { Box } from "@mui/system";
 import itemTest from "../../images/itemTest.png";
 import Footer from "../Shared/footer";
+import Navbar from "../Shared/Navbar";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -77,13 +78,11 @@ const useStyles = makeStyles((theme) =>
       display: "flex",
       flexGrowing: 1,
     },
-    footerContainer:
-    {
+    footerContainer: {
       backgroundSize: "cover",
       height: 100,
       marginTop: 300,
     },
-   
   })
 );
 
@@ -147,8 +146,7 @@ const shopData = [
     description: "This is the fourth item",
     image: itemTest,
   },
-]
-
+];
 
 const theme = createTheme();
 
@@ -165,15 +163,13 @@ function Marketplace() {
         maxWidth={false}
         className={`${classes.container}`}
       >
-        <div className={classes.tempNav}>navbar</div>
+        <Navbar />
         <h1 className={`${classes.h1_header}`}>Marketplace</h1>
 
         <span className={`${classes.description}`}>
           marketplace text placeholder
         </span>
       </Container>
-
-
 
       {/* Marketplace Container */}
       <Container
@@ -183,15 +179,14 @@ function Marketplace() {
       >
         <h1 className={`${classes.h1_header}`}>Marketplace</h1>
 
-
         {/* Marketplace grid container */}
         <Container>
-          <Grid container justifyContent="center" alignItems="center" >
+          <Grid container justifyContent="center" alignItems="center">
             <List sx={{ columns: 4, gap: 8 }}>
-              {shopData.map((item => (
+              {shopData.map((item) => (
                 <ListItem key={item.name}>
                   <Card sx={{ maxWidth: 400, maxHeight: 400, borderRadius: 5 }}>
-                    <CardActionArea sx={{ display: 'column' }}>
+                    <CardActionArea sx={{ display: "column" }}>
                       <CardMedia
                         component="img"
                         height="200"
@@ -201,20 +196,33 @@ function Marketplace() {
                       />
                       <CardContent sx={{ flexDirection: "row" }}>
                         <Grid container justifyContent="space-between">
-                          <Typography gutterBottom variant="h5" component="div" color="#AC5435">
+                          <Typography
+                            gutterBottom
+                            variant="h5"
+                            component="div"
+                            color="#AC5435"
+                          >
                             {item.name}
                           </Typography>
-
                         </Grid>
                         <Typography variant="body2" color="#AC5435">
                           {item.description}
                         </Typography>
                         <br />
-                        <Typography variant="body2" color="#AC5435" align="left">
+                        <Typography
+                          variant="body2"
+                          color="#AC5435"
+                          align="left"
+                        >
                           Price: {item.price}
                         </Typography>
-                        <CardActions sx={{ justifyContent: 'end' }} >
-                          <Button size="small" color="secondary" variant="contained" sx={{ borderRadius: 25, maxHeight: 25 }} >
+                        <CardActions sx={{ justifyContent: "end" }}>
+                          <Button
+                            size="small"
+                            color="secondary"
+                            variant="contained"
+                            sx={{ borderRadius: 25, maxHeight: 25 }}
+                          >
                             BUY
                           </Button>
                         </CardActions>
@@ -222,20 +230,15 @@ function Marketplace() {
                     </CardActionArea>
                   </Card>
                 </ListItem>
-              )))}
+              ))}
             </List>
           </Grid>
         </Container>
-            {/* Footer Container */}
-      <Container className={`${classes.footerContainer}`}>
-        <Footer />
+        {/* Footer Container */}
+        <Container className={`${classes.footerContainer}`}>
+          <Footer />
+        </Container>
       </Container>
-      </Container>
-
-  
-
-
-
     </>
   );
 }

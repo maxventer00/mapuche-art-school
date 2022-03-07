@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import loginBackground from "../../images/loginBackground.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import app from "../../base";
+import Navbar from "../Shared/Navbar";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -108,7 +109,7 @@ export default function Login() {
   return (
     <>
       <div className={classes.bgImg}>
-        <div className={classes.tempNav}>navbar</div>
+        <Navbar />
 
         <Typography className={classes.subtitle} variant="h4">
           Login
