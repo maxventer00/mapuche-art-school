@@ -206,8 +206,8 @@ function Marketplace() {
             <List sx={{ columns: 4, gap: 8 }}>
               {shopData.map((item => (
                 <ListItem key={item.name}>
-                  <Card sx={{ maxWidth: 400, maxHeight: 400, borderRadius: 5 }}>
-                    <CardActionArea sx={{ display: 'column' }}>
+                  <Card sx={{ maxWidth: 400, maxHeight: 400, borderRadius: 5, }}>
+                    <CardActionArea sx={{ display: 'column', border: `10px solid white` }}>
                       <CardMedia
                         component="img"
                         height="200"
