@@ -1,24 +1,32 @@
-import { Typography, Button, TextField, createTheme } from "@mui/material";
+import {
+  Typography,
+  Button,
+  TextField,
+  createTheme,
+  Input,
+} from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import crafter from "../../images/crafter.png";
 import profilePlaceholder from "../../images/profilePlaceholder.png";
 import { useHistory, withRouter, useLocation } from "react-router";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 import app from "../../base";
 import Navbar from "../Shared/Navbar";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    tempNav: {
-      backgroundColor: "#ffffff",
-      height: 50,
-      marginBottom: 140,
-    },
     backgroundImg: {
       backgroundImage: "url(" + crafter + ")",
     },
     subtitle: {
       fontSize: 48,
+      paddingTop: "250px",
     },
     smallBody: {
       fontSize: 22,
@@ -68,6 +76,14 @@ const useStyles = makeStyles((theme) =>
       color: "#767676",
       fontSize: 22,
     },
+    photoContainer: {
+      width: "230px",
+      height: "230px",
+      float: "left",
+      borderWidth: "2px",
+      borderStyle: "solid",
+      borderColor: "#B8A088",
+    },
   })
 );
 
@@ -86,24 +102,32 @@ export default function SignupCrafterProfile() {
   const location = useLocation<LocationState>();
 
   const [photoURL, setPhotoURL] = useState("");
+  const [image, setImage] = useState<File | undefined>();
+
+  const uploadPhoto = async () => {
+    if (image == null) return;
+
+    const storage = getStorage();
+    const imageRef = ref(storage, "images/" + image.name);
+
+    uploadBytesResumable(imageRef, image)
+      .then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((url) => {
+          setPhotoURL(url);
+        });
+      })
+      .catch((error) => {
+        console.error("Upload failed", error);
+      });
+  };
 
   const SignUp = async () => {
     try {
-      // Sign up user
-      await app
-        .auth()
-        .createUserWithEmailAndPassword(
-          location.state.email,
-          location.state.password
-        );
-
-      // Update their display name
+      // Update their profile pic url, location, bio
       await app.auth().onAuthStateChanged(function (user) {
         if (user) {
           user
             .updateProfile({
-              displayName:
-                location.state.firstName + " " + location.state.lastName,
               photoURL: photoURL,
             })
             .then(function () {
@@ -116,6 +140,10 @@ export default function SignupCrafterProfile() {
     }
   };
 
+  useEffect(() => {
+    uploadPhoto();
+  }, [image]);
+
   return (
     <>
       <div className={classes.backgroundImg}>
@@ -126,15 +154,29 @@ export default function SignupCrafterProfile() {
         </Typography>
 
         <div className={classes.profileConatiner}>
-          <img
-            src={profilePlaceholder}
-            style={{
-              maxWidth: 230,
-              maxHeight: 230,
-              float: "left",
-              marginBottom: 50,
-            }}
-          />
+          {photoURL ? (
+            <div className={classes.photoContainer}>
+              <img
+                src={photoURL}
+                style={{
+                  maxWidth: 230,
+                  maxHeight: 230,
+                  marginBottom: 50,
+                }}
+              />
+            </div>
+          ) : (
+            <div className={classes.photoContainer}>
+              <img
+                src={profilePlaceholder}
+                style={{
+                  maxWidth: 230,
+                  maxHeight: 230,
+                  marginBottom: 50,
+                }}
+              />
+            </div>
+          )}
 
           <Typography
             variant="h4"
@@ -158,8 +200,18 @@ export default function SignupCrafterProfile() {
               float: "left",
               marginLeft: 20,
             }}
+            component="label"
           >
-            Upload
+            Choose Image
+            <input
+              type="file"
+              hidden
+              onChange={(e) => {
+                if (e.target.files !== null) {
+                  setImage(e.target.files[0]);
+                }
+              }}
+            />
           </Button>
         </div>
 
@@ -224,7 +276,7 @@ export default function SignupCrafterProfile() {
                 marginLeft: 10,
               }}
             >
-              Confirm Signup
+              Submit details
             </Button>
           </div>
         </div>

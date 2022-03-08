@@ -3,21 +3,17 @@ import { createStyles, makeStyles } from "@mui/styles";
 import React, { useCallback, useState } from "react";
 import customer from "../../images/customer.png";
 import { useHistory, withRouter } from "react-router";
-import app from "../../base";
 import Navbar from "../Shared/Navbar";
+import app from "../../base";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    tempNav: {
-      backgroundColor: "#ffffff",
-      height: 50,
-      marginBottom: 140,
-    },
     backgroundImg: {
       backgroundImage: "url(" + customer + ")",
     },
     subtitle: {
       fontSize: 48,
+      paddingTop: "250px",
     },
     smallBody: {
       fontSize: 22,
@@ -67,7 +63,17 @@ function SignupCrafter() {
     if (password === password2) {
       try {
         // Sign up user
-        await app.auth().createUserWithEmailAndPassword(email, password);
+        const data = await app
+          .auth()
+          .createUserWithEmailAndPassword(email, password);
+
+        var userID = data?.user?.uid;
+
+        const firestore = app.firestore();
+
+        firestore.collection("userData").doc(userID).set({
+          userType: "Customer",
+        });
 
         // Update their display name
         await app.auth().onAuthStateChanged(function (user) {
@@ -82,6 +88,7 @@ function SignupCrafter() {
           }
         });
       } catch (error) {
+        console.log(error);
         alert(error);
       }
     } else {

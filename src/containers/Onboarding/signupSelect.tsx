@@ -8,10 +8,6 @@ import Navbar from "../Shared/Navbar";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    tempNav: {
-      backgroundColor: "#ffffff",
-      height: 50,
-    },
     topImg: {
       backgroundImage: "url(" + cusSignup + ")",
       maxHeight: "50%",

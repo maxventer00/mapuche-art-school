@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import crafter from "../../images/crafter.png";
 import { useHistory } from "react-router";
 import Navbar from "../Shared/Navbar";
+import app from "../../base";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme) =>
     },
     subtitle: {
       fontSize: 48,
+      paddingTop: "250px",
     },
     smallBody: {
       fontSize: 22,
@@ -62,17 +64,40 @@ export default function SignupCrafter() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
-  const submitPage = () => {
+  const userType = "Crafter";
+
+  const SignUp = async () => {
     if (password === password2) {
-      history.push({
-        pathname: "/signup/crafter/profile",
-        state: {
-          email,
-          firstName,
-          lastName,
-          password,
-        },
-      });
+      try {
+        // Sign up user
+        const data = await app
+          .auth()
+          .createUserWithEmailAndPassword(email, password);
+
+        var userID = data?.user?.uid;
+
+        const firestore = app.firestore();
+
+        firestore.collection("userData").doc(userID).set({
+          userType: "Crafter",
+        });
+
+        // Update their display name
+        await app.auth().onAuthStateChanged(function (user) {
+          if (user) {
+            user
+              .updateProfile({
+                displayName: firstName + " " + lastName,
+              })
+              .then(function () {
+                history.push("/signup/crafter/profile");
+              });
+          }
+        });
+      } catch (error) {
+        console.log(error);
+        alert(error);
+      }
     } else {
       alert("Passwords don't match");
     }
@@ -174,7 +199,7 @@ export default function SignupCrafter() {
           <Button
             size="large"
             variant="contained"
-            onClick={() => submitPage()}
+            onClick={() => SignUp()}
             style={{
               marginTop: 50,
             }}

@@ -44,13 +44,9 @@ const useStyles = makeStyles((theme) =>
         backgroundColor: "#8A7866",
       },
     },
-    tempNav: {
-      backgroundColor: "#ffffff",
-      height: 50,
-      marginBottom: 140,
-    },
     subtitle: {
       fontSize: 48,
+      paddingTop: "250px",
     },
     smallBody: {
       fontSize: 22,
