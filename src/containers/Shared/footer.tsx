@@ -5,7 +5,7 @@ import { Container, Link, Grid, Box } from "@mui/material";
 
 export default function Footer() {
     return <footer>
-        <Box bgcolor="fff" maxWidth={1000}>
+        <Box bgcolor="fff" maxWidth={"100%"}>
             <Container maxWidth="lg">
                 <Grid container spacing={10}>
                     <Grid item xs={12} sm={4}>
@@ -31,12 +31,12 @@ export default function Footer() {
                         <Box borderBottom={1}>
                             Account</Box>
                         <Box>
-                            <Link href="/" color="inherit">
+                            <Link href="/login" color="inherit">
                                 Sign In
                             </Link>
                         </Box>
                         <Box>
-                            <Link href="/" color="inherit">
+                            <Link href="/signup" color="inherit">
                                 Register
                             </Link>
                         </Box>

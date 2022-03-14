@@ -16,12 +16,17 @@ import {
   Grid,
   List,
   ListItem,
+  FormControl,
+  InputLabel,
+  MenuItem
 } from "@mui/material";
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useHistory } from "react-router";
 import homapageBackground from "../../images/homeBackground.png";
 import { Box } from "@mui/system";
 import itemTest from "../../images/itemTest.png";
 import Footer from "../Shared/footer";
+import searchOption from "./searchOptions";
 import Navbar from "../Shared/Navbar";
 
 const useStyles = makeStyles((theme) =>
@@ -83,6 +88,15 @@ const useStyles = makeStyles((theme) =>
       height: 100,
       marginTop: 300,
     },
+    searchOptions: {
+      width: "100%",
+      height: 50,
+      fontFamily: "ABeeZee, sans-serif",
+      textTransform: "none",
+      marginTop: 30,
+      justifyItems: "center",
+    },
+   
   })
 );
 
@@ -172,6 +186,9 @@ function Marketplace() {
       </Container>
 
       {/* Marketplace Container */}
+
+      {/* ADD SEACH OPTIONS HERE SOMEHOW */}
+
       <Container
         disableGutters
         maxWidth={false}
@@ -185,8 +202,8 @@ function Marketplace() {
             <List sx={{ columns: 4, gap: 8 }}>
               {shopData.map((item) => (
                 <ListItem key={item.name}>
-                  <Card sx={{ maxWidth: 400, maxHeight: 400, borderRadius: 5 }}>
-                    <CardActionArea sx={{ display: "column" }}>
+                  <Card sx={{ maxWidth: 400, maxHeight: 400, borderRadius: 5, }}>
+                    <CardActionArea sx={{ display: 'column', border: `10px solid white` }}>
                       <CardMedia
                         component="img"
                         height="200"
