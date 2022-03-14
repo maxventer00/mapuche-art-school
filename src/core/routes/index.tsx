@@ -14,6 +14,7 @@ import SignupCrafter from "../../containers/Onboarding/signupCrafter";
 import SignupCrafterProfile from "../../containers/Onboarding/signupCrafterProfile";
 import ItemPage from "../../containers/Marketplace/itemPage";
 import { AuthProvider } from "../../Auth";
+import CreateListingPage from "../../containers/Marketplace/createListingPage";
 
 function Routes() {
  
@@ -25,6 +26,7 @@ function Routes() {
                 </Route>
                 <Route path="/marketplace" exact component={Marketplace} />
                 <Route path="/marketplace/itemPage" exact component={ItemPage} />
+                <Route path="/marketplace/createListingPage" exact component={CreateListingPage} />
                 <Route path="/home" exact component={Home} />
                 <Route path="/login" exact component={Login} />
                 <Route path="/signup" exact component={Signup} />
