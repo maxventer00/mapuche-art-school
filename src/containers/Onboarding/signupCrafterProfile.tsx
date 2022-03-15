@@ -21,12 +21,48 @@ import Navbar from "../Shared/Navbar";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
+    contained: {
+      backgroundColor: "#B8A088",
+      color: "white",
+      boxShadow: "none",
+      borderWidth: "5px",
+      borderColor: "white",
+      fontFamily: "Lato",
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: "25px",
+      lineHeight: "30px",
+      width: "500px",
+      marginTop: "20px",
+      "&:hover": {
+        backgroundColor: "#8A7866",
+        boxShadow: "none",
+      },
+    },
+    outlined: {
+      backgroundColor: "transparent",
+      color: "white",
+      boxShadow: "none",
+      borderWidth: "2px",
+      borderColor: "white",
+      fontFamily: "Lato",
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: "25px",
+      lineHeight: "30px",
+      width: "500px",
+      marginTop: "20px",
+      "&:hover": {
+        backgroundColor: "#8A7866",
+      },
+    },
     backgroundImg: {
       backgroundImage: "url(" + crafter + ")",
     },
     subtitle: {
       fontSize: 48,
-      paddingTop: "250px",
+      paddingTop: "140px",
+      color: "white",
     },
     smallBody: {
       fontSize: 22,
@@ -39,12 +75,14 @@ const useStyles = makeStyles((theme) =>
       marginLeft: "auto",
       marginRight: "auto",
       paddingBottom: 80,
+      paddingTop: 70,
     },
     profileConatiner: {
       maxWidth: 500,
       display: "block",
       marginLeft: "auto",
       marginRight: "auto",
+      paddingTop: 70,
     },
     buttonContainer: {
       maxWidth: 500,
@@ -83,6 +121,7 @@ const useStyles = makeStyles((theme) =>
       borderWidth: "2px",
       borderStyle: "solid",
       borderColor: "#B8A088",
+      marginBottom: 35,
     },
   })
 );
@@ -184,6 +223,7 @@ export default function SignupCrafterProfile() {
               fontSize: 22,
               float: "left",
               marginLeft: 20,
+              color: "white",
             }}
           >
             Profile Picture
@@ -252,6 +292,7 @@ export default function SignupCrafterProfile() {
             <Button
               size="large"
               variant="outlined"
+              className={classes.outlined}
               onClick={() => history.push("/signup")}
               style={{
                 marginTop: 50,
@@ -267,6 +308,7 @@ export default function SignupCrafterProfile() {
             <Button
               size="large"
               variant="contained"
+              className={classes.contained}
               onClick={() => SignUp()}
               style={{
                 marginTop: 50,

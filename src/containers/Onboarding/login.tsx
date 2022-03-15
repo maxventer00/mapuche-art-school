@@ -47,11 +47,14 @@ const useStyles = makeStyles((theme) =>
     subtitle: {
       fontSize: 48,
       paddingTop: "250px",
+      color: "white",
     },
     smallBody: {
       fontSize: 22,
       float: "left",
       textDecoration: "underline",
+      color: "white",
+      paddingBottom: 25,
     },
     fieldContainer: {
       maxWidth: 500,
@@ -59,6 +62,7 @@ const useStyles = makeStyles((theme) =>
       marginLeft: "auto",
       marginRight: "auto",
       paddingBottom: 80,
+      paddingTop: 70,
     },
     bgImg: {
       backgroundImage: "url(" + loginBackground + ")",
@@ -144,9 +148,7 @@ export default function Login() {
             }}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Typography className={classes.smallBody} variant="h4">
-            Forgot Password
-          </Typography>
+          <Typography className={classes.smallBody}>Forgot Password</Typography>
 
           <Button
             className={classes.contained}

@@ -8,17 +8,48 @@ import app from "../../base";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    tempNav: {
-      backgroundColor: "#ffffff",
-      height: 50,
-      marginBottom: 140,
+    contained: {
+      backgroundColor: "#B8A088",
+      color: "white",
+      boxShadow: "none",
+      borderWidth: "5px",
+      borderColor: "white",
+      fontFamily: "Lato",
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: "25px",
+      lineHeight: "30px",
+      width: "500px",
+      marginTop: "20px",
+      "&:hover": {
+        backgroundColor: "#8A7866",
+        boxShadow: "none",
+      },
+    },
+    outlined: {
+      backgroundColor: "transparent",
+      color: "white",
+      boxShadow: "none",
+      borderWidth: "2px",
+      borderColor: "white",
+      fontFamily: "Lato",
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: "25px",
+      lineHeight: "30px",
+      width: "500px",
+      marginTop: "20px",
+      "&:hover": {
+        backgroundColor: "#8A7866",
+      },
     },
     backgroundImg: {
       backgroundImage: "url(" + crafter + ")",
     },
     subtitle: {
       fontSize: 48,
-      paddingTop: "250px",
+      paddingTop: "160px",
+      color: "white",
     },
     smallBody: {
       fontSize: 22,
@@ -30,7 +61,8 @@ const useStyles = makeStyles((theme) =>
       display: "block",
       marginLeft: "auto",
       marginRight: "auto",
-      paddingBottom: 80,
+      paddingBottom: 150,
+      paddingTop: 70,
     },
     textFld: {
       width: 500,
@@ -198,10 +230,12 @@ export default function SignupCrafter() {
 
           <Button
             size="large"
+            className={classes.contained}
             variant="contained"
             onClick={() => SignUp()}
             style={{
-              marginTop: 50,
+              marginTop: 70,
+              marginBottom: 30,
             }}
           >
             Continue
@@ -209,6 +243,7 @@ export default function SignupCrafter() {
 
           <Button
             size="large"
+            className={classes.outlined}
             variant="outlined"
             onClick={() => history.push("/signup")}
           >
