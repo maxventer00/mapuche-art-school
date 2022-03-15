@@ -138,7 +138,9 @@ interface LocationState {
 export default function SignupCrafterProfile() {
   const classes = useStyles();
   const history = useHistory();
-  const location = useLocation<LocationState>();
+
+  const [userBio, setUserBio] = useState("");
+  const [userLocation, setUserLocation] = useState("");
 
   const [photoURL, setPhotoURL] = useState("");
   const [image, setImage] = useState<File | undefined>();
@@ -170,6 +172,15 @@ export default function SignupCrafterProfile() {
               photoURL: photoURL,
             })
             .then(function () {
+              var userID = user.uid;
+
+              const firestore = app.firestore();
+
+              firestore.collection("userData").doc(userID).set({
+                userLocation: userLocation,
+                userBio: userBio,
+              });
+
               history.push("/");
             });
         }
@@ -270,6 +281,8 @@ export default function SignupCrafterProfile() {
                 root: classes.label,
               },
             }}
+            value={userBio}
+            onChange={(e) => setUserBio(e.target.value)}
           />
 
           <TextField
@@ -286,6 +299,8 @@ export default function SignupCrafterProfile() {
                 root: classes.label,
               },
             }}
+            value={userLocation}
+            onChange={(e) => setUserLocation(e.target.value)}
           />
 
           <div className={classes.buttonContainer}>
