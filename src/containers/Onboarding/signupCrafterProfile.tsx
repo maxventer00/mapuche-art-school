@@ -217,6 +217,10 @@ export default function SignupCrafterProfile() {
                   maxWidth: 230,
                   maxHeight: 230,
                   marginBottom: 50,
+                  float: "left",
+                  height: "100%",
+                  width: "100%",
+                  objectFit: "cover",
                 }}
               />
             </div>

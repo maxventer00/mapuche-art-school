@@ -180,20 +180,36 @@ function Crafters() {
           (crafter: {
             name: string | undefined;
             userLocation: string | undefined;
+            photoURL: string | undefined;
           }) => {
             return (
               <>
                 <div className={classes.crafterDisplay}>
                   <div className={classes.photoContainer}>
-                    <img
-                      src={profilePlaceholder}
-                      style={{
-                        maxWidth: 230,
-                        maxHeight: 230,
-                        marginBottom: 50,
-                        float: "left",
-                      }}
-                    />
+                    {crafter.photoURL ? (
+                      <img
+                        src={crafter.photoURL}
+                        style={{
+                          maxWidth: 230,
+                          maxHeight: 230,
+                          marginBottom: 50,
+                          float: "left",
+                          height: "100%",
+                          width: "100%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    ) : (
+                      <img
+                        src={profilePlaceholder}
+                        style={{
+                          maxWidth: 230,
+                          maxHeight: 230,
+                          marginBottom: 50,
+                          float: "left",
+                        }}
+                      />
+                    )}
                   </div>
                   <h2 className={classes.crafterHeading}>{crafter.name}</h2>
                   <h2
