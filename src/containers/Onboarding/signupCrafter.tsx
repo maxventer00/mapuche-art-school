@@ -203,6 +203,7 @@ export default function SignupCrafter() {
             className={classes.textFld}
             label="Password"
             variant="filled"
+            type="password"
             InputProps={{
               classes: {
                 input: classes.label,
@@ -219,6 +220,7 @@ export default function SignupCrafter() {
             className={classes.textFld}
             label="Re-Enter Password"
             variant="filled"
+            type="password"
             InputProps={{
               classes: {
                 input: classes.label,

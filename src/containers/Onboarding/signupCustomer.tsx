@@ -204,6 +204,7 @@ function SignupCrafter() {
             id="password"
             className={classes.textFld}
             label="Password"
+            type="password"
             variant="filled"
             InputProps={{
               classes: {
@@ -221,6 +222,7 @@ function SignupCrafter() {
             id="password2"
             className={classes.textFld}
             label="Re-Enter Password"
+            type="password"
             variant="filled"
             InputProps={{
               classes: {
