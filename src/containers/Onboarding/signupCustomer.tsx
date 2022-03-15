@@ -108,9 +108,13 @@ function SignupCrafter() {
 
         const firestore = app.firestore();
 
-        firestore.collection("userData").doc(userID).set({
-          userType: "Customer",
-        });
+        firestore
+          .collection("userData")
+          .doc(userID)
+          .set({
+            name: firstName + " " + lastName,
+            userType: "Customer",
+          });
 
         // Update their display name
         await app.auth().onAuthStateChanged(function (user) {

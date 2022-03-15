@@ -15,27 +15,36 @@ import SignupCrafterProfile from "../../containers/Onboarding/signupCrafterProfi
 import ItemPage from "../../containers/Marketplace/itemPage";
 import { AuthProvider } from "../../Auth";
 import CreateListingPage from "../../containers/Marketplace/createListingPage";
+import Crafters from "../../containers/Crafters/crafters";
 
 function Routes() {
- 
-    return (
-        <Router>
-            <Switch>
-                <Route exact path="/">
-                    <Redirect to="/marketplace/itemPage" />
-                </Route>
-                <Route path="/marketplace" exact component={Marketplace} />
-                <Route path="/marketplace/itemPage" exact component={ItemPage} />
-                <Route path="/marketplace/createListingPage" exact component={CreateListingPage} />
-                <Route path="/home" exact component={Home} />
-                <Route path="/login" exact component={Login} />
-                <Route path="/signup" exact component={Signup} />
-                <Route path="/signup/customer" exact component={SignupCustomer} />
-                <Route path="/signup/crafter" exact component={SignupCrafter} />
-                <Route path="/signup/crafter/profile" exact component={SignupCrafterProfile} />
-            </Switch>
-        </Router>
-    );
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
+        <Route path="/marketplace" exact component={Marketplace} />
+        <Route path="/marketplace/itemPage" exact component={ItemPage} />
+        <Route
+          path="/marketplace/createListingPage"
+          exact
+          component={CreateListingPage}
+        />
+        <Route path="/home" exact component={Home} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/signup" exact component={Signup} />
+        <Route path="/signup/customer" exact component={SignupCustomer} />
+        <Route path="/signup/crafter" exact component={SignupCrafter} />
+        <Route
+          path="/signup/crafter/profile"
+          exact
+          component={SignupCrafterProfile}
+        />
+        <Route path="/crafters" exact component={Crafters} />
+      </Switch>
+    </Router>
+  );
   return (
     <AuthProvider>
       <Router>

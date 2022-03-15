@@ -110,9 +110,13 @@ export default function SignupCrafter() {
 
         const firestore = app.firestore();
 
-        firestore.collection("userData").doc(userID).set({
-          userType: "Crafter",
-        });
+        firestore
+          .collection("userData")
+          .doc(userID)
+          .set({
+            name: firstName + " " + lastName,
+            userType: "Crafter",
+          });
 
         // Update their display name
         await app.auth().onAuthStateChanged(function (user) {

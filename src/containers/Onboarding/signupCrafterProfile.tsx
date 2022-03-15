@@ -172,13 +172,18 @@ export default function SignupCrafterProfile() {
               photoURL: photoURL,
             })
             .then(function () {
-              var userID = user.uid;
+              const userID = user.uid;
+
+              const name = user.displayName;
 
               const firestore = app.firestore();
 
               firestore.collection("userData").doc(userID).set({
                 userLocation: userLocation,
                 userBio: userBio,
+                photoURL: photoURL,
+                userType: "Crafter",
+                name: name,
               });
 
               history.push("/");
