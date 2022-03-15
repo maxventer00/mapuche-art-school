@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     Button,
     Container,
@@ -9,6 +9,10 @@ import {
 import { useHistory } from "react-router";
 import Footer from "../Shared/footer";
 import { createStyles, makeStyles } from "@mui/styles";
+import { fileURLToPath } from "url";
+import { getDownloadURL, ref, uploadBytesResumable, getStorage } from "firebase/storage";
+import app from "../../base";
+
 
 
 
@@ -95,7 +99,7 @@ const useStyles = makeStyles((theme) =>
         input2: {
             height: 200,
             fontSize: "3em"
-          },
+        },
 
     }),
 );
@@ -109,10 +113,43 @@ function CreateListingPage() {
     const [itemTitle, setItemTitle] = useState("");
     const [price, setPrice] = useState("");
     const [itemDescription, setItemDescription] = useState("");
+    const [itemStock, setItemStock] = useState("");
 
+
+    {/* Make sure they are a crafter */ }
     const ListItem = async () => {
- 
+        try {
+            const data = await app
+
+        }
+
     }
+
+
+    const [photoURL, setPhotoURL] = useState("");
+    const [image, setImage] = useState<File | undefined>();
+
+    const uploadPhoto = async () => {
+        if (image == null) return;
+
+        const storage = getStorage();
+        const imageRef = ref(storage, "images/" + image.name);
+
+        uploadBytesResumable(imageRef, image)
+            .then((snapshot) => {
+                getDownloadURL(snapshot.ref).then((url) => {
+                    setPhotoURL(url);
+                });
+            })
+            .catch((error) => {
+                console.error("Upload failed", error);
+            });
+    };
+
+    useEffect(() => {
+        uploadPhoto();
+    }, [image]);
+
 
     return (
         <>
@@ -153,6 +190,7 @@ function CreateListingPage() {
                         id="ItemDescription"
                         className={classes.textFld}
                         label="Add an Item Description"
+                        value={itemDescription}
                         variant="filled"
                         InputProps={{
                             classes: {
@@ -174,6 +212,7 @@ function CreateListingPage() {
                         className={classes.textFld}
                         label="Enter a price"
                         variant="filled"
+                        value={price}
                         InputProps={{
                             classes: {
                                 input: classes.label,
@@ -186,6 +225,53 @@ function CreateListingPage() {
                         }}
                         onChange={(e) => setPrice(e.target.value)}
                     />
+
+                    <TextField
+                        id="Stock"
+                        className={classes.textFld}
+                        label="Enter amount of Stock"
+                        variant="filled"
+                        value={itemStock}
+                        InputProps={{
+                            classes: {
+                                input: classes.label,
+                            },
+                        }}
+                        InputLabelProps={{
+                            classes: {
+                                root: classes.label,
+                            },
+                        }}
+                        onChange={(e) => setItemStock(e.target.value)}
+                    />
+
+                    <Button
+                        variant="contained"
+                        component="label"
+                    >
+                        #Browse File
+                        <input
+                            type="file"
+                            hidden
+                            accept="image/png, image/jpeg, image/jpg"
+                            onChange={(e) => {
+                                if (e.target.files !== null) {
+                                    setImage(e.target.files[0]);
+                                }
+                            }}
+                        />
+
+                    </Button>
+
+                    {/* push photo to firebase */}
+
+                    <Button
+                        size="large"
+                        variant="contained"
+                        onClick={() => ListItem}
+                    >
+                        Upload file
+                    </Button>
 
                     <Button
                         size="large"

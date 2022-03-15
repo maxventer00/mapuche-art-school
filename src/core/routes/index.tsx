@@ -22,7 +22,7 @@ function Routes() {
         <Router>
             <Switch>
                 <Route exact path="/">
-                    <Redirect to="/marketplace/itemPage" />
+                    <Redirect to="/marketplace/CreateListingPage" />
                 </Route>
                 <Route path="/marketplace" exact component={Marketplace} />
                 <Route path="/marketplace/itemPage" exact component={ItemPage} />
