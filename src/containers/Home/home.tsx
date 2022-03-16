@@ -9,20 +9,35 @@ import "../../containers/Home/fonts.css";
 import { height } from "@mui/system";
 import IconButton from "@mui/material/IconButton";
 import Navbar from "../Shared/Navbar";
+import { Typography, Button, TextField } from "@mui/material";
 
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
   createStyles({
-    tempNav: {
-      backgroundColor: "#ffffff",
-      height: 50,
+    contained: {
+      backgroundColor: "#B8A088",
+      color: "white",
+      boxShadow: "none",
+      borderWidth: "5px",
+      borderColor: "white",
+      fontFamily: "Lato",
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: "25px",
+      lineHeight: "30px",
+      width: "500px",
+      marginTop: "50px",
+      "&:hover": {
+        backgroundColor: "#8A7866",
+        boxShadow: "none",
+      },
     },
     h1_header: {
       fontSize: 50,
       color: "#ffffff",
       padding: 15,
-      paddingTop: 70,
-      fontFamily: "Beth Ellen, cursive",
+      paddingTop: 120,
+      fontFamily: "Prata",
     },
     description: {
       color: "#ffffff",
@@ -33,12 +48,12 @@ const useStyles = makeStyles((theme) =>
       display: "inline-block",
       width: 600,
       padding: 15,
+      paddingBottom: 55,
       overflow: "hidden",
       textOverflow: "ellipsis",
       wordWrap: "break-word",
       fontFamily: "ABeeZee, sans-serif",
     },
-
     contactUs: {
       width: 200,
       height: 50,
@@ -79,7 +94,6 @@ function Home() {
         maxWidth={false}
         className={`${classes.container}`}
       >
-        <div className={classes.tempNav}>navbar</div>
         <Navbar />
         <h1 className={`${classes.h1_header}`}>Mapuche Art School</h1>
 
@@ -94,6 +108,16 @@ function Home() {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
         </span>
+
+        <div>
+          <Button
+            className={classes.contained}
+            variant="contained"
+            onClick={() => history.push("/login")}
+          >
+            Login/Sign up
+          </Button>
+        </div>
       </Container>
     </>
   );
