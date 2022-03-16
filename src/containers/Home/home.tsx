@@ -1,5 +1,5 @@
 import { createStyles, makeStyles } from "@mui/styles";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import homapageBackground from "../../images/homeBackground.png";
@@ -10,6 +10,7 @@ import { height } from "@mui/system";
 import IconButton from "@mui/material/IconButton";
 import Navbar from "../Shared/Navbar";
 import { Typography, Button, TextField } from "@mui/material";
+import app from "../../base";
 
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
@@ -84,8 +85,23 @@ const theme = createTheme();
 
 function Home() {
   const classes = useStyles();
-
   const history = useHistory();
+
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const userCheck = () => {
+    var user = app.auth().currentUser;
+
+    if (user) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+  };
+
+  useEffect(() => {
+    userCheck();
+  }, []);
 
   return (
     <>
@@ -109,15 +125,17 @@ function Home() {
           including versions of Lorem Ipsum.
         </span>
 
-        <div>
-          <Button
-            className={classes.contained}
-            variant="contained"
-            onClick={() => history.push("/login")}
-          >
-            Login/Sign up
-          </Button>
-        </div>
+        {loggedIn ? null : (
+          <div>
+            <Button
+              className={classes.contained}
+              variant="contained"
+              onClick={() => history.push("/login")}
+            >
+              Login/Sign up
+            </Button>
+          </div>
+        )}
       </Container>
     </>
   );

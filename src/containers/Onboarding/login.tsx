@@ -136,6 +136,7 @@ export default function Login() {
             className={classes.textFld}
             label="Password"
             variant="filled"
+            type="password"
             InputProps={{
               classes: {
                 input: classes.label,
