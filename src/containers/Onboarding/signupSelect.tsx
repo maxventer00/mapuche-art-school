@@ -1,10 +1,11 @@
 import { Typography, Button, TextField, createTheme } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
-import React from "react";
+import React, { useEffect } from "react";
 import cusSignup from "../../images/cusSignup.png";
 import craftSignup from "../../images/craftSignup.png";
 import { useHistory } from "react-router-dom";
 import Navbar from "../Shared/Navbar";
+import app from "../../base";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -23,7 +24,6 @@ const theme = createTheme();
 
 export default function Signup() {
   const classes = useStyles();
-
   const history = useHistory();
 
   return (

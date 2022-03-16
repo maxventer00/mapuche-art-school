@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,8 +16,27 @@ import ItemPage from "../../containers/Marketplace/itemPage";
 import { AuthProvider } from "../../Auth";
 import CreateListingPage from "../../containers/Marketplace/createListingPage";
 import Crafters from "../../containers/Crafters/crafters";
+import app from "../../base";
 
 function Routes() {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const userCheck = () => {
+    app.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        // User is signed in.
+        setLoggedIn(true);
+      } else {
+        // No user is signed in.
+        setLoggedIn(false);
+      }
+    });
+  };
+
+  useEffect(() => {
+    userCheck();
+  }, []);
+
   return (
     <Router>
       <Switch>
@@ -32,10 +51,21 @@ function Routes() {
           component={CreateListingPage}
         />
         <Route path="/home" exact component={Home} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/signup" exact component={Signup} />
-        <Route path="/signup/customer" exact component={SignupCustomer} />
-        <Route path="/signup/crafter" exact component={SignupCrafter} />
+
+        {/* Don't allow user to view these pages if they are logged in */}
+        <Route path="/login" exact component={Login}>
+          {loggedIn ? <Redirect push to="/home" /> : null}
+        </Route>
+        <Route path="/signup" exact component={Signup}>
+          {loggedIn ? <Redirect push to="/home" /> : null}
+        </Route>
+        <Route path="/signup/customer" exact component={SignupCustomer}>
+          {loggedIn ? <Redirect push to="/home" /> : null}
+        </Route>
+        <Route path="/signup/crafter" exact component={SignupCrafter}>
+          {loggedIn ? <Redirect push to="/home" /> : null}
+        </Route>
+        {/* Don't allow user to view these pages if they are logged in */}
         <Route
           path="/signup/crafter/profile"
           exact
@@ -44,29 +74,6 @@ function Routes() {
         <Route path="/crafters" exact component={Crafters} />
       </Switch>
     </Router>
-  );
-  return (
-    <AuthProvider>
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-          <Route path="/marketplace" exact component={Marketplace} />
-          <Route path="/marketplace/item" exact component={ItemPage} />
-          <Route path="/home" exact component={Home} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/signup" exact component={Signup} />
-          <Route path="/signup/customer" exact component={SignupCustomer} />
-          <Route path="/signup/crafter" exact component={SignupCrafter} />
-          <Route
-            path="/signup/crafter/profile"
-            exact
-            component={SignupCrafterProfile}
-          />
-        </Switch>
-      </Router>
-    </AuthProvider>
   );
 }
 

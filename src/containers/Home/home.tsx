@@ -90,13 +90,14 @@ function Home() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const userCheck = () => {
-    var user = app.auth().currentUser;
-
-    if (user) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
-    }
+    app.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        // User is signed in.
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
+    });
   };
 
   useEffect(() => {
