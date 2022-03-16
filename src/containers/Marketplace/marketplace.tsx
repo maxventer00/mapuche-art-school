@@ -1,5 +1,5 @@
 import { createStyles, makeStyles } from "@mui/styles";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   Typography,
   Button,
@@ -28,6 +28,8 @@ import itemTest from "../../images/itemTest.png";
 import Footer from "../Shared/footer";
 import searchOption from "./searchOptions";
 import Navbar from "../Shared/Navbar";
+import app from "../../base";
+import { getDocs } from "firebase/firestore";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -103,7 +105,7 @@ const useStyles = makeStyles((theme) =>
 // Shop Item Data
 // ADD MORE TAGS TO THE ITEM
 
-const shopData = [
+const shopData1 = [
   {
     id: 1,
     name: "Item 1",
@@ -162,12 +164,32 @@ const shopData = [
   },
 ];
 
+
+
+
 const theme = createTheme();
 
 function Marketplace() {
   const classes = useStyles();
 
   const history = useHistory();
+
+  const [shopData, setShopData] = useState<any>([]);
+
+  const getData = async () => {
+    const firestore = app.firestore();
+
+    const collectionRef = firestore.collection("productData");
+    const querySnapshot = await getDocs(collectionRef);
+
+    querySnapshot.forEach((doc) => {
+        setShopData((arr: any) => [...arr, doc.data()]);
+    });
+  };
+
+    useEffect(() => {
+      getData();
+    }, []);
 
   return (
     <>
@@ -200,15 +222,21 @@ function Marketplace() {
         <Container>
           <Grid container justifyContent="center" alignItems="center">
             <List sx={{ columns: 4, gap: 8 }}>
-              {shopData.map((item) => (
-                <ListItem key={item.name}>
+              {shopData.map((item:{
+                itemTitle: string | undefined;
+                itemDescription: string | undefined;
+                photoURL: string | undefined;
+                //itemStock: number | undefined;
+                price: number | undefined;
+              }) => (
+                <ListItem key={item.itemTitle}>
                   <Card sx={{ maxWidth: 400, maxHeight: 400, borderRadius: 5, }}>
                     <CardActionArea sx={{ display: 'column', border: `10px solid white` }}>
                       <CardMedia
                         component="img"
                         height="200"
                         width="100"
-                        image={item.image}
+                        image={item.photoURL}
                         alt="No Image Available"
                       />
                       <CardContent sx={{ flexDirection: "row" }}>
@@ -219,11 +247,11 @@ function Marketplace() {
                             component="div"
                             color="#AC5435"
                           >
-                            {item.name}
+                            {item.itemTitle}
                           </Typography>
                         </Grid>
                         <Typography variant="body2" color="#AC5435">
-                          {item.description}
+                          {item.itemDescription}
                         </Typography>
                         <br />
                         <Typography

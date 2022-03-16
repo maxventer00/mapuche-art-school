@@ -119,8 +119,21 @@ function CreateListingPage() {
     {/* Make sure they are a crafter */ }
     const ListItem = async () => {
         try {
-            const data = await app
 
+            const firestore = app.firestore();
+
+            firestore.collection("productData").doc().set({
+                itemTitle: itemTitle,
+                price: price,
+                itemDescription: itemDescription,
+                itemStock: itemStock,
+                photoURL: photoURL,
+
+              });
+
+        }
+        catch (error) {
+            alert(error);
         }
 
     }
@@ -264,7 +277,8 @@ function CreateListingPage() {
                     </Button>
 
                     {/* push photo to firebase */}
-
+                    
+                     {/*            
                     <Button
                         size="large"
                         variant="contained"
@@ -272,11 +286,12 @@ function CreateListingPage() {
                     >
                         Upload file
                     </Button>
+                    */}
 
                     <Button
                         size="large"
                         variant="contained"
-                        onClick={() => ListItem}
+                        onClick={() => ListItem()}
                     >
                         List Item
                     </Button>
