@@ -277,8 +277,8 @@ function CreateListingPage() {
                     </Button>
 
                     {/* push photo to firebase */}
-                    
-                     {/*            
+
+                                
                     <Button
                         size="large"
                         variant="contained"
@@ -286,7 +286,7 @@ function CreateListingPage() {
                     >
                         Upload file
                     </Button>
-                    */}
+                    
 
                     <Button
                         size="large"
