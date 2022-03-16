@@ -33,6 +33,28 @@ const useStyles = makeStyles((theme) =>
         boxShadow: "none",
       },
     },
+    outlined: {
+      backgroundColor: "transparent",
+      color: "white",
+      boxShadow: "none",
+      borderWidth: "2px",
+      borderColor: "white",
+      fontFamily: "Lato",
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: "25px",
+      lineHeight: "30px",
+      width: "500px",
+      marginTop: "20px",
+      "&:hover": {
+        backgroundColor: "#8A7866",
+      },
+    },
+    signoutButtonContainer: {
+      float: "right",
+      marginRight: "2%",
+      marginTop: "55px",
+    },
     h1_header: {
       fontSize: 50,
       color: "#ffffff",
@@ -62,7 +84,6 @@ const useStyles = makeStyles((theme) =>
       textTransform: "none",
       marginTop: 30,
     },
-
     container: {
       backgroundImage: "url(" + homapageBackground + ")",
       backgroundPosition: "center",
@@ -87,7 +108,7 @@ function Home() {
   const classes = useStyles();
   const history = useHistory();
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   const userCheck = () => {
     app.auth().onAuthStateChanged(function (user) {
@@ -98,6 +119,10 @@ function Home() {
         setLoggedIn(false);
       }
     });
+  };
+
+  const signOut = async () => {
+    await app.auth().signOut();
   };
 
   useEffect(() => {
@@ -112,6 +137,20 @@ function Home() {
         className={`${classes.container}`}
       >
         <Navbar />
+
+        {loggedIn ? (
+          <div className={classes.signoutButtonContainer}>
+            <Button
+              style={{ maxWidth: "155px" }}
+              className={classes.outlined}
+              variant="outlined"
+              onClick={() => signOut()}
+            >
+              Sign Out
+            </Button>
+          </div>
+        ) : null}
+
         <h1 className={`${classes.h1_header}`}>Mapuche Art School</h1>
 
         <span className={`${classes.description}`}>
