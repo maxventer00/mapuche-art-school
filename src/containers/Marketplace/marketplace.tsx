@@ -18,9 +18,9 @@ import {
   ListItem,
   FormControl,
   InputLabel,
-  MenuItem
+  MenuItem,
 } from "@mui/material";
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useHistory } from "react-router";
 import homapageBackground from "../../images/homeBackground.png";
 import { Box } from "@mui/system";
@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) =>
       padding: 15,
       paddingTop: 20,
       fontFamily: "Beth Ellen, cursive",
-      
     },
     description: {
       color: "#ffffff",
@@ -67,7 +66,6 @@ const useStyles = makeStyles((theme) =>
       textTransform: "none",
       marginTop: 30,
       justifyItems: "center",
-      
     },
 
     container: {
@@ -86,12 +84,11 @@ const useStyles = makeStyles((theme) =>
       backgroundColor: "#F7ECE1",
       display: "flex",
       flexGrowing: 1,
-      
     },
     footerContainer: {
       backgroundSize: "cover",
       height: 100,
-      marginTop: 300,     
+      marginTop: 300,
       backgroundColor: "#F7ECE1",
       display: "flex",
       flexGrowing: 1,
@@ -127,7 +124,6 @@ const useStyles = makeStyles((theme) =>
         backgroundColor: "#8A7866",
       },
     },
-   
   })
 );
 
@@ -193,9 +189,6 @@ const shopData1 = [
   },
 ];
 
-
-
-
 const theme = createTheme();
 
 function Marketplace() {
@@ -212,25 +205,33 @@ function Marketplace() {
     const querySnapshot = await getDocs(collectionRef);
 
     querySnapshot.forEach((doc) => {
-        setShopData((arr: any) => [...arr, doc.data()]);
+      setShopData((arr: any) => [...arr, doc.data()]);
     });
   };
 
-    useEffect(() => {
-      getData();
-    }, []);
+  useEffect(() => {
+    getData();
+  }, []);
 
-
-
-    // list an item button
+  // list an item button
 
   const [loggedIn, setLoggedIn] = useState(true);
+  const [userInfo, setUserInfo] = useState<any>();
 
-  const userCheck = () => {
-    app.auth().onAuthStateChanged(function (user) {
+  const userCheck = async () => {
+    app.auth().onAuthStateChanged(async function (user) {
       if (user) {
         // User is signed in.
         setLoggedIn(true);
+
+        // Get user type
+        const firestore = app.firestore();
+
+        await firestore
+          .collection("userData")
+          .doc(user.uid)
+          .get()
+          .then((snapshot) => setUserInfo(snapshot.data()));
       } else {
         setLoggedIn(false);
       }
@@ -241,6 +242,13 @@ function Marketplace() {
     userCheck();
   }, []);
 
+  // Use effect since useState is asynchronous
+  // Here you can check userInfo.type and set isCrafter to true or whatever you wanted to do
+  useEffect(() => {
+    if (userInfo) {
+      console.log(userInfo);
+    }
+  }, [userInfo]);
 
   return (
     <>
@@ -271,75 +279,80 @@ function Marketplace() {
 
         {/* Marketplace grid container */}
         <Container>
-
-        {loggedIn ? (
-          <div className={classes.signoutButtonContainer}>
-            <Button
-              style={{ maxWidth: "155px" }}
-              className={classes.outlined}
-              variant="outlined"
-              onClick={() => history.push("/marketplace/createlistingpage")}
-            >
-              List an Item
-            </Button>
-          </div>
-        ) : null}
+          {loggedIn ? (
+            <div className={classes.signoutButtonContainer}>
+              <Button
+                style={{ maxWidth: "155px" }}
+                className={classes.outlined}
+                variant="outlined"
+                onClick={() => history.push("/marketplace/createlistingpage")}
+              >
+                List an Item
+              </Button>
+            </div>
+          ) : null}
           <Grid container justifyContent="center" alignItems="center">
             <List sx={{ columns: 4, gap: 8 }}>
-              {shopData.map((item:{
-                itemTitle: string | undefined;
-                itemDescription: string | undefined;
-                photoURL: string | undefined;
-                //itemStock: number | undefined;
-                price: number | undefined;
-              }) => (
-                <ListItem key={item.itemTitle}>
-                  <Card sx={{ maxWidth: 400, maxHeight: 400, borderRadius: 5, }}>
-                    <CardActionArea sx={{ display: 'column', border: `10px solid white` }}>
-                      <CardMedia
-                        component="img"
-                        height="200"
-                        width="100"
-                        image={item.photoURL}
-                        alt="No Image Available"
-                      />
-                      <CardContent sx={{ flexDirection: "row" }}>
-                        <Grid container justifyContent="space-between">
-                          <Typography
-                            gutterBottom
-                            variant="h5"
-                            component="div"
-                            color="#AC5435"
-                          >
-                            {item.itemTitle}
+              {shopData.map(
+                (item: {
+                  itemTitle: string | undefined;
+                  itemDescription: string | undefined;
+                  photoURL: string | undefined;
+                  //itemStock: number | undefined;
+                  price: number | undefined;
+                }) => (
+                  <ListItem key={item.itemTitle}>
+                    <Card
+                      sx={{ maxWidth: 400, maxHeight: 400, borderRadius: 5 }}
+                    >
+                      <CardActionArea
+                        sx={{ display: "column", border: `10px solid white` }}
+                      >
+                        <CardMedia
+                          component="img"
+                          height="200"
+                          width="100"
+                          image={item.photoURL}
+                          alt="No Image Available"
+                        />
+                        <CardContent sx={{ flexDirection: "row" }}>
+                          <Grid container justifyContent="space-between">
+                            <Typography
+                              gutterBottom
+                              variant="h5"
+                              component="div"
+                              color="#AC5435"
+                            >
+                              {item.itemTitle}
+                            </Typography>
+                          </Grid>
+                          <Typography variant="body2" color="#AC5435">
+                            {item.itemDescription}
                           </Typography>
-                        </Grid>
-                        <Typography variant="body2" color="#AC5435">
-                          {item.itemDescription}
-                        </Typography>
-                        <br />
-                        <Typography
-                          variant="body2"
-                          color="#AC5435"
-                          align="left"
-                        >
-                          Price: {item.price}
-                        </Typography>
-                        <CardActions sx={{ justifyContent: "end" }}>
-                          <Button
-                            size="small"
-                            color="secondary"
-                            variant="contained"
-                            sx={{ borderRadius: 25, maxHeight: 25 }}
+                          <br />
+                          <Typography
+                            variant="body2"
+                            color="#AC5435"
+                            align="left"
                           >
-                            BUY
-                          </Button>
-                        </CardActions>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </ListItem>
-              ))}
+                            Price: {item.price}
+                          </Typography>
+                          <CardActions sx={{ justifyContent: "end" }}>
+                            <Button
+                              size="small"
+                              color="secondary"
+                              variant="contained"
+                              sx={{ borderRadius: 25, maxHeight: 25 }}
+                            >
+                              BUY
+                            </Button>
+                          </CardActions>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </ListItem>
+                )
+              )}
             </List>
           </Grid>
         </Container>
