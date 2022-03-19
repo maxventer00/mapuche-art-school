@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) =>
       padding: 15,
       paddingTop: 20,
       fontFamily: "Beth Ellen, cursive",
+      
     },
     description: {
       color: "#ffffff",
@@ -66,6 +67,7 @@ const useStyles = makeStyles((theme) =>
       textTransform: "none",
       marginTop: 30,
       justifyItems: "center",
+      
     },
 
     container: {
@@ -80,15 +82,19 @@ const useStyles = makeStyles((theme) =>
     marketContainer: {
       position: "absolute",
       width: "100%",
-      height: 1500,
+      //height: 1500,
       backgroundColor: "#F7ECE1",
       display: "flex",
       flexGrowing: 1,
+      
     },
     footerContainer: {
       backgroundSize: "cover",
       height: 100,
-      marginTop: 300,
+      marginTop: 300,     
+      backgroundColor: "#F7ECE1",
+      display: "flex",
+      flexGrowing: 1,
     },
     searchOptions: {
       width: "100%",
@@ -97,6 +103,29 @@ const useStyles = makeStyles((theme) =>
       textTransform: "none",
       marginTop: 30,
       justifyItems: "center",
+    },
+    signoutButtonContainer: {
+      float: "right",
+      marginRight: "2%",
+      marginTop: "0px",
+      marginBottom: "50px",
+    },
+    outlined: {
+      backgroundColor: "transparent",
+      color: "white",
+      boxShadow: "none",
+      borderWidth: "2px",
+      borderColor: "white",
+      fontFamily: "Lato",
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: "25px",
+      lineHeight: "30px",
+      width: "500px",
+      marginTop: "20px",
+      "&:hover": {
+        backgroundColor: "#8A7866",
+      },
     },
    
   })
@@ -191,6 +220,28 @@ function Marketplace() {
       getData();
     }, []);
 
+
+
+    // list an item button
+
+  const [loggedIn, setLoggedIn] = useState(true);
+
+  const userCheck = () => {
+    app.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        // User is signed in.
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
+    });
+  };
+
+  useEffect(() => {
+    userCheck();
+  }, []);
+
+
   return (
     <>
       {/* Header Container */}
@@ -220,6 +271,19 @@ function Marketplace() {
 
         {/* Marketplace grid container */}
         <Container>
+
+        {loggedIn ? (
+          <div className={classes.signoutButtonContainer}>
+            <Button
+              style={{ maxWidth: "155px" }}
+              className={classes.outlined}
+              variant="outlined"
+              onClick={() => history.push("/marketplace/createlistingpage")}
+            >
+              List an Item
+            </Button>
+          </div>
+        ) : null}
           <Grid container justifyContent="center" alignItems="center">
             <List sx={{ columns: 4, gap: 8 }}>
               {shopData.map((item:{

@@ -12,6 +12,7 @@ import { createStyles, makeStyles } from "@mui/styles";
 import { fileURLToPath } from "url";
 import { getDownloadURL, ref, uploadBytesResumable, getStorage } from "firebase/storage";
 import app from "../../base";
+import Navbar from "../Shared/Navbar";
 
 
 
@@ -58,8 +59,19 @@ const useStyles = makeStyles((theme) =>
             maxHeight: 800,
         },
         descriptionContainer: {
-            backgroundColor: "#F7ECE1",
-            backgroundPosition: "center",
+            color: "#ffffff",
+            margin: "auto",
+            textAlign: "center",
+            marginTop: 20,
+            fontSize: 18,
+            display: "inline-block",
+            width: 600,
+            padding: 15,
+            paddingBottom: 55,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            wordWrap: "break-word",
+            fontFamily: "ABeeZee, sans-serif",
 
         },
         footerContainer:
@@ -78,6 +90,7 @@ const useStyles = makeStyles((theme) =>
             marginRight: 'auto',
             paddingBottom: 80,
             paddingTop: 80,
+            
         },
         textFld: {
             width: 500,
@@ -172,11 +185,18 @@ function CreateListingPage() {
                 maxWidth={false}
                 className={`${classes.container}`}
             >
-                <div className={classes.tempNav}>navbar</div>
+                <Navbar /> 
 
-                <span className={`${classes.description}`}>
-                    Create a Listing text placeholder
-                </span>
+                
+
+                <div className={`${classes.description}`}>
+                    
+                Create a Listing text placeholder
+                Create a Listing text placeholder
+                Create a Listing text placeholder
+                Create a Listing text placeholder
+                Create a Listing text placeholder
+                </div>
 
 
 
