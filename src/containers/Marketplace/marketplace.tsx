@@ -217,6 +217,7 @@ function Marketplace() {
 
   const [loggedIn, setLoggedIn] = useState(true);
   const [userInfo, setUserInfo] = useState<any>();
+  const [isCrafter, setIsCrafter] = useState(false);
 
   const userCheck = async () => {
     app.auth().onAuthStateChanged(async function (user) {
@@ -246,7 +247,11 @@ function Marketplace() {
   // Here you can check userInfo.type and set isCrafter to true or whatever you wanted to do
   useEffect(() => {
     if (userInfo) {
-      console.log(userInfo);
+      if (userInfo.userType === "Crafter") {
+        setIsCrafter(true);
+      } else {
+        setIsCrafter(false);
+      }
     }
   }, [userInfo]);
 
@@ -261,9 +266,13 @@ function Marketplace() {
         <Navbar />
         <h1 className={`${classes.h1_header}`}>Marketplace</h1>
 
-        <span className={`${classes.description}`}>
-          marketplace text placeholder
-        </span>
+        {isCrafter ? (
+          <>
+            <h1 style={{ color: "white" }}>This user is a crafter!</h1>
+          </>
+        ) : (
+          <h1 style={{ color: "white" }}>This user is NOT a crafter!</h1>
+        )}
       </Container>
 
       {/* Marketplace Container */}
