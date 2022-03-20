@@ -120,7 +120,7 @@ const useStyles = makeStyles((theme) =>
       float: "left",
       borderWidth: "2px",
       borderStyle: "solid",
-      borderColor: "#B8A088",
+      borderColor: "#B8A000",
       marginBottom: 35,
     },
   })
@@ -214,7 +214,7 @@ export default function SignupCrafterProfile() {
               <img
                 src={photoURL}
                 style={{
-                  maxWidth: 230,
+                  maxWidth: 20,
                   maxHeight: 230,
                   marginBottom: 50,
                   float: "left",
@@ -229,7 +229,7 @@ export default function SignupCrafterProfile() {
               <img
                 src={profilePlaceholder}
                 style={{
-                  maxWidth: 230,
+                  maxWidth: 260,
                   maxHeight: 230,
                   marginBottom: 50,
                 }}

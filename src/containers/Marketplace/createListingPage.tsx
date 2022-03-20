@@ -13,6 +13,7 @@ import { fileURLToPath } from "url";
 import { getDownloadURL, ref, uploadBytesResumable, getStorage } from "firebase/storage";
 import app from "../../base";
 import Navbar from "../Shared/Navbar";
+import profilePlaceholder from "../../images/profilePlaceholder.png";
 
 
 
@@ -57,6 +58,8 @@ const useStyles = makeStyles((theme) =>
             height: 800,
             padding: 0,
             maxHeight: 800,
+            display: "flex",
+            flexDirection: "row",
         },
         descriptionContainer: {
             color: "#ffffff",
@@ -84,13 +87,13 @@ const useStyles = makeStyles((theme) =>
 
         },
         fieldContainer: {
-            maxWidth: 500,
-            display: 'block',
+            maxWidth: "100%",
+            display: 'column',
             marginLeft: 'auto',
             marginRight: 'auto',
             paddingBottom: 80,
             paddingTop: 80,
-            
+
         },
         textFld: {
             width: 500,
@@ -113,6 +116,27 @@ const useStyles = makeStyles((theme) =>
             height: 200,
             fontSize: "3em"
         },
+        photoContainer: {
+            width: "230px",
+            height: "230px",
+            float: "left",
+            borderWidth: "2px",
+            borderStyle: "solid",
+            borderColor: "#B8A000",
+            marginBottom: 35,
+        },
+        profileConatiner: {
+            maxWidth: 500,
+            display: "block",
+            marginLeft: "auto",
+            marginRight: "auto",
+            paddingTop: 70,
+        },
+        formContainer: {
+            display: "flex",
+            flexDirection: "row",
+            width: "100%",
+        }
 
     }),
 );
@@ -142,7 +166,7 @@ function CreateListingPage() {
                 itemStock: itemStock,
                 photoURL: photoURL,
 
-              });
+            });
 
         }
         catch (error) {
@@ -185,137 +209,165 @@ function CreateListingPage() {
                 maxWidth={false}
                 className={`${classes.container}`}
             >
-                <Navbar /> 
+                <Navbar />
 
-                
+
 
                 <div className={`${classes.description}`}>
-                    
-                Create a Listing text placeholder
-                Create a Listing text placeholder
-                Create a Listing text placeholder
-                Create a Listing text placeholder
-                Create a Listing text placeholder
+
+                    Create a Listing text placeholder
+                    Create a Listing text placeholder
+                    Create a Listing text placeholder
+                    Create a Listing text placeholder
+                    Create a Listing text placeholder
                 </div>
 
 
-
-                <div className={classes.fieldContainer}>
-                    <TextField
-                        id="ItemTitle"
-                        className={classes.textFld}
-                        label="Enter Item's Title"
-                        value={itemTitle}
-                        variant="filled"
-                        InputProps={{
-                            classes: {
-                                input: classes.input,
-                            }
-                        }}
-                        InputLabelProps={{
-                            classes: {
-                                root: classes.label,
-                            },
-                        }}
-                        onChange={(e) => setItemTitle(e.target.value)}
-                    />
-                    <TextField
-                        id="ItemDescription"
-                        className={classes.textFld}
-                        label="Add an Item Description"
-                        value={itemDescription}
-                        variant="filled"
-                        InputProps={{
-                            classes: {
-                                input: classes.input2,
-                            }
-                        }}
-                        InputLabelProps={{
-                            classes: {
-                                root: classes.label,
-                            },
-                        }}
-                        onChange={(e) => setItemDescription(e.target.value)}
-                    />
-
-
-
-                    <TextField
-                        id="Price"
-                        className={classes.textFld}
-                        label="Enter a price"
-                        variant="filled"
-                        value={price}
-                        InputProps={{
-                            classes: {
-                                input: classes.label,
-                            },
-                        }}
-                        InputLabelProps={{
-                            classes: {
-                                root: classes.label,
-                            },
-                        }}
-                        onChange={(e) => setPrice(e.target.value)}
-                    />
-
-                    <TextField
-                        id="Stock"
-                        className={classes.textFld}
-                        label="Enter amount of Stock"
-                        variant="filled"
-                        value={itemStock}
-                        InputProps={{
-                            classes: {
-                                input: classes.label,
-                            },
-                        }}
-                        InputLabelProps={{
-                            classes: {
-                                root: classes.label,
-                            },
-                        }}
-                        onChange={(e) => setItemStock(e.target.value)}
-                    />
-
-                    <Button
-                        variant="contained"
-                        component="label"
-                    >
-                        #Browse File
-                        <input
-                            type="file"
-                            hidden
-                            accept="image/png, image/jpeg, image/jpg"
-                            onChange={(e) => {
-                                if (e.target.files !== null) {
-                                    setImage(e.target.files[0]);
+                <div className={classes.formContainer}>
+                    <div className={classes.fieldContainer}>
+                        {photoURL ? (
+                            <div className={classes.photoContainer}>
+                                <img
+                                    src={photoURL}
+                                    style={{
+                                        maxWidth: 260,
+                                        maxHeight: 230,
+                                        marginBottom: 50,
+                                        float: "left",
+                                        height: "100%",
+                                        width: "100%",
+                                        objectFit: "cover",
+                                    }}
+                                />
+                            </div>
+                        ) : (
+                            <div className={classes.photoContainer}>
+                                <img
+                                    src={profilePlaceholder}
+                                    style={{
+                                        maxWidth: 260,
+                                        maxHeight: 230,
+                                        marginBottom: 50,
+                                    }}
+                                />
+                            </div>
+                        )}
+                        <TextField
+                            id="ItemTitle"
+                            className={classes.textFld}
+                            label="Enter Item's Title"
+                            value={itemTitle}
+                            variant="filled"
+                            InputProps={{
+                                classes: {
+                                    input: classes.input,
                                 }
                             }}
+                            InputLabelProps={{
+                                classes: {
+                                    root: classes.label,
+                                },
+                            }}
+                            onChange={(e) => setItemTitle(e.target.value)}
+                        />
+                        <TextField
+                            id="ItemDescription"
+                            className={classes.textFld}
+                            label="Add an Item Description"
+                            value={itemDescription}
+                            variant="filled"
+                            InputProps={{
+                                classes: {
+                                    input: classes.input2,
+                                }
+                            }}
+                            InputLabelProps={{
+                                classes: {
+                                    root: classes.label,
+                                },
+                            }}
+                            onChange={(e) => setItemDescription(e.target.value)}
                         />
 
-                    </Button>
 
-                    {/* push photo to firebase */}
 
-                                
-                    <Button
-                        size="large"
-                        variant="contained"
-                        onClick={() => ListItem}
-                    >
-                        Upload file
-                    </Button>
-                    
+                        <TextField
+                            id="Price"
+                            className={classes.textFld}
+                            label="Enter a price"
+                            variant="filled"
+                            value={price}
+                            InputProps={{
+                                classes: {
+                                    input: classes.label,
+                                },
+                            }}
+                            InputLabelProps={{
+                                classes: {
+                                    root: classes.label,
+                                },
+                            }}
+                            onChange={(e) => setPrice(e.target.value)}
+                        />
 
-                    <Button
-                        size="large"
-                        variant="contained"
-                        onClick={() => ListItem()}
-                    >
-                        List Item
-                    </Button>
+                        <TextField
+                            id="Stock"
+                            className={classes.textFld}
+                            label="Enter amount of Stock"
+                            variant="filled"
+                            value={itemStock}
+                            InputProps={{
+                                classes: {
+                                    input: classes.label,
+                                },
+                            }}
+                            InputLabelProps={{
+                                classes: {
+                                    root: classes.label,
+                                },
+                            }}
+                            onChange={(e) => setItemStock(e.target.value)}
+                        />
 
+                        <Button
+                            variant="contained"
+                            component="label"
+                        >
+                            #Browse File
+                            <input
+                                type="file"
+                                hidden
+                                accept="image/png, image/jpeg, image/jpg"
+                                onChange={(e) => {
+                                    if (e.target.files !== null) {
+                                        setImage(e.target.files[0]);
+                                    }
+                                }}
+                            />
+
+                        </Button>
+
+                        {/* push photo to firebase */}
+
+
+                        <Button
+                            size="large"
+                            variant="contained"
+                            onClick={() => ListItem}
+                        >
+                            Upload file
+                        </Button>
+
+
+                        <Button
+                            size="large"
+                            variant="contained"
+                            onClick={() => ListItem()}
+                        >
+                            List Item
+                        </Button>
+
+                    </div>
                 </div>
 
 

@@ -30,6 +30,7 @@ import searchOption from "./searchOptions";
 import Navbar from "../Shared/Navbar";
 import app from "../../base";
 import { getDocs } from "firebase/firestore";
+//import { getUserType } from "./FirebaseQuearys/MarketpalceQuearys";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -228,11 +229,11 @@ function Marketplace() {
         // Get user type
         const firestore = app.firestore();
 
-        await firestore
-          .collection("userData")
-          .doc(user.uid)
-          .get()
-          .then((snapshot) => setUserInfo(snapshot.data()));
+        // getUserType(firestore,setUserInfo);
+
+        await firestore.collection("userData").doc(user.uid).get().then((snapshot) => setUserInfo(snapshot.data()));
+
+
       } else {
         setLoggedIn(false);
       }
@@ -265,14 +266,6 @@ function Marketplace() {
       >
         <Navbar />
         <h1 className={`${classes.h1_header}`}>Marketplace</h1>
-
-        {isCrafter ? (
-          <>
-            <h1 style={{ color: "white" }}>This user is a crafter!</h1>
-          </>
-        ) : (
-          <h1 style={{ color: "white" }}>This user is NOT a crafter!</h1>
-        )}
       </Container>
 
       {/* Marketplace Container */}
