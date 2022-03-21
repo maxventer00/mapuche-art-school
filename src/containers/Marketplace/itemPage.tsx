@@ -1,71 +1,41 @@
-import React from "react";
-import {
-    Container,
-    createTheme,
- 
-} from "@mui/material";
-import { useHistory } from "react-router";
-import Footer from "../Shared/footer";
 import { createStyles, makeStyles } from "@mui/styles";
+import {
+    ReactChild,
+    ReactFragment,
+    ReactPortal,
+    useEffect,
+    useState,
+} from "react";
+import { useHistory } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import homapageBackground from "../../images/homeBackground.png";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import "../../containers/Home/fonts.css";
+import { height, textAlign } from "@mui/system";
+import IconButton from "@mui/material/IconButton";
+import Navbar from "../Shared/Navbar";
+import { Typography } from "@mui/material";
+import profilePlaceholder from "../../images/profilePlaceholder.png";
+import app from "../../base";
+import { getDocs } from "firebase/firestore";
+import Footer from "../Shared/footer";
 
 
 
 const useStyles = makeStyles((theme) =>
     createStyles({
-        filterContainer: {
-            position: "absolute",
-            height: 900,
-            maxWidth: 300,
-            backgroundColor: "#FFFFFF",
-        },
-        title: {
-            fontSize: "1.5rem",
-            fontFamily: "ABeeZee, sans-serif",
-            margin: "auto",
-            marginTop: "20px",
-            marginBottom: "20px",
-            textAlign: "center",
-            color: "#000000",
-            fontWeight: "bold",
-        },
-        description: {
-            fontSize: "1rem",
-            fontFamily: "ABeeZee, sans-serif",
-            margin: "auto",
-            marginTop: "20px",
-            marginBottom: "20px",
-            textAlign: "center",
-            color: "#000000",
-
-        },
-        tempNav: {
-            backgroundColor: "#ffffff",
-            height: 50,
-        },
         container: {
             backgroundColor: "#F7ECE1",
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            height: 800,
-            padding: 0,
-            maxHeight: 800,
+            height: "100%",
+            padding: "20px",
+            maxHeight: "1200",
+            display: "flex",
+            flexDirection: "row",
         },
-        descriptionContainer: {
-            backgroundColor: "#F7ECE1",
-            backgroundPosition: "center",
-
-        },
-        footerContainer:
-        {
-            backgroundColor: "#F7ECE1",
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            padding: 0,
-
-        },
-
     }),
 );
 
@@ -75,6 +45,24 @@ function ItemPage() {
     const classes = useStyles();
     const history = useHistory();
 
+
+    const [item, setItem] = useState<any>([]);
+
+    const getItemData = async () => {
+      const firestore = app.firestore();
+  
+      const collectionRef = firestore.collection("productData");
+      const querySnapshot = await getDocs(collectionRef);
+  
+      querySnapshot.forEach((doc) => {
+        setItem((arr: any) => [...arr, doc.data()]);
+      });
+    };
+  
+    useEffect(() => {
+      getItemData();
+    }, []);
+  
     return (
         <>
             {/* Header Container */}
@@ -83,16 +71,11 @@ function ItemPage() {
                 maxWidth={false}
                 className={`${classes.container}`}
             >
-                <div className={classes.tempNav}>navbar</div>
 
-                <span className={`${classes.description}`}>
-                    Item Page text placeholder
-                </span>
-            </Container>
-
-            <Container className={`${classes.footerContainer}`}>
                 <Footer />
             </Container>
+
+
 
 
         </>

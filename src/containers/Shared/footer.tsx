@@ -23,59 +23,59 @@ export default function Footer() {
     const classes = useStyles();
 
     return <footer>
-        
-            <Container
-                disableGutters
-                maxWidth={"lg"}
-                className={`${classes.footerContainer}`}
-            >
-                <Grid container spacing={10}>
-                    <Grid item xs={12} sm={4} >
-                        <Box borderBottom={1}>
-                            Contact Us</Box>
-                        <Box>
-                            <Link href="/" color="inherit">
-                                Contact 1
-                            </Link>
-                        </Box>
-                        <Box>
-                            <Link href="/" color="inherit">
-                                Contact 2
-                            </Link>
-                        </Box>
-                        <Box>
-                            <Link href="/" color="inherit">
-                                Contact 3
-                            </Link>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <Box borderBottom={1}>
-                            Account</Box>
-                        <Box>
-                            <Link href="/login" color="inherit">
-                                Sign In
-                            </Link>
-                        </Box>
-                        <Box>
-                            <Link href="/signup" color="inherit">
-                                Register
-                            </Link>
-                        </Box>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                        <Box borderBottom={1}>
-                            About Us</Box>
-                        <Box>
-                            <Link href="/" color="inherit">
-                                Map
-                            </Link>
-                        </Box>
-                    </Grid>
-                </Grid>
 
-            </Container>
-        
+        <Container
+            disableGutters
+            maxWidth={"lg"}
+            className={`${classes.footerContainer}`}
+        >
+            <Grid container spacing={10}>
+                <Grid item xs={12} sm={4} >
+                    <Box borderBottom={1}>
+                        Testings</Box>
+                    <Box>
+                        <Link href="/marketplace" color="inherit">
+                            Marketplace
+                        </Link>
+                    </Box>
+                    <Box>
+                        <Link href="/marketplace/createlistingpage" color="inherit">
+                            Create a Listing
+                        </Link>
+                    </Box>
+                    <Box>
+                        <Link href="/" color="inherit">
+                            Contact 3
+                        </Link>
+                    </Box>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                    <Box borderBottom={1}>
+                        Account</Box>
+                    <Box>
+                        <Link href="/login" color="inherit">
+                            Sign In
+                        </Link>
+                    </Box>
+                    <Box>
+                        <Link href="/signup" color="inherit">
+                            Register
+                        </Link>
+                    </Box>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                    <Box borderBottom={1}>
+                        About Us</Box>
+                    <Box>
+                        <Link href="/" color="inherit">
+                            Map
+                        </Link>
+                    </Box>
+                </Grid>
+            </Grid>
+
+        </Container>
+
     </footer>;
 
 }

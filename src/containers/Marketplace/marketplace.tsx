@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) =>
       marginTop: 30,
       justifyItems: "center",
     },
-    signoutButtonContainer: {
+    listButton: {
       float: "right",
       marginRight: "2%",
       marginTop: "0px",
@@ -103,11 +103,9 @@ const useStyles = makeStyles((theme) =>
     },
     listingCards:
     {
-      minHeight: 400,
-      minWidth: 300,
-      
-
-
+      minHeight: 380,
+      minWidth: 250,
+      margin: "auto",
     },
     outlined: {
       backgroundColor: "transparent",
@@ -222,8 +220,8 @@ function Marketplace() {
 
         {/* Marketplace grid container */}
 
-        {loggedIn ? (
-          <div className={classes.signoutButtonContainer}>
+        {isCrafter ? (
+          <div className={classes.listButton}>
             <Button
               style={{ maxWidth: "155px" }}
               className={classes.outlined}
@@ -235,7 +233,8 @@ function Marketplace() {
           </div>
         ) : null}
         <Grid container justifyContent="center" alignItems="center">
-          <List sx={{ columns: 4, gap: 5 }}>
+          <List
+            sx={{ columns: 4, gap: 3 }}>
             {shopData.map(
               (item: {
                 itemTitle: string | undefined;
@@ -251,12 +250,12 @@ function Marketplace() {
                     sx={{ borderRadius: 5 }}
                   >
                     <CardActionArea
-                      sx={{ display: "column", border: `10px solid white` }}
+                      sx={{ display: "column", border: `5px solid white` }}
                     >
                       <CardMedia
                         component="img"
                         height="200"
-                        width="100"
+                        width="90"
                         sx={{ borderRadius: 5 }}
                         image={item.photoURL}
                         alt="No Image Available"
@@ -281,7 +280,7 @@ function Marketplace() {
                           color="#AC5435"
                           align="left"
                         >
-                          Price: {item.price}
+                          Price: ${item.price}
                         </Typography>
                         <CardActions sx={{ justifyContent: "end" }}>
                           <Button
