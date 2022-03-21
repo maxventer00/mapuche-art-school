@@ -74,25 +74,18 @@ const useStyles = makeStyles((theme) =>
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
-      height: 800,
+      height: "100%",
       padding: 0,
-      maxHeight: 800,
+      maxHeight: 1800,
     },
     marketContainer: {
       position: "absolute",
       width: "100%",
-      //height: 1500,
       backgroundColor: "#F7ECE1",
       display: "flex",
       flexGrowing: 1,
-    },
-    footerContainer: {
-      backgroundSize: "cover",
-      height: 100,
-      marginTop: 300,
-      backgroundColor: "#F7ECE1",
-      display: "flex",
-      flexGrowing: 1,
+      paddingBottom: "100px",
+
     },
     searchOptions: {
       width: "100%",
@@ -107,6 +100,13 @@ const useStyles = makeStyles((theme) =>
       marginRight: "2%",
       marginTop: "0px",
       marginBottom: "50px",
+    },
+    listingCards:
+    {
+      maxHeight: "400",
+      width: "260",
+
+
     },
     outlined: {
       backgroundColor: "transparent",
@@ -128,67 +128,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-// Shop Item Data
-// ADD MORE TAGS TO THE ITEM
 
-const shopData1 = [
-  {
-    id: 1,
-    name: "Item 1",
-    price: "10",
-    description: "This is the first item",
-    image: itemTest,
-  },
-  {
-    id: 2,
-    name: "Item 2",
-    price: "20",
-    description: "This is the second item",
-    image: itemTest,
-  },
-  {
-    id: 3,
-    name: "Item 3",
-    price: "30",
-    description: "This is the third item",
-    image: itemTest,
-  },
-  {
-    id: 4,
-    name: "Item 4",
-    price: "40",
-    description: "This is the fourth item",
-    image: itemTest,
-  },
-  {
-    id: 5,
-    name: "Item 5",
-    price: "50",
-    description: "This is the first item",
-    image: itemTest,
-  },
-  {
-    id: 6,
-    name: "Item 6",
-    price: "60",
-    description: "This is the second item",
-    image: itemTest,
-  },
-  {
-    id: 7,
-    name: "Item 7",
-    price: "70",
-    description: "This is the third item",
-    image: itemTest,
-  },
-  {
-    id: 8,
-    name: "Item 8",
-    price: "80",
-    description: "This is the fourth item",
-    image: itemTest,
-  },
-];
 
 const theme = createTheme();
 
@@ -280,88 +220,93 @@ function Marketplace() {
         <h1 className={`${classes.h1_header}`}>Marketplace</h1>
 
         {/* Marketplace grid container */}
-        <Container>
-          {loggedIn ? (
-            <div className={classes.signoutButtonContainer}>
-              <Button
-                style={{ maxWidth: "155px" }}
-                className={classes.outlined}
-                variant="outlined"
-                onClick={() => history.push("/marketplace/createlistingpage")}
-              >
-                List an Item
-              </Button>
-            </div>
-          ) : null}
-          <Grid container justifyContent="center" alignItems="center">
-            <List sx={{ columns: 4, gap: 8 }}>
-              {shopData.map(
-                (item: {
-                  itemTitle: string | undefined;
-                  itemDescription: string | undefined;
-                  photoURL: string | undefined;
-                  //itemStock: number | undefined;
-                  price: number | undefined;
-                }) => (
-                  <ListItem key={item.itemTitle}>
-                    <Card
-                      sx={{ maxWidth: 400, maxHeight: 400, borderRadius: 5 }}
+
+        {loggedIn ? (
+          <div className={classes.signoutButtonContainer}>
+            <Button
+              style={{ maxWidth: "155px" }}
+              className={classes.outlined}
+              variant="outlined"
+              onClick={() => history.push("/marketplace/createlistingpage")}
+            >
+              List an Item
+            </Button>
+          </div>
+        ) : null}
+        <Grid container justifyContent="center" alignItems="center">
+          <List sx={{ columns: 4, gap: 8 }}>
+            {shopData.map(
+              (item: {
+                itemTitle: string | undefined;
+                itemDescription: string | undefined;
+                photoURL: string | undefined;
+                //itemStock: number | undefined;
+                price: number | undefined;
+              }) => (
+                <ListItem key={item.itemTitle}
+                >
+                  <Card
+                    className={classes.listingCards}
+                    sx={{ borderRadius: 5 }}
+                  >
+                    <CardActionArea
+                      sx={{ display: "column", border: `10px solid white` }}
                     >
-                      <CardActionArea
-                        sx={{ display: "column", border: `10px solid white` }}
-                      >
-                        <CardMedia
-                          component="img"
-                          height="200"
-                          width="100"
-                          image={item.photoURL}
-                          alt="No Image Available"
-                        />
-                        <CardContent sx={{ flexDirection: "row" }}>
-                          <Grid container justifyContent="space-between">
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                              color="#AC5435"
-                            >
-                              {item.itemTitle}
-                            </Typography>
-                          </Grid>
-                          <Typography variant="body2" color="#AC5435">
-                            {item.itemDescription}
-                          </Typography>
-                          <br />
+                      <CardMedia
+                        component="img"
+                        height="200"
+                        width="100"
+                        sx={{ borderRadius: 5 }}
+                        image={item.photoURL}
+                        alt="No Image Available"
+                      />
+                      <CardContent sx={{ flexDirection: "row" }}>
+                        <Grid container justifyContent="space-between">
                           <Typography
-                            variant="body2"
+                            gutterBottom
+                            variant="h5"
+                            component="div"
                             color="#AC5435"
-                            align="left"
                           >
-                            Price: {item.price}
+                            {item.itemTitle}
                           </Typography>
-                          <CardActions sx={{ justifyContent: "end" }}>
-                            <Button
-                              size="small"
-                              color="secondary"
-                              variant="contained"
-                              sx={{ borderRadius: 25, maxHeight: 25 }}
-                            >
-                              BUY
-                            </Button>
-                          </CardActions>
-                        </CardContent>
-                      </CardActionArea>
-                    </Card>
-                  </ListItem>
-                )
-              )}
-            </List>
-          </Grid>
-        </Container>
-        {/* Footer Container */}
-        <Container className={`${classes.footerContainer}`}>
-          <Footer />
-        </Container>
+                        </Grid>
+                        <Typography variant="body2" color="#AC5435">
+                          {item.itemDescription}
+                        </Typography>
+                        <br />
+                        <Typography
+                          variant="body2"
+                          color="#AC5435"
+                          align="left"
+                        >
+                          Price: {item.price}
+                        </Typography>
+                        <CardActions sx={{ justifyContent: "end" }}>
+                          <Button
+                            size="small"
+                            color="secondary"
+                            variant="contained"
+                            sx={{ borderRadius: 25, maxHeight: 25 }}
+                          >
+                            BUY
+                          </Button>
+                        </CardActions>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </ListItem>
+              )
+            )}
+          </List>
+        </Grid>
+
+
+
+
+
+
+        <Footer />
       </Container>
     </>
   );

@@ -1,14 +1,36 @@
 import React from "react";
-import { Container, Link, Grid, Box } from "@mui/material";
+import { Container, Link, Grid, Box, } from "@mui/material";
+import { createStyles, makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles((theme) =>
+    createStyles({
+        footerContainer: {
+            backgroundColor: "#F7ECE1",
+            // height: "100%",
+            // minWidth: "80%",
+            marginTop: "50px",
+            position: "absolute",
+            left: "0",
+            bottom: "10px",
+            right: "0",
+        },
+    })
+);
 
 // Footer not centred
 
 export default function Footer() {
+    const classes = useStyles();
+
     return <footer>
-        <Box bgcolor="fff" maxWidth={"100%"}>
-            <Container maxWidth="lg">
+        
+            <Container
+                disableGutters
+                maxWidth={"lg"}
+                className={`${classes.footerContainer}`}
+            >
                 <Grid container spacing={10}>
-                    <Grid item xs={12} sm={4}>
+                    <Grid item xs={12} sm={4} >
                         <Box borderBottom={1}>
                             Contact Us</Box>
                         <Box>
@@ -51,8 +73,9 @@ export default function Footer() {
                         </Box>
                     </Grid>
                 </Grid>
+
             </Container>
-        </Box>
+        
     </footer>;
 
 }
