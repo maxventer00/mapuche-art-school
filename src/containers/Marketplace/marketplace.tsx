@@ -103,8 +103,9 @@ const useStyles = makeStyles((theme) =>
     },
     listingCards:
     {
-      maxHeight: "400",
-      width: "260",
+      minHeight: 400,
+      minWidth: 300,
+      
 
 
     },
@@ -234,7 +235,7 @@ function Marketplace() {
           </div>
         ) : null}
         <Grid container justifyContent="center" alignItems="center">
-          <List sx={{ columns: 4, gap: 8 }}>
+          <List sx={{ columns: 4, gap: 5 }}>
             {shopData.map(
               (item: {
                 itemTitle: string | undefined;
