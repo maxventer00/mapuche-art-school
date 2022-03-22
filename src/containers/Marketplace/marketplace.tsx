@@ -237,10 +237,13 @@ function Marketplace() {
           <List
             sx={{ columns: 4, gap: 3 }}>
             {shopData.map(
-              (doc: any) => {
-                let item = doc.data();
-                let id = doc.id;
-
+              (item: {
+                itemTitle: string | undefined;
+                itemDescription: string | undefined;
+                photoURL: string | undefined;
+                //itemStock: number | undefined;
+                price: number | undefined;
+              }) => (
                 <ListItem key={item.itemTitle}
                 >
                   <Card
