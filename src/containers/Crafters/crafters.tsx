@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme) =>
     crafterDisplay: {
       marginLeft: 55,
       textAlign: "left",
-      paddingBottom: 255,
+      paddingBottom: 200,
       backgroundColor: "#F7ECE1",
     },
     crafterHeading: {
