@@ -29,7 +29,7 @@ import Footer from "../Shared/footer";
 import searchOption from "./searchOptions";
 import Navbar from "../Shared/Navbar";
 import app from "../../base";
-import { getDocs } from "firebase/firestore";
+import { doc, getDocs } from "firebase/firestore";
 //import { getUserType } from "./FirebaseQuearys/MarketpalceQuearys";
 
 const useStyles = makeStyles((theme) =>
@@ -137,7 +137,6 @@ function Marketplace() {
   const history = useHistory();
 
   const [shopData, setShopData] = useState<any>([]);
-  //const [itemId, setItemId] = useState<any>([]);
 
   const getData = async () => {
     const firestore = app.firestore();
@@ -147,7 +146,7 @@ function Marketplace() {
 
     querySnapshot.forEach((doc) => {
       setShopData((arr: any) => [...arr, doc]);
-      //setItemId((arr: any) => [...arr, doc]);
+      
     });
   };
 
@@ -237,20 +236,22 @@ function Marketplace() {
         <Grid container justifyContent="center" alignItems="center">
           <List
             sx={{ columns: 4, gap: 3 }}>
-
-            {shopData.map((doc: any) => {
-              let item = doc.data();
-              let itemId = doc.id;
-
-              (
+            {shopData.map(
+              (doc: any) => {
+                let item = doc.data();
+                let id = doc.id;
 
                 <ListItem key={item.itemTitle}
                 >
                   <Card
                     className={classes.listingCards}
                     sx={{ borderRadius: 5 }}
-                    onClick={() => history.push({ pathname: `/marketplace/${itemId}`, 
-                    state: { itemId: itemId } })}
+                    onClick={() =>
+                      history.push({
+                        pathname: `/marketplace/${id}`,
+                        state: { crafterID: id },
+                      })
+                    }
                   >
                     <CardActionArea
                       sx={{ display: "column", border: `5px solid white` }}
@@ -290,7 +291,6 @@ function Marketplace() {
                             size="small"
                             color="secondary"
                             variant="contained"
-                            onClick={() => history.push(`/marketplace/${itemId}`)}
                             sx={{ borderRadius: 25, maxHeight: 25 }}
                           >
                             BUY
@@ -300,8 +300,10 @@ function Marketplace() {
                     </CardActionArea>
                   </Card>
                 </ListItem>
-              )
-            })}
+              }
+            )}
+
+          
           </List>
         </Grid>
 
