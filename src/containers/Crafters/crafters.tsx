@@ -186,7 +186,7 @@ function Crafters() {
             <>
               <div
                 className={classes.crafterDisplay}
-                onClick={() => console.log("Clicked " + id)}
+                onClick={() => history.push(`/crafters/${id}`)}
               >
                 <div className={classes.photoContainer}>
                   {crafter.photoURL ? (

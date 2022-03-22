@@ -17,6 +17,7 @@ import { AuthProvider } from "../../Auth";
 import CreateListingPage from "../../containers/Marketplace/createListingPage";
 import Crafters from "../../containers/Crafters/crafters";
 import app from "../../base";
+import CraftersPage from "../../containers/Crafters/crafterPage";
 
 function Routes() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -29,7 +30,11 @@ function Routes() {
         // User is signed in.
         setLoggedIn(true);
         const firestore = app.firestore();
-        await firestore.collection("userData").doc(user.uid).get().then((snapshot) => setUserInfo(snapshot.data()));
+        await firestore
+          .collection("userData")
+          .doc(user.uid)
+          .get()
+          .then((snapshot) => setUserInfo(snapshot.data()));
       } else {
         // No user is signed in.
         setLoggedIn(false);
@@ -61,7 +66,9 @@ function Routes() {
         <Route path="/marketplace/itemPage" exact component={ItemPage} />
         <Route
           path="/marketplace/createListingPage"
-          exact component={CreateListingPage}>
+          exact
+          component={CreateListingPage}
+        >
           {loggedInAsCrafter ? null : <Redirect push to="/home" />}
         </Route>
         <Route path="/home" exact component={Home} />
@@ -80,12 +87,14 @@ function Routes() {
           {loggedIn ? <Redirect push to="/home" /> : null}
         </Route>
         {/* Don't allow user to view these pages if they are logged in */}
+
         <Route
           path="/signup/crafter/profile"
           exact
           component={SignupCrafterProfile}
         />
         <Route path="/crafters" exact component={Crafters} />
+        <Route exact path="/crafters/:id" component={CraftersPage} />
       </Switch>
     </Router>
   );
