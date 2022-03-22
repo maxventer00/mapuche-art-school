@@ -119,6 +119,7 @@ function Crafters() {
   const history = useHistory();
 
   const [crafters, setCrafters] = useState<any>([]);
+  const [crafterDetails, setCrafterDetails] = useState<any>([]);
 
   const getCrafters = async () => {
     if (crafters.length === 0) {
@@ -134,6 +135,7 @@ function Crafters() {
           crafters.includes(doc.data()) === false
         ) {
           setCrafters((arr: any) => [...arr, doc.data()]);
+          setCrafterDetails((arr: any) => [...arr, doc]);
         }
       });
     }
@@ -176,59 +178,59 @@ function Crafters() {
           Click on a crafter to learn more about them and discover their art!
         </h2>
 
-        {crafters.map(
-          (crafter: {
-            name: string | undefined;
-            userLocation: string | undefined;
-            photoURL: string | undefined;
-          }) => {
-            return (
-              <>
-                <div className={classes.crafterDisplay}>
-                  <div className={classes.photoContainer}>
-                    {crafter.photoURL ? (
-                      <img
-                        src={crafter.photoURL}
-                        style={{
-                          maxWidth: 230,
-                          maxHeight: 230,
-                          marginBottom: 50,
-                          float: "left",
-                          height: "100%",
-                          width: "100%",
-                          objectFit: "cover",
-                        }}
-                      />
-                    ) : (
-                      <img
-                        src={profilePlaceholder}
-                        style={{
-                          maxWidth: 230,
-                          maxHeight: 230,
-                          marginBottom: 50,
-                          float: "left",
-                        }}
-                      />
-                    )}
-                  </div>
-                  <h2 className={classes.crafterHeading}>{crafter.name}</h2>
-                  <h2
-                    className={classes.crafterHeading}
-                    style={{ display: "inline" }}
-                  >
-                    Location:{"  "}
-                  </h2>
-                  <h2
-                    className={classes.crafterHeading}
-                    style={{ fontWeight: 500, display: "inline" }}
-                  >
-                    {crafter.userLocation}
-                  </h2>
+        {crafterDetails.map((doc: any) => {
+          let crafter = doc.data();
+          let id = doc.id;
+
+          return (
+            <>
+              <div
+                className={classes.crafterDisplay}
+                onClick={() => console.log("Clicked " + id)}
+              >
+                <div className={classes.photoContainer}>
+                  {crafter.photoURL ? (
+                    <img
+                      src={crafter.photoURL}
+                      style={{
+                        maxWidth: 230,
+                        maxHeight: 230,
+                        marginBottom: 50,
+                        float: "left",
+                        height: "100%",
+                        width: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={profilePlaceholder}
+                      style={{
+                        maxWidth: 230,
+                        maxHeight: 230,
+                        marginBottom: 50,
+                        float: "left",
+                      }}
+                    />
+                  )}
                 </div>
-              </>
-            );
-          }
-        )}
+                <h2 className={classes.crafterHeading}>{crafter.name}</h2>
+                <h2
+                  className={classes.crafterHeading}
+                  style={{ display: "inline" }}
+                >
+                  Location:{"  "}
+                </h2>
+                <h2
+                  className={classes.crafterHeading}
+                  style={{ fontWeight: 500, display: "inline" }}
+                >
+                  {crafter.userLocation}
+                </h2>
+              </div>
+            </>
+          );
+        })}
       </Container>
     </>
   );
