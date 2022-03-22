@@ -111,6 +111,7 @@ function CraftersPage() {
 
   return (
     <>
+      <Navbar />
       <div className={classes.background}>
         <div className={classes.contentContainer}>
           {crafter ? (
