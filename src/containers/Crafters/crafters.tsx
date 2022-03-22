@@ -19,6 +19,7 @@ import { Typography } from "@mui/material";
 import profilePlaceholder from "../../images/profilePlaceholder.png";
 import app from "../../base";
 import { getDocs } from "firebase/firestore";
+import allCraftersBanner from "../../images/allCraftersBanner.jpg";
 
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
@@ -52,13 +53,15 @@ const useStyles = makeStyles((theme) =>
       marginTop: 30,
     },
     imgcontainer: {
-      backgroundColor: "grey",
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
       height: 900,
       padding: 0,
       maxHeight: 900,
+      backgroundImage: "url(" + allCraftersBanner + ")",
+      backgroundColor: "rgba(100, 100, 100, 0.9)",
+      backgroundBlendMode: "multiply",
     },
     tint: {
       maxHeight: 1180,
@@ -71,9 +74,8 @@ const useStyles = makeStyles((theme) =>
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
-      height: 900,
       padding: 0,
-      maxHeight: 900,
+      minHeight: "100%",
     },
     subtitle: {
       fontSize: 35,
@@ -102,7 +104,8 @@ const useStyles = makeStyles((theme) =>
     crafterDisplay: {
       marginLeft: 55,
       textAlign: "left",
-      marginBottom: 255,
+      paddingBottom: 255,
+      backgroundColor: "#F7ECE1",
     },
     crafterHeading: {
       fontSize: 22,
