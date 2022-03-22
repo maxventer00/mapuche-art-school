@@ -146,7 +146,7 @@ function Marketplace() {
 
     querySnapshot.forEach((doc) => {
       setShopData((arr: any) => [...arr, doc]);
-      
+
     });
   };
 
@@ -237,13 +237,12 @@ function Marketplace() {
           <List
             sx={{ columns: 4, gap: 3 }}>
             {shopData.map(
-              (item: {
-                itemTitle: string | undefined;
-                itemDescription: string | undefined;
-                photoURL: string | undefined;
-                //itemStock: number | undefined;
-                price: number | undefined;
-              }) => (
+              (doc: any) => {
+                let id = doc.id;
+                let item = doc.data();
+                console.log("item : " + item.itemTitle);
+                console.log("id : " + id);
+
                 <ListItem key={item.itemTitle}
                 >
                   <Card
@@ -252,7 +251,7 @@ function Marketplace() {
                     onClick={() =>
                       history.push({
                         pathname: `/marketplace/${id}`,
-                        state: { crafterID: id },
+                        state: { itemId: id },
                       })
                     }
                   >
@@ -306,7 +305,9 @@ function Marketplace() {
               }
             )}
 
-          
+
+
+
           </List>
         </Grid>
 
