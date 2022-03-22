@@ -137,6 +137,7 @@ function Marketplace() {
   const history = useHistory();
 
   const [shopData, setShopData] = useState<any>([]);
+  //const [itemId, setItemId] = useState<any>([]);
 
   const getData = async () => {
     const firestore = app.firestore();
@@ -145,7 +146,8 @@ function Marketplace() {
     const querySnapshot = await getDocs(collectionRef);
 
     querySnapshot.forEach((doc) => {
-      setShopData((arr: any) => [...arr, doc.data()]);
+      setShopData((arr: any) => [...arr, doc]);
+      //setItemId((arr: any) => [...arr, doc]);
     });
   };
 
@@ -235,19 +237,20 @@ function Marketplace() {
         <Grid container justifyContent="center" alignItems="center">
           <List
             sx={{ columns: 4, gap: 3 }}>
-            {shopData.map(
-              (item: {
-                itemTitle: string | undefined;
-                itemDescription: string | undefined;
-                photoURL: string | undefined;
-                //itemStock: number | undefined;
-                price: number | undefined;
-              }) => (
+
+            {shopData.map((doc: any) => {
+              let item = doc.data();
+              let itemId = doc.id;
+
+              (
+
                 <ListItem key={item.itemTitle}
                 >
                   <Card
                     className={classes.listingCards}
                     sx={{ borderRadius: 5 }}
+                    onClick={() => history.push({ pathname: `/marketplace/${itemId}`, 
+                    state: { itemId: itemId } })}
                   >
                     <CardActionArea
                       sx={{ display: "column", border: `5px solid white` }}
@@ -287,6 +290,7 @@ function Marketplace() {
                             size="small"
                             color="secondary"
                             variant="contained"
+                            onClick={() => history.push(`/marketplace/${itemId}`)}
                             sx={{ borderRadius: 25, maxHeight: 25 }}
                           >
                             BUY
@@ -297,7 +301,7 @@ function Marketplace() {
                   </Card>
                 </ListItem>
               )
-            )}
+            })}
           </List>
         </Grid>
 

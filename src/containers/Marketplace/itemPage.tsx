@@ -6,7 +6,7 @@ import {
     useEffect,
     useState,
 } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import homapageBackground from "../../images/homeBackground.png";
 import Container from "@mui/material/Container";
@@ -79,19 +79,19 @@ const theme = createTheme();
 function ItemPage() {
     const classes = useStyles();
     const history = useHistory();
-
+    const location = useLocation<any>();
+    const [itemId, setItemId] = location.state.itemId;
 
     const [itemData, setItemData] = useState<any>([]);
 
-    const getItemData = async () => {
+    const getItemData = () => {
         const firestore = app.firestore();
 
-        const collectionRef = firestore.collection("productData");
-        const querySnapshot = await getDocs(collectionRef);
-
-        querySnapshot.forEach((doc) => {
-            setItemData((arr: any) => [...arr, doc.data()]);
-        });
+        const itemData = firestore
+            .collection("productData")
+            .doc(itemId)
+            .get()
+            .then((snapshot) => setItemId(snapshot.data()));
     };
 
     useEffect(() => {
