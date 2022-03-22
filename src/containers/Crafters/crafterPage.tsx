@@ -6,7 +6,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import homapageBackground from "../../images/homeBackground.png";
 import Container from "@mui/material/Container";
@@ -118,9 +118,39 @@ function CraftersPage() {
   const classes = useStyles();
   const history = useHistory();
 
+  const [crafter, setCrafter] = useState<any>();
+  const location = useLocation<any>();
+  const crafterID = location.state.crafterID;
+
+  const getCrafterDetails = () => {
+    const firestore = app.firestore();
+
+    const crafterData = firestore
+      .collection("userData")
+      .doc(crafterID)
+      .get()
+      .then((snapshot) => setCrafter(snapshot.data()));
+  };
+
+  useEffect(() => {
+    getCrafterDetails();
+  }, []);
+
+  useEffect(() => {
+    console.log(crafter);
+  }, [crafter]);
+
   return (
     <>
       <h1>Crafter page</h1>
+
+      {crafter ? (
+        <>
+          <h1>{crafter.name}</h1>
+          <h1>{crafter.userBio}</h1>
+          <h1>{crafter.userLocation}</h1>{" "}
+        </>
+      ) : null}
     </>
   );
 }

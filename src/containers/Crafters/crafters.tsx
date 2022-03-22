@@ -186,7 +186,12 @@ function Crafters() {
             <>
               <div
                 className={classes.crafterDisplay}
-                onClick={() => history.push(`/crafters/${id}`)}
+                onClick={() =>
+                  history.push({
+                    pathname: `/crafters/${id}`,
+                    state: { crafterID: id },
+                  })
+                }
               >
                 <div className={classes.photoContainer}>
                   {crafter.photoURL ? (
