@@ -243,7 +243,7 @@ function Marketplace() {
                 console.log("item : " + item.itemTitle);
                 console.log("id : " + id);
 
-                <ListItem key={item.itemTitle}
+                <ListItem key={id}
                 >
                   <Card
                     className={classes.listingCards}
