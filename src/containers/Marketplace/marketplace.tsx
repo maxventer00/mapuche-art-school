@@ -26,7 +26,7 @@ import homapageBackground from "../../images/homeBackground.png";
 import { Box } from "@mui/system";
 import itemTest from "../../images/itemTest.png";
 import Footer from "../Shared/footer";
-import searchOption from "./searchOptions";
+
 import Navbar from "../Shared/Navbar";
 import app from "../../base";
 import { doc, getDocs } from "firebase/firestore";
@@ -227,7 +227,7 @@ function Marketplace() {
               style={{ maxWidth: "155px" }}
               className={classes.outlined}
               variant="outlined"
-              onClick={() => history.push("/createListingPage")}
+              onClick={() => history.push("/marketplace/createListingPage")}
             >
               List an Item
             </Button>
