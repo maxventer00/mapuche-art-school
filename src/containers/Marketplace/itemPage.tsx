@@ -95,6 +95,7 @@ function ItemPage() {
     };
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         getItemData();
     }, []);
 
@@ -115,103 +116,122 @@ function ItemPage() {
                 <Container className={`${classes.content}`}>
 
                     <div className={`${classes.information}`}>
+                    {itemId ? (
+            <>  
                         <List>
-                            {itemData.map((item: {
-                                itemTitle: string | undefined;
-                                itemDescription: string | undefined;
-                                price: number | undefined;
-                                itemStock: number | undefined;
-                                photoURL: string | undefined;
-                            }) => (
-                                <ListItem key={item.itemTitle}
-                                >
-                                    <Card
-                                        className={classes.card}
-                                        sx={{ borderRadius: 5 }}
-                                    >
-                                        <CardActionArea
-                                            sx={{ display: "column", border: `5px solid white` }}
-                                        >
+                            {itemData.map(
+                                (doc: any, item: {
+                                    itemTitle: string | undefined;
+                                    itemDescription: string | undefined;
+                                    price: number | undefined;
+                                }) => {
+                                    let id = doc.id;
+                                    item = doc.data();
 
-                                            <CardContent sx={{ flexDirection: "row" }}>
-                                                <Grid container justifyContent="space-between">
-                                                    <Typography
-                                                        gutterBottom
-                                                        variant="h5"
-                                                        component="div"
-                                                        color="#AC5435"
-                                                    >
-                                                        {item.itemTitle}
-                                                    </Typography>
-                                                </Grid>
-                                                <Typography variant="body2" color="#AC5435">
-                                                    {item.itemDescription}
-                                                </Typography>
-                                                <br />
-                                                <Typography
-                                                    variant="body2"
-                                                    color="#AC5435"
-                                                    align="left"
+                                    console.log("item : " + item.itemTitle);
+                                    console.log("id : " + id);
+                                    return (
+                                        <>
+                                            <ListItem key={id}
+                                            >
+                                                <Card
+                                                    className={classes.card}
+                                                    sx={{ borderRadius: 5 }}
                                                 >
-                                                    Price: ${item.price}
-                                                </Typography>
-                                                <CardActions sx={{ justifyContent: "end" }}>
-                                                    <Button
-                                                        size="small"
-                                                        color="secondary"
-                                                        variant="contained"
-                                                        sx={{ borderRadius: 25, maxHeight: 25 }}
+                                                    <CardActionArea
+                                                        sx={{ display: "column", border: `5px solid white` }}
                                                     >
-                                                        BUY
-                                                    </Button>
-                                                </CardActions>
-                                            </CardContent>
-                                        </CardActionArea>
-                                    </Card>
-                                </ListItem>
 
-                            ))}
+                                                        <CardContent sx={{ flexDirection: "row" }}>
+                                                            <Grid container justifyContent="space-between">
+                                                                <Typography
+                                                                    gutterBottom
+                                                                    variant="h5"
+                                                                    component="div"
+                                                                    color="#AC5435"
+                                                                >
+                                                                    {item.itemTitle}
+                                                                </Typography>
+                                                            </Grid>
+                                                            <Typography variant="body2" color="#AC5435">
+                                                                {item.itemDescription}
+                                                            </Typography>
+                                                            <br />
+                                                            <Typography
+                                                                variant="body2"
+                                                                color="#AC5435"
+                                                                align="left"
+                                                            >
+                                                                Price: ${item.price}
+                                                            </Typography>
+                                                            <CardActions sx={{ justifyContent: "end" }}>
+                                                                <Button
+                                                                    size="small"
+                                                                    color="secondary"
+                                                                    variant="contained"
+                                                                    sx={{ borderRadius: 25, maxHeight: 25 }}
+                                                                >
+                                                                    BUY
+                                                                </Button>
+                                                            </CardActions>
+                                                        </CardContent>
+                                                    </CardActionArea>
+                                                </Card>
+                                            </ListItem>
+                                        </>
+                                    );
+                                }
+                            )}
+
+
                         </List>
+                        </>
+          ) : null}
                     </div>
 
                     <div className={`${classes.photo}`}>
-                        <List
-                            sx={{ columns: 1, gap: 3 }}>
+                        <List>
                             {itemData.map(
-                                (item: {
+                                (doc: any, item: {
                                     itemTitle: string | undefined;
-                                    itemDescription: string | undefined;
                                     photoURL: string | undefined;
-                                    //itemStock: number | undefined;
-                                    price: number | undefined;
-                                }) => (
-                                    <ListItem key={item.itemTitle}
-                                    >
-                                        <Card
-                                            className={classes.card}
-                                            sx={{ borderRadius: 5 }}
-                                        >
-                                            <CardActionArea
-                                                sx={{ display: "column", border: `5px solid white` }}
+                                }) => {
+                                    let id = doc.id;
+                                    item = doc.data();
+
+                                    console.log("item : " + item.itemTitle);
+                                    console.log("id : " + id);
+                                    return (
+                                        <>
+                                            <ListItem key={id}
                                             >
-                                                <CardMedia
-                                                    component="img"
-                                                    height="100%"
-                                                    width="100%"
+                                                <Card
+                                                    className={classes.card}
                                                     sx={{ borderRadius: 5 }}
-                                                    image={item.photoURL}
-                                                    alt="No Image Available"
-                                                />
+                                                >
+                                                    <CardActionArea
+                                                        sx={{ display: "column", border: `5px solid white` }}
+                                                    >
+                                                        <CardMedia
+                                                            component="img"
+                                                            height="100%"
+                                                            width="100%"
+                                                            sx={{ borderRadius: 5 }}
+                                                            image={item.photoURL}
+                                                            alt="No Image Available"
+                                                        />
 
 
 
 
 
-                                            </CardActionArea>
-                                        </Card>
-                                    </ListItem>
-                                )
-                            )}
+                                                    </CardActionArea>
+                                                </Card>
+                                            </ListItem>
+                                        </>
+                                    );
+                                }
+                                )}
                         </List>
 
                     </div>
