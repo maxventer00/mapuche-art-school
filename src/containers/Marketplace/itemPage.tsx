@@ -79,24 +79,28 @@ const theme = createTheme();
 function ItemPage() {
     const classes = useStyles();
     const history = useHistory();
-    const location = useLocation<any>();
-    const [itemId, setItemId] = location.state.itemId;
 
     const [itemData, setItemData] = useState<any>([]);
+    const location = useLocation<any>();
+    const itemId = location.state.itemId;
 
     const getItemData = () => {
         const firestore = app.firestore();
 
-        const itemData = firestore
+        const itemInfo = firestore
             .collection("productData")
             .doc(itemId)
             .get()
-            .then((snapshot) => setItemId(snapshot.data()));
+            .then((snapshot) => setItemData(snapshot.data()));
     };
 
     useEffect(() => {
         getItemData();
     }, []);
+
+    useEffect(() => {
+        console.log("Item: " + itemData);
+    }, [itemData]);
 
     return (
         <>
