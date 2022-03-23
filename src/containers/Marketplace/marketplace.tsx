@@ -257,7 +257,7 @@ function Marketplace() {
                         onClick={() =>
                           history.push({
                             pathname: `/marketplace/${id}`,
-                            state: { itemId: id },
+                            state: { itemUid: id },
                           })
                         }
                       >

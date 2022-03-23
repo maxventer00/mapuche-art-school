@@ -15,7 +15,7 @@ import "../../containers/Home/fonts.css";
 import { height, textAlign } from "@mui/system";
 import IconButton from "@mui/material/IconButton";
 import Navbar from "../Shared/Navbar";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import profilePlaceholder from "../../images/profilePlaceholder.png";
 import app from "../../base";
 import { getDocs } from "firebase/firestore";
@@ -78,6 +78,7 @@ const useStyles = makeStyles((theme) =>
       alignContent: "center",
       backgroundColor: "#F7ECE1",
     },
+    
   })
 );
 
@@ -113,8 +114,10 @@ function CraftersPage() {
   return (
     <>
       <Navbar />
+
       <div className={classes.background}>
         <div className={classes.contentContainer}>
+
           {crafter ? (
             <>
               <div className={classes.photoContainer}>
@@ -167,6 +170,7 @@ function CraftersPage() {
         >
           Products For Sale
         </h1>
+        
       </div>
     </>
   );

@@ -81,11 +81,13 @@ function ItemPage() {
     const classes = useStyles();
     const history = useHistory();
 
+
+
     const [itemData, setItemData] = useState<any>([]);
     const location = useLocation<any>();
-    const itemId = location.state.itemId;
+    const itemId = location.state.itemUid;
 
-    const getItemData = async () => {
+    const getItemData = () => {
         const firestore = app.firestore();
 
         const itemInfo = firestore
@@ -104,7 +106,7 @@ function ItemPage() {
         console.log("Item: " + itemData);
     }, [itemData]);
 
-   
+
 
 
     return (
