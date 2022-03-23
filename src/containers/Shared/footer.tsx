@@ -39,7 +39,7 @@ export default function Footer() {
                         </Link>
                     </Box>
                     <Box>
-                        <Link href="/marketplace/createlistingpage" color="inherit">
+                        <Link href="/createlistingpage" color="inherit">
                             Create a Listing
                         </Link>
                     </Box>

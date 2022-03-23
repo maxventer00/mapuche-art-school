@@ -15,11 +15,10 @@ import "../../containers/Home/fonts.css";
 import { height, textAlign } from "@mui/system";
 import IconButton from "@mui/material/IconButton";
 import Navbar from "../Shared/Navbar";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import profilePlaceholder from "../../images/profilePlaceholder.png";
 import app from "../../base";
 import { getDocs } from "firebase/firestore";
-import crafterBanner from "../../images/crafterBanner.jpg";
 
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
@@ -55,7 +54,7 @@ const useStyles = makeStyles((theme) =>
       height: 400,
       padding: 0,
       maxHeight: 500,
-      backgroundImage: "url(" + crafterBanner + ")",
+      //backgroundImage: "url(" + crafterBanner + ")",
       backgroundColor: "rgba(100, 100, 100, 0.5)",
       backgroundBlendMode: "multiply",
     },
@@ -113,6 +112,7 @@ function CraftersPage() {
   return (
     <>
       <Navbar />
+
       <div className={classes.background}>
         <div className={classes.contentContainer}>
           {crafter ? (
