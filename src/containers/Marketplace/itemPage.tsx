@@ -70,7 +70,22 @@ const useStyles = makeStyles((theme) =>
             //minWidth: "500",
             width: "100%",
             height: "100%",
-        }
+        },
+        name: {
+            fontSize: 32,
+            color: "#AC5435",
+            fontFamily: "Prata",
+        },
+        infoContainer: {
+            fontFamily: "Prata",
+            marginTop: "285px",
+            width: "100%",
+        },
+        bio: {
+            fontFamily: "Prata",
+            color: "#AC5435",
+            fontSize: 25,
+        },
     }),
 );
 
@@ -84,7 +99,7 @@ function ItemPage() {
     const location = useLocation<any>();
     const itemId = location.state.itemId;
 
-    const getItemData = () => {
+    const getItemData = async () => {
         const firestore = app.firestore();
 
         const itemInfo = firestore
@@ -105,148 +120,22 @@ function ItemPage() {
 
     return (
         <>
-            {/* Header Container */}
-            <Container
-                disableGutters
-                maxWidth={false}
-                className={`${classes.container}`}
-            >
-                <Navbar />
+            <Navbar />
 
-                <Container className={`${classes.content}`}>
+            <div className={`${classes.content}`}>
 
-                    <div className={`${classes.information}`}>
-                     
-                        <List>
-                            {itemData.map(
-                                (doc: any, item: {
-                                    itemTitle: string | undefined;
-                                    itemDescription: string | undefined;
-                                    price: number | undefined;
-                                }) => {
-                                    let id = doc.id;
-                                    item = doc.data();
-
-                                    console.log("item : " + item.itemTitle);
-                                    console.log("id : " + id);
-                                    return (
-                                        <>
-                                            <ListItem key={id}
-                                            >
-                                                <Card
-                                                    className={classes.card}
-                                                    sx={{ borderRadius: 5 }}
-                                                >
-                                                    <CardActionArea
-                                                        sx={{ display: "column", border: `5px solid white` }}
-                                                    >
-
-                                                        <CardContent sx={{ flexDirection: "row" }}>
-                                                            <Grid container justifyContent="space-between">
-                                                                <Typography
-                                                                    gutterBottom
-                                                                    variant="h5"
-                                                                    component="div"
-                                                                    color="#AC5435"
-                                                                >
-                                                                    {item.itemTitle}
-                                                                </Typography>
-                                                            </Grid>
-                                                            <Typography variant="body2" color="#AC5435">
-                                                                {item.itemDescription}
-                                                            </Typography>
-                                                            <br />
-                                                            <Typography
-                                                                variant="body2"
-                                                                color="#AC5435"
-                                                                align="left"
-                                                            >
-                                                                Price: ${item.price}
-                                                            </Typography>
-                                                            <CardActions sx={{ justifyContent: "end" }}>
-                                                                <Button
-                                                                    size="small"
-                                                                    color="secondary"
-                                                                    variant="contained"
-                                                                    sx={{ borderRadius: 25, maxHeight: 25 }}
-                                                                >
-                                                                    BUY
-                                                                </Button>
-                                                            </CardActions>
-                                                        </CardContent>
-                                                    </CardActionArea>
-                                                </Card>
-                                            </ListItem>
-                                        </>
-                                    );
-                                }
-                            )}
-
-
-                        </List>
-                        
-          
-                    </div>
-
-                    <div className={`${classes.photo}`}>
-                        <List>
-                            {itemData.map(
-                                (doc: any, item: {
-                                    itemTitle: string | undefined;
-                                    photoURL: string | undefined;
-                                }) => {
-                                    let id = doc.id;
-                                    item = doc.data();
-
-                                    console.log("item : " + item.itemTitle);
-                                    console.log("id : " + id);
-                                    return (
-                                        <>
-                                            <ListItem key={id}
-                                            >
-                                                <Card
-                                                    className={classes.card}
-                                                    sx={{ borderRadius: 5 }}
-                                                >
-                                                    <CardActionArea
-                                                        sx={{ display: "column", border: `5px solid white` }}
-                                                    >
-                                                        <CardMedia
-                                                            component="img"
-                                                            height="100%"
-                                                            width="100%"
-                                                            sx={{ borderRadius: 5 }}
-                                                            image={item.photoURL}
-                                                            alt="No Image Available"
-                                                        />
+                <div className={`${classes.information}`}>
+                    <h1 className={classes.name}>{itemData.itemTitle}</h1>
 
 
 
 
-
-                                                    </CardActionArea>
-                                                </Card>
-                                            </ListItem>
-                                        </>
-                                    );
-                                }
-                                )}
-                        </List>
-
-                    </div>
-
-                </Container>
-
-
-
-                <Footer />
-            </Container>
-
-
-
+                </div>
+            </div>
 
         </>
     );
+
 
 }
 

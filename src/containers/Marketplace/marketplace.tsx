@@ -235,6 +235,17 @@ function Marketplace() {
         ) : null}
         <Grid container justifyContent="center" alignItems="center">
           <List sx={{ columns: 4, gap: 3 }}>
+            {/*}
+              {shopData.map(
+              (item: {
+                itemTitle: string | undefined;
+                itemDescription: string | undefined;
+                photoURL: string | undefined;
+                //itemStock: number | undefined;
+                price: number | undefined;
+              }) => (
+              */}
+
             {shopData.map(
               (doc: any, item: {
                 itemTitle: string | undefined;
