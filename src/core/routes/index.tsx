@@ -14,7 +14,7 @@ import SignupCrafter from "../../containers/Onboarding/signupCrafter";
 import SignupCrafterProfile from "../../containers/Onboarding/signupCrafterProfile";
 import ItemPage from "../../containers/Marketplace/itemPage";
 import { AuthProvider } from "../../Auth";
-import CreateListingPage from "../../containers/Marketplace/createListingPage";
+import CreateListingPage from "../../containers/ListanItem/createListingPage";
 import Crafters from "../../containers/Crafters/crafters";
 import app from "../../base";
 import CraftersPage from "../../containers/Crafters/crafterPage";

@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) =>
         },
 
         information: {
-            backgroundColor: "#F7E",
+            backgroundColor: "#F7ECE1",
             height: "70%",
             width: "50%",
             float: "right",
@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) =>
         },
         photo: {
             //float: "left",
-            backgroundColor: "#FFF",
+            backgroundColor: "#F7ECE1",
             height: "60%",
             width: "50%",
             float: "left",
@@ -71,21 +71,7 @@ const useStyles = makeStyles((theme) =>
             width: "100%",
             height: "100%",
         },
-        name: {
-            fontSize: 32,
-            color: "#AC5435",
-            fontFamily: "Prata",
-        },
-        infoContainer: {
-            fontFamily: "Prata",
-            marginTop: "285px",
-            width: "100%",
-        },
-        bio: {
-            fontFamily: "Prata",
-            color: "#AC5435",
-            fontSize: 25,
-        },
+
     }),
 );
 
@@ -118,20 +104,118 @@ function ItemPage() {
         console.log("Item: " + itemData);
     }, [itemData]);
 
+   
+
+
     return (
         <>
-            <Navbar />
+            {/* Header Container */}
+            <Container
+                disableGutters
+                maxWidth={false}
+                className={`${classes.container}`}
+            >
+                <Navbar />
 
-            <div className={`${classes.content}`}>
+                <Container className={`${classes.content}`}>
 
-                <div className={`${classes.information}`}>
-                    <h1 className={classes.name}>{itemData.itemTitle}</h1>
+                    <div className={`${classes.information}`}>
+                        <List>
+                            <ListItem key={itemData.itemTitle}
+                            >
+                                <Card
+                                    className={classes.card}
+                                    sx={{ borderRadius: 5 }}
+                                >
+                                    <CardActionArea
+                                        sx={{ display: "column", border: `5px solid white` }}
+                                    >
+
+                                        <CardContent sx={{ flexDirection: "row" }}>
+                                            <Grid container justifyContent="space-between">
+                                                <Typography
+                                                    gutterBottom
+                                                    variant="h5"
+                                                    component="div"
+                                                    color="#AC5435"
+                                                >
+                                                    {itemData.itemTitle}
+                                                </Typography>
+                                            </Grid>
+                                            <Typography variant="body2" color="#AC5435">
+                                                {itemData.itemDescription}
+                                            </Typography>
+                                            <br />
+                                            <Typography
+                                                variant="body2"
+                                                color="#AC5435"
+                                                align="left"
+                                            >
+                                                Price: ${itemData.price}
+                                            </Typography>
+                                            <CardActions sx={{ justifyContent: "end" }}>
+                                                <Button
+                                                    size="small"
+                                                    color="secondary"
+                                                    variant="contained"
+                                                    sx={{ borderRadius: 25, maxHeight: 25 }}
+                                                >
+                                                    BUY
+                                                </Button>
+                                            </CardActions>
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                            </ListItem>
+
+
+                        </List>
+                    </div>
+
+                    <div className={`${classes.photo}`}>
+                        <List
+                            sx={{ columns: 1, gap: 3 }}>
+
+                            <ListItem key={itemData.itemTitle}
+                            >
+                                <Card
+                                    className={classes.card}
+                                    sx={{ borderRadius: 5 }}
+                                >
+                                    <CardActionArea
+                                        sx={{ display: "column", border: `5px solid white` }}
+                                    >
+                                        <CardMedia
+                                            component="img"
+                                            height="100%"
+                                            width="100%"
+                                            sx={{ borderRadius: 5, maxHeight: "100%" }}
+                                            image={itemData.photoURL}
+                                            alt="No Image Available"
+                                        />
 
 
 
 
-                </div>
-            </div>
+
+                                    </CardActionArea>
+                                </Card>
+                            </ListItem>
+
+
+                        </List>
+
+                    </div>
+
+                </Container>
+
+
+
+                <Footer />
+            </Container>
+
+
+
 
         </>
     );
