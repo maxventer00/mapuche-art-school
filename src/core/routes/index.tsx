@@ -63,7 +63,7 @@ function Routes() {
           <Redirect to="/home" />
         </Route>
         <Route path="/marketplace" exact component={Marketplace} />
-        <Route path="/marketplace/itemPage" exact component={ItemPage} />
+        <Route exact path="/marketplace/:id" component={ItemPage} />
         <Route
           path="/marketplace/createListingPage"
           exact
