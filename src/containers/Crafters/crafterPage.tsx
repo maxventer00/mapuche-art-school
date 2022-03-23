@@ -15,11 +15,10 @@ import "../../containers/Home/fonts.css";
 import { height, textAlign } from "@mui/system";
 import IconButton from "@mui/material/IconButton";
 import Navbar from "../Shared/Navbar";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import profilePlaceholder from "../../images/profilePlaceholder.png";
 import app from "../../base";
 import { getDocs } from "firebase/firestore";
-import crafterBanner from "../../images/crafterBanner.jpg";
 
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
@@ -55,7 +54,7 @@ const useStyles = makeStyles((theme) =>
       height: 400,
       padding: 0,
       maxHeight: 500,
-      backgroundImage: "url(" + crafterBanner + ")",
+      //backgroundImage: "url(" + crafterBanner + ")",
       backgroundColor: "rgba(100, 100, 100, 0.5)",
       backgroundBlendMode: "multiply",
     },
@@ -77,6 +76,28 @@ const useStyles = makeStyles((theme) =>
       fontSize: 25,
       alignContent: "center",
       backgroundColor: "#F7ECE1",
+    },
+    outlined: {
+      backgroundColor: "transparent",
+      color: "white",
+      boxShadow: "none",
+      borderWidth: "2px",
+      borderColor: "white",
+      fontFamily: "Lato",
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: "25px",
+      lineHeight: "30px",
+      width: "500px",
+      marginTop: "20px",
+      "&:hover": {
+        backgroundColor: "#8A7866",
+      },
+    }, listButton: {
+      float: "right",
+      marginRight: "2%",
+      marginTop: "0px",
+      marginBottom: "50px",
     },
   })
 );
@@ -113,6 +134,7 @@ function CraftersPage() {
   return (
     <>
       <Navbar />
+
       <div className={classes.background}>
         <div className={classes.contentContainer}>
           {crafter ? (
@@ -153,6 +175,16 @@ function CraftersPage() {
           ) : null}
         </div>
         <div className={classes.imgContainer} />
+      </div>
+      <div className={classes.listButton}>
+        <Button
+          style={{ maxWidth: "155px" }}
+          className={classes.outlined}
+          variant="outlined"
+          onClick={() => history.push("/listitem")}
+        >
+          List an Item
+        </Button>
       </div>
 
       <div className={classes.productsContainer}>

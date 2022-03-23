@@ -15,7 +15,7 @@ import "../../containers/Home/fonts.css";
 import { height, textAlign } from "@mui/system";
 import IconButton from "@mui/material/IconButton";
 import Navbar from "../Shared/Navbar";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import profilePlaceholder from "../../images/profilePlaceholder.png";
 import app from "../../base";
 import { getDocs } from "firebase/firestore";
@@ -240,6 +240,7 @@ function Crafters() {
           );
         })}
       </Container>
+      
     </>
   );
 }
