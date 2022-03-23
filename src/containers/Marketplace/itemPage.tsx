@@ -116,8 +116,7 @@ function ItemPage() {
                 <Container className={`${classes.content}`}>
 
                     <div className={`${classes.information}`}>
-                    {itemId ? (
-            <>  
+                     
                         <List>
                             {itemData.map(
                                 (doc: any, item: {
@@ -185,8 +184,8 @@ function ItemPage() {
 
 
                         </List>
-                        </>
-          ) : null}
+                        
+          
                     </div>
 
                     <div className={`${classes.photo}`}>
