@@ -77,6 +77,28 @@ const useStyles = makeStyles((theme) =>
       alignContent: "center",
       backgroundColor: "#F7ECE1",
     },
+    outlined: {
+      backgroundColor: "transparent",
+      color: "white",
+      boxShadow: "none",
+      borderWidth: "2px",
+      borderColor: "white",
+      fontFamily: "Lato",
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: "25px",
+      lineHeight: "30px",
+      width: "500px",
+      marginTop: "20px",
+      "&:hover": {
+        backgroundColor: "#8A7866",
+      },
+    }, listButton: {
+      float: "right",
+      marginRight: "2%",
+      marginTop: "0px",
+      marginBottom: "50px",
+    },
   })
 );
 
@@ -153,6 +175,16 @@ function CraftersPage() {
           ) : null}
         </div>
         <div className={classes.imgContainer} />
+      </div>
+      <div className={classes.listButton}>
+        <Button
+          style={{ maxWidth: "155px" }}
+          className={classes.outlined}
+          variant="outlined"
+          onClick={() => history.push("/listitem")}
+        >
+          List an Item
+        </Button>
       </div>
 
       <div className={classes.productsContainer}>

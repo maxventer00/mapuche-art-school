@@ -154,7 +154,7 @@ const useStyles = makeStyles((theme) =>
 
 const theme = createTheme();
 
-function CreateListingPage() {
+function ListItem() {
     const classes = useStyles();
     const history = useHistory();
 
@@ -165,7 +165,7 @@ function CreateListingPage() {
 
 
     {/* Make sure they are a crafter */ }
-    const ListItem = async () => {
+    const ListItemToFireBase = async () => {
         try {
 
             const firestore = app.firestore();
@@ -372,7 +372,7 @@ function CreateListingPage() {
                                 maxWidth: "60%",
 
                             }}
-                            onClick={() => ListItem}
+                            onClick={() => ListItemToFireBase()}
                         >
                             Upload file
                         </Button>
@@ -386,7 +386,7 @@ function CreateListingPage() {
                                 maxWidth: "60%",
 
                             }}
-                            onClick={() => ListItem()}
+                            onClick={() => ListItemToFireBase()}
                         >
                             List Item
                         </Button>
@@ -408,8 +408,4 @@ function CreateListingPage() {
 
 }
 
-export default CreateListingPage;
-function calc(arg0: number, px: any): import("csstype").Property.Height<string | number> | import("@mui/styles").PropsFunc<{}, import("csstype").Property.Height<string | number> | undefined> | undefined {
-    throw new Error("Function not implemented.");
-}
-
+export default ListItem;

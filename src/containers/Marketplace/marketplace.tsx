@@ -30,6 +30,7 @@ import Footer from "../Shared/footer";
 import Navbar from "../Shared/Navbar";
 import app from "../../base";
 import { doc, getDocs } from "firebase/firestore";
+import test from "../Marketplace/test";
 //import { getUserType } from "./FirebaseQuearys/MarketpalceQuearys";
 
 const useStyles = makeStyles((theme) =>
@@ -227,7 +228,7 @@ function Marketplace() {
               style={{ maxWidth: "155px" }}
               className={classes.outlined}
               variant="outlined"
-              onClick={() => history.push("/marketplace/createListingPage")}
+              onClick={() => { history.push("/listitem") }}
             >
               List an Item
             </Button>

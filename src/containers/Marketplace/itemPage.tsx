@@ -87,7 +87,8 @@ function ItemPage() {
 
   const [itemData, setItemData] = useState<any>([]);
   const location = useLocation<any>();
-  let itemId = "";
+  // this is broken here :(
+  let itemId = "5KXcbqjFOEzWSbKSuBpb";
 
   if (location.state) {
     itemId = location.state.itemUid;

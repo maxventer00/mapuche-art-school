@@ -14,10 +14,11 @@ import SignupCrafter from "../../containers/Onboarding/signupCrafter";
 import SignupCrafterProfile from "../../containers/Onboarding/signupCrafterProfile";
 import ItemPage from "../../containers/Marketplace/itemPage";
 import { AuthProvider } from "../../Auth";
-import CreateListingPage from "../../containers/Marketplace/createListingPage";
+//import CreateListingPage from "../../containers/Marketplace/createListingPage";
 import Crafters from "../../containers/Crafters/crafters";
 import app from "../../base";
 import CraftersPage from "../../containers/Crafters/crafterPage";
+import ListItem from "../../containers/Crafters/listItem";
 
 function Routes() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -65,11 +66,11 @@ function Routes() {
         <Route path="/marketplace" exact component={Marketplace} />
         <Route exact path="/marketplace/:id" component={ItemPage} />
         <Route
-          path="/marketplace/createListingPage"
+          path="/listitem"
           exact
-          component={CreateListingPage}
+          component={ListItem}
         >
-          {loggedInAsCrafter ? null : <Redirect push to="/home" />}
+          {/* {loggedInAsCrafter ? null : <Redirect push to="/home" />} */}
         </Route>
         <Route path="/home" exact component={Home} />
 
