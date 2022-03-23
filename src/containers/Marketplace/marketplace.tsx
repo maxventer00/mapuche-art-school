@@ -234,74 +234,99 @@ function Marketplace() {
           </div>
         ) : null}
         <Grid container justifyContent="center" alignItems="center">
-          <List
-            sx={{ columns: 4, gap: 3 }}>
+          <List sx={{ columns: 4, gap: 3 }}>
+            {/*}
+              {shopData.map(
+              (item: {
+                itemTitle: string | undefined;
+                itemDescription: string | undefined;
+                photoURL: string | undefined;
+                //itemStock: number | undefined;
+                price: number | undefined;
+              }) => (
+              */}
+
             {shopData.map(
-              (doc: any) => {
+              (doc: any, item: {
+                itemTitle: string | undefined;
+                itemDescription: string | undefined;
+                photoURL: string | undefined;
+                price: number | undefined;
+              }) => {
                 let id = doc.id;
-                let item = doc.data();
+                item = doc.data();
+
                 console.log("item : " + item.itemTitle);
                 console.log("id : " + id);
-
-                <ListItem key={id}
-                >
-                  <Card
-                    className={classes.listingCards}
-                    sx={{ borderRadius: 5 }}
-                    onClick={() =>
-                      history.push({
-                        pathname: `/marketplace/${id}`,
-                        state: { itemId: id },
-                      })
-                    }
-                  >
-                    <CardActionArea
-                      sx={{ display: "column", border: `5px solid white` }}
+                return (
+                  <>
+                    <ListItem key={id}
                     >
-                      <CardMedia
-                        component="img"
-                        height="200"
-                        width="90"
+                      <Card
+                        className={classes.listingCards}
                         sx={{ borderRadius: 5 }}
-                        image={item.photoURL}
-                        alt="No Image Available"
-                      />
-                      <CardContent sx={{ flexDirection: "row" }}>
-                        <Grid container justifyContent="space-between">
-                          <Typography
-                            gutterBottom
-                            variant="h5"
-                            component="div"
-                            color="#AC5435"
-                          >
-                            {item.itemTitle}
-                          </Typography>
-                        </Grid>
-                        <Typography variant="body2" color="#AC5435">
-                          {item.itemDescription}
-                        </Typography>
-                        <br />
-                        <Typography
-                          variant="body2"
-                          color="#AC5435"
-                          align="left"
+                        onClick={() =>
+                          history.push({
+                            pathname: `/marketplace/${id}`,
+                            state: { itemId: id },
+                          })
+                        }
+                      >
+                        <CardActionArea
+                          sx={{ display: "column", border: `5px solid white` }}
                         >
-                          Price: ${item.price}
-                        </Typography>
-                        <CardActions sx={{ justifyContent: "end" }}>
-                          <Button
-                            size="small"
-                            color="secondary"
-                            variant="contained"
-                            sx={{ borderRadius: 25, maxHeight: 25 }}
-                          >
-                            BUY
-                          </Button>
-                        </CardActions>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </ListItem>
+                          <CardMedia
+                            component="img"
+                            height="200"
+                            width="90"
+                            sx={{ borderRadius: 5 }}
+                            image={item.photoURL}
+                            alt="No Image Available"
+                          />
+                          <CardContent sx={{ flexDirection: "row" }}>
+                            <Grid container justifyContent="space-between">
+                              <Typography
+                                gutterBottom
+                                variant="h5"
+                                component="div"
+                                color="#AC5435"
+                              >
+                                {item.itemTitle}
+                              </Typography>
+                            </Grid>
+                            <Typography variant="body2" color="#AC5435">
+                              {item.itemDescription}
+                            </Typography>
+                            <br />
+                            <Typography
+                              variant="body2"
+                              color="#AC5435"
+                              align="left"
+                            >
+                              Price: ${item.price}
+                            </Typography>
+                            <CardActions sx={{ justifyContent: "end" }}>
+                              <Button
+                                size="small"
+                                color="secondary"
+                                variant="contained"
+                                onClick={() =>
+                                  history.push({
+                                    pathname: `/marketplace/${id}`,
+                                    state: { itemId: id },
+                                  })
+                                }
+                                sx={{ borderRadius: 25, maxHeight: 25 }}
+                              >
+                                BUY
+                              </Button>
+                            </CardActions>
+                          </CardContent>
+                        </CardActionArea>
+                      </Card>
+                    </ListItem>
+                  </>
+                );
               }
             )}
 
