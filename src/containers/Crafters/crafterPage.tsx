@@ -19,64 +19,95 @@ import { Typography } from "@mui/material";
 import profilePlaceholder from "../../images/profilePlaceholder.png";
 import app from "../../base";
 import { getDocs } from "firebase/firestore";
-//import crafterBanner from "../../images/crafterBanner.jpg";
 
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
   createStyles({
-    name: {
-      fontSize: 32,
-      color: "#AC5435",
+    header: {
+      fontSize: 48,
+      color: "#ffffff",
+      padding: 15,
+      paddingTop: 150,
       fontFamily: "Prata",
     },
-    infoContainer: {
-      fontFamily: "Prata",
-      marginTop: "285px",
-      width: "100%",
+    description: {
+      color: "#ffffff",
+      margin: "auto",
+      textAlign: "center",
+      marginTop: 20,
+      fontSize: 18,
+      display: "inline-block",
+      width: 600,
+      padding: 15,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      wordWrap: "break-word",
+      fontFamily: "ABeeZee, sans-serif",
     },
-    bio: {
-      fontFamily: "Prata",
-      color: "#AC5435",
-      fontSize: 25,
+    contactUs: {
+      width: 200,
+      height: 50,
+      fontFamily: "ABeeZee, sans-serif",
+      textTransform: "none",
+      marginTop: 30,
     },
-    location: {
-      fontFamily: "Prata",
-      color: "#8A7866",
-      fontSize: 22,
-    },
-    background: {
-      backgroundColor: "#F7ECE1",
-      minHeight: "90%",
-    },
-    imgContainer: {
+    imgcontainer: {
+      backgroundColor: "grey",
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
-      height: 400,
+      height: 900,
       padding: 0,
-      maxHeight: 500,
-      //backgroundImage: "url(" + crafterBanner + ")",
-      backgroundColor: "rgba(100, 100, 100, 0.5)",
-      backgroundBlendMode: "multiply",
+      maxHeight: 900,
     },
-    contentContainer: {
-      marginTop: 200,
-      position: "absolute",
-      width: "100%",
+    tint: {
+      maxHeight: 1180,
+      padding: 0,
+      height: 1180,
+      backgroundColor: "rgba(0,0,0,.6)",
+    },
+    maincontainer: {
+      backgroundColor: "#F7ECE1",
+      backgroundPosition: "center",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      height: 900,
+      padding: 0,
+      maxHeight: 900,
+    },
+    subtitle: {
+      fontSize: 35,
+      color: "#AC5435",
+      paddingTop: 80,
+      fontFamily: "Prata",
+      marginTop: 0,
+    },
+    description2: {
+      fontSize: 18,
+      color: "#AC5435",
+      fontFamily: "Lato",
+      fontWeight: 500,
+      marginBottom: 65,
     },
     photoContainer: {
-      width: "400px",
-      height: "450px",
+      width: "230px",
+      height: "230px",
       float: "left",
-      textAlign: "center",
-      marginRight: "25px",
+      borderWidth: "2px",
+      borderStyle: "solid",
+      borderColor: "#B8A088",
+      marginBottom: 35,
+      marginRight: 35,
     },
-    productsContainer: {
-      fontFamily: "Prata",
+    crafterDisplay: {
+      marginLeft: 55,
+      textAlign: "left",
+      marginBottom: 255,
+    },
+    crafterHeading: {
+      fontSize: 22,
       color: "#AC5435",
-      fontSize: 25,
-      alignContent: "center",
-      backgroundColor: "#F7ECE1",
+      fontFamily: "Lato",
     },
   })
 );
@@ -102,7 +133,6 @@ function CraftersPage() {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     getCrafterDetails();
   }, []);
 
@@ -112,62 +142,15 @@ function CraftersPage() {
 
   return (
     <>
-      <Navbar />
-      <div className={classes.background}>
-        <div className={classes.contentContainer}>
-          {crafter ? (
-            <>
-              <div className={classes.photoContainer}>
-                {crafter.photoURL ? (
-                  <img
-                    src={crafter.photoURL}
-                    style={{
-                      maxWidth: 300,
-                      maxHeight: 300,
-                      marginBottom: 20,
-                      height: "100%",
-                      width: "100%",
-                      objectFit: "cover",
-                      borderRadius: "50%",
-                    }}
-                  />
-                ) : (
-                  <img
-                    src={profilePlaceholder}
-                    style={{
-                      maxWidth: 300,
-                      maxHeight: 300,
-                      marginBottom: 20,
-                      borderRadius: "50%",
-                    }}
-                  />
-                )}
-                <h1 className={classes.name}>{crafter.name}</h1>
-                <h1 className={classes.location}>{crafter.userLocation}</h1>
-              </div>
+      <h1>Crafter page</h1>
 
-              <div className={classes.infoContainer}>
-                <h1 className={classes.bio}>"{crafter.userBio}"</h1>
-              </div>
-            </>
-          ) : null}
-        </div>
-        <div className={classes.imgContainer} />
-      </div>
-
-      <div className={classes.productsContainer}>
-        <h1
-          style={{ fontSize: "35px", marginTop: "0px", paddingBottom: "115px" }}
-        >
-          Blog Posts
-        </h1>
-
-        <h1
-          style={{ fontSize: "35px", marginTop: "0px", paddingBottom: "115px" }}
-        >
-          Products For Sale
-        </h1>
-      </div>
+      {crafter ? (
+        <>
+          <h1>{crafter.name}</h1>
+          <h1>{crafter.userBio}</h1>
+          <h1>{crafter.userLocation}</h1>{" "}
+        </>
+      ) : null}
     </>
   );
 }
