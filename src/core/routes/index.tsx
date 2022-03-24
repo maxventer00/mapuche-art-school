@@ -51,8 +51,10 @@ function Routes() {
     if (userInfo) {
       if (userInfo.userType === "Crafter") {
         setLoggedInAsCrafter(true);
+        console.log("logged in as crafter");
       } else {
         setLoggedInAsCrafter(false);
+        console.log("NOT logged in as crafter");
       }
     }
   }, [userInfo]);
@@ -70,7 +72,7 @@ function Routes() {
           exact
           component={ListItem}
         >
-          {/* {loggedInAsCrafter ? null : <Redirect push to="/home" />} */}
+          {loggedInAsCrafter ? null : <Redirect push to="/home" />}
         </Route>
         <Route path="/home" exact component={Home} />
 

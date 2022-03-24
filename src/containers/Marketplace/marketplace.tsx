@@ -5,28 +5,18 @@ import {
   Button,
   Container,
   createTheme,
-  TextField,
-  Paper,
   Card,
   CardContent,
   CardMedia,
   CardActionArea,
   CardActions,
-  autocompleteClasses,
   Grid,
   List,
   ListItem,
-  FormControl,
-  InputLabel,
-  MenuItem,
 } from "@mui/material";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useHistory } from "react-router";
 import homapageBackground from "../../images/homeBackground.png";
-import { Box } from "@mui/system";
-import itemTest from "../../images/itemTest.png";
 import Footer from "../Shared/footer";
-
 import Navbar from "../Shared/Navbar";
 import app from "../../base";
 import { doc, getDocs } from "firebase/firestore";
@@ -75,9 +65,7 @@ const useStyles = makeStyles((theme) =>
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
-      height: "100%",
-      padding: 0,
-      maxHeight: 1800,
+      height: "50%",
     },
     marketContainer: {
       position: "absolute",
@@ -129,7 +117,6 @@ const useStyles = makeStyles((theme) =>
 );
 
 
-
 const theme = createTheme();
 
 function Marketplace() {
@@ -154,8 +141,6 @@ function Marketplace() {
   useEffect(() => {
     getData();
   }, []);
-
-  // list an item button
 
   const [loggedIn, setLoggedIn] = useState(true);
   const [userInfo, setUserInfo] = useState<any>();
@@ -185,8 +170,6 @@ function Marketplace() {
     userCheck();
   }, []);
 
-  // Use effect since useState is asynchronous
-  // Here you can check userInfo.type and set isCrafter to true or whatever you wanted to do
   useEffect(() => {
     if (userInfo) {
       if (userInfo.userType === "Crafter") {
@@ -284,10 +267,7 @@ function Marketplace() {
                                 {item.itemTitle}
                               </Typography>
                             </Grid>
-                            <Typography variant="body2" color="#AC5435">
-                              {item.itemDescription}
-                            </Typography>
-                            <br />
+
                             <Typography
                               variant="body2"
                               color="#AC5435"
@@ -308,7 +288,7 @@ function Marketplace() {
                                 }
                                 sx={{ borderRadius: 25, maxHeight: 25 }}
                               >
-                                BUY
+                                VIEW
                               </Button>
                             </CardActions>
                           </CardContent>
@@ -319,19 +299,11 @@ function Marketplace() {
                 );
               }
             )}
-
-
-
-
           </List>
         </Grid>
 
-
-
-
-
-
         <Footer />
+
       </Container>
     </>
   );

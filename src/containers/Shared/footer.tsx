@@ -6,8 +6,6 @@ const useStyles = makeStyles((theme) =>
     createStyles({
         footerContainer: {
             backgroundColor: "#F7ECE1",
-            // height: "100%",
-            // minWidth: "80%",
             marginTop: "50px",
             position: "absolute",
             left: "0",
@@ -16,8 +14,6 @@ const useStyles = makeStyles((theme) =>
         },
     })
 );
-
-// Footer not centred
 
 export default function Footer() {
     const classes = useStyles();
@@ -39,7 +35,7 @@ export default function Footer() {
                         </Link>
                     </Box>
                     <Box>
-                        <Link href="/createlistingpage" color="inherit">
+                        <Link href="/listitem" color="inherit">
                             Create a Listing
                         </Link>
                     </Box>

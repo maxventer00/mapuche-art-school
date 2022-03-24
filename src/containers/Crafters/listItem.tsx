@@ -9,7 +9,6 @@ import {
 import { useHistory } from "react-router";
 import Footer from "../Shared/footer";
 import { createStyles, makeStyles } from "@mui/styles";
-import { fileURLToPath } from "url";
 import { getDownloadURL, ref, uploadBytesResumable, getStorage } from "firebase/storage";
 import app from "../../base";
 import Navbar from "../Shared/Navbar";

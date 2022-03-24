@@ -1,19 +1,13 @@
 import { createStyles, makeStyles } from "@mui/styles";
 import {
-  ReactChild,
-  ReactFragment,
-  ReactPortal,
+
   useEffect,
   useState,
 } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import homapageBackground from "../../images/homeBackground.png";
 import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
 import "../../containers/Home/fonts.css";
-import { height, textAlign } from "@mui/system";
-import IconButton from "@mui/material/IconButton";
 import Navbar from "../Shared/Navbar";
 import {
   CardActionArea,
@@ -27,7 +21,6 @@ import {
   CardActions,
   Button,
 } from "@mui/material";
-import profilePlaceholder from "../../images/profilePlaceholder.png";
 import app from "../../base";
 import { getDocs } from "firebase/firestore";
 import Footer from "../Shared/footer";
@@ -41,7 +34,7 @@ const useStyles = makeStyles((theme) =>
       backgroundRepeat: "no-repeat",
       height: "100%",
       padding: "20px",
-      maxHeight: "1200",
+      maxHeight: 1800,
       display: "flex",
       flexDirection: "row",
       flexGrowing: 1,
@@ -49,12 +42,10 @@ const useStyles = makeStyles((theme) =>
     content: {
       display: "flex",
       flexDirection: "column",
-      //alignItems: "center",
-      //justifyContent: "center",
       width: "100%",
       height: "100%",
-      //margin: "auto",
       marginTop: "60px",
+      flexGrowing: 1,
     },
 
     information: {
@@ -64,17 +55,18 @@ const useStyles = makeStyles((theme) =>
       float: "right",
     },
     photo: {
-      //float: "left",
       backgroundColor: "#F7ECE1",
-      height: "60%",
+      height: "50%",
       width: "50%",
       float: "left",
     },
     card: {
-      //minHeight: "500",
-      //minWidth: "500",
       width: "100%",
       height: "100%",
+    },
+    media: {
+      maxHeight: 550,
+      borderRadius: 15,
     },
   })
 );
@@ -87,8 +79,7 @@ function ItemPage() {
 
   const [itemData, setItemData] = useState<any>([]);
   const location = useLocation<any>();
-  // this is broken here :(
-  let itemId = "5KXcbqjFOEzWSbKSuBpb";
+  let itemId = "";
 
   if (location.state) {
     itemId = location.state.itemUid;
@@ -119,7 +110,6 @@ function ItemPage() {
 
   return (
     <>
-      {/* Header Container */}
       <Container
         disableGutters
         maxWidth={false}
@@ -179,9 +169,8 @@ function ItemPage() {
                   >
                     <CardMedia
                       component="img"
-                      height="100%"
                       width="100%"
-                      sx={{ borderRadius: 5, maxHeight: "100%" }}
+                      className={classes.media}
                       image={itemData.photoURL}
                       alt="No Image Available"
                     />
@@ -190,9 +179,10 @@ function ItemPage() {
               </ListItem>
             </List>
           </div>
+          <Footer />
         </Container>
 
-        <Footer />
+        
       </Container>
     </>
   );
