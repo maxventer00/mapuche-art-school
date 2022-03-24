@@ -86,14 +86,15 @@ const useStyles = makeStyles((theme) =>
     },
     listButton: {
       float: "right",
-      marginRight: "2%",
-      marginTop: "0px",
-      marginBottom: "50px",
+      marginRight: "8%",
+      marginTop: "25px",
+      marginBottom: "0px",
     },
     listingCards:
     {
       minHeight: 380,
       minWidth: 250,
+      maxWidth: 250,
       margin: "auto",
     },
     outlined: {
@@ -201,9 +202,6 @@ function Marketplace() {
         maxWidth={false}
         className={`${classes.marketContainer}`}
       >
-        <h1 className={`${classes.h1_header}`}>Marketplace</h1>
-
-        {/* Marketplace grid container */}
 
         {isCrafter ? (
           <div className={classes.listButton}>
@@ -286,7 +284,7 @@ function Marketplace() {
                                     state: { itemId: id },
                                   })
                                 }
-                                sx={{ borderRadius: 25, maxHeight: 25 }}
+                                sx={{ borderRadius: 5, maxHeight: 25 }}
                               >
                                 VIEW
                               </Button>
