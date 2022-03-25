@@ -25,10 +25,6 @@ import { doc, getDocs } from "firebase/firestore";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    tempNav: {
-      backgroundColor: "#ffffff",
-      height: 50,
-    },
     h1_header: {
       fontSize: 64,
       color: "#ffffff",
@@ -50,16 +46,6 @@ const useStyles = makeStyles((theme) =>
       wordWrap: "break-word",
       fontFamily: "ABeeZee, sans-serif",
     },
-
-    contactUs: {
-      width: 200,
-      height: 50,
-      fontFamily: "ABeeZee, sans-serif",
-      textTransform: "none",
-      marginTop: 30,
-      justifyItems: "center",
-    },
-
     container: {
       backgroundImage: "url(" + homapageBackground + ")",
       backgroundPosition: "center",
