@@ -1,7 +1,8 @@
 //imports
 import { AppBar, Avatar, Link, Toolbar, Typography } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
+import ProzaLibreMedium from 'fonts/ProzaLibreMedium.tff';
 
 //creating an instance of makestyles function
 const useStyles = makeStyles(
