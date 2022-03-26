@@ -143,6 +143,10 @@ function ItemPage() {
                       <Typography variant="body2" color="#AC5435" align="left">
                         Price: ${itemData.price}
                       </Typography>
+                      <br />
+                      <Typography variant="body2" color="#AC5435" align="left">
+                        listed by: {itemData.listingUser}
+                      </Typography>
                       <CardActions sx={{ justifyContent: "end" }}>
                         <Button
                           size="small"
@@ -182,7 +186,7 @@ function ItemPage() {
           <Footer />
         </Container>
 
-        
+
       </Container>
     </>
   );

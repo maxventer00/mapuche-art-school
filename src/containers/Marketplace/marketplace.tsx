@@ -138,15 +138,9 @@ function Marketplace() {
       if (user) {
         // User is signed in.
         setLoggedIn(true);
-
         // Get user type
         const firestore = app.firestore();
-
-        // getUserType(firestore,setUserInfo);
-
         await firestore.collection("userData").doc(user.uid).get().then((snapshot) => setUserInfo(snapshot.data()));
-
-
       } else {
         setLoggedIn(false);
       }

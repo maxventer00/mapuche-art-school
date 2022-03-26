@@ -13,6 +13,9 @@ import { getDownloadURL, ref, uploadBytesResumable, getStorage } from "firebase/
 import app from "../../base";
 import Navbar from "../Shared/Navbar";
 import profilePlaceholder from "../../images/profilePlaceholder.png";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+
 
 
 
@@ -161,6 +164,27 @@ function ListItem() {
     const [price, setPrice] = useState("");
     const [itemDescription, setItemDescription] = useState("");
     const [itemStock, setItemStock] = useState("");
+    const [listingUser, setListingUser] = useState<any>();
+
+
+
+
+
+    const userCheck = async () => {
+        app.auth().onAuthStateChanged(async function (user) {
+            if (user) {
+                // Get user type
+                const firestore = app.firestore();
+                await firestore.collection("userData").doc(user.uid).get().then((snapshot) => setListingUser(snapshot.data()));
+            } else {
+
+            }
+        });
+    };
+
+    useEffect(() => {
+        userCheck();
+    }, []);
 
 
     {/* Make sure they are a crafter */ }
@@ -168,15 +192,28 @@ function ListItem() {
         try {
 
             const firestore = app.firestore();
+            const auth = getAuth();
+            const user = auth.currentUser;
 
-            firestore.collection("productData").doc().set({
-                itemTitle: itemTitle,
-                price: price,
-                itemDescription: itemDescription,
-                itemStock: itemStock,
-                photoURL: photoURL,
+            if (user) {
 
-            });
+                const res = await firestore.collection("productData").add({
+                    itemTitle: itemTitle,
+                    price: price,
+                    itemDescription: itemDescription,
+                    itemStock: itemStock,
+                    photoURL: photoURL,
+                    listingUser: user.uid,
+                });
+                console.log(res.id);
+                firestore.collection("userData").doc(user.uid).update({
+                    itemsListed: listingUser.itemsListed + 1,
+                    itemsListedId: listingUser.itemsListedId + "," + res.id,
+                });
+            } else {
+                // No user is signed in.
+            }
+
 
         }
         catch (error) {
