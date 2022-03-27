@@ -11,7 +11,7 @@ import IconButton from "@mui/material/IconButton";
 import Navbar from "../Shared/Navbar";
 import { Typography, Button, TextField } from "@mui/material";
 import app from "../../base";
-
+import Footer from "../Shared/footer";
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -176,6 +176,7 @@ function Home() {
             </Button>
           </div>
         )}
+        <Footer />
       </Container>
     </>
   );
