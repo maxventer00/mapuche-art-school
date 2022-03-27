@@ -162,7 +162,7 @@ function Home() {
           remaining essentially unchanged. It was popularised in the 1960s with
           the release of Letraset sheets containing Lorem Ipsum passages, and
           more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum. THE END
+          including versions of Lorem Ipsum.
         </span>
 
         {loggedIn ? null : (
@@ -170,13 +170,13 @@ function Home() {
             <Button
               className={classes.contained}
               variant="contained"
-              onClick={() => history.push("/login")}
+              onClick={() => history.push("/marketplace")}
             >
               Login/Sign up
             </Button>
           </div>
         )}
-        <Footer />
+
       </Container>
     </>
   );
