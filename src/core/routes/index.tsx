@@ -18,6 +18,7 @@ import Crafters from "../../containers/Crafters/crafters";
 import app from "../../base";
 import CraftersPage from "../../containers/Crafters/crafterPage";
 import ListItem from "../../containers/Crafters/listItem";
+import NagcheHistory from "../../containers/NagcheHistory/nagcheHistory";
 
 function Routes() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -74,7 +75,7 @@ function Routes() {
           {loggedInAsCrafter ? null : <Redirect push to="/home" />}
         </Route>
         <Route path="/home" exact component={Home} />
-
+        <Route path="/nagcheHistory" exact component={NagcheHistory} />
         {/* Don't allow user to view these pages if they are logged in */}
         <Route path="/login" exact component={Login}>
           {loggedIn ? <Redirect push to="/home" /> : null}
