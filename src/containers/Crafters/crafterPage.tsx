@@ -93,7 +93,8 @@ const useStyles = makeStyles((theme) =>
       "&:hover": {
         backgroundColor: "#8A7866",
       },
-    }, listButton: {
+    },
+    listButton: {
       float: "right",
       marginRight: "2%",
       marginTop: "0px",
@@ -175,16 +176,6 @@ function CraftersPage() {
           ) : null}
         </div>
         <div className={classes.imgContainer} />
-      </div>
-      <div className={classes.listButton}>
-        <Button
-          style={{ maxWidth: "155px" }}
-          className={classes.outlined}
-          variant="outlined"
-          onClick={() => history.push("/listitem")}
-        >
-          List an Item
-        </Button>
       </div>
 
       <div className={classes.productsContainer}>

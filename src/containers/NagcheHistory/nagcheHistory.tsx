@@ -151,9 +151,13 @@ function NagcheHistory() {
           </div>
         ) : null}
 
-        <h1 className={`${classes.h1_header}`}>Mapuche Art School</h1>
+        <h1 className={`${classes.h1_header}`}>Nagche History</h1>
 
-     <iframe src="https://www.google.com/maps/d/embed?mid=18sEmxSI0fk5Mk6k3iPVTeL6uPk2N1Q22&ehbc=2E312F" width="640" height="480"></iframe>
+        <iframe
+          src="https://www.google.com/maps/d/embed?mid=18sEmxSI0fk5Mk6k3iPVTeL6uPk2N1Q22&ehbc=2E312F"
+          width="640"
+          height="480"
+        ></iframe>
 
         {loggedIn ? null : (
           <div>
@@ -166,7 +170,6 @@ function NagcheHistory() {
             </Button>
           </div>
         )}
-
       </Container>
       <Footer />
     </>

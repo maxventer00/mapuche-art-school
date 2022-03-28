@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) =>
       padding: 15,
       paddingTop: 150,
       fontFamily: "Prata",
+      marginTop: 0,
     },
     description: {
       color: "#ffffff",
@@ -240,7 +241,6 @@ function Crafters() {
           );
         })}
       </Container>
-      
     </>
   );
 }

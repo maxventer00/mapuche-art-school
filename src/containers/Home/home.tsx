@@ -61,6 +61,7 @@ const useStyles = makeStyles((theme) =>
       padding: 15,
       paddingTop: 120,
       fontFamily: "Prata",
+      marginTop: 0,
     },
     description: {
       color: "#ffffff",
@@ -176,9 +177,7 @@ function Home() {
             </Button>
           </div>
         )}
-
       </Container>
-      <Footer />
     </>
   );
 }

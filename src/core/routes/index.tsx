@@ -19,6 +19,8 @@ import app from "../../base";
 import CraftersPage from "../../containers/Crafters/crafterPage";
 import ListItem from "../../containers/Crafters/listItem";
 import NagcheHistory from "../../containers/NagcheHistory/nagcheHistory";
+import NagcheRoute from "../../containers/NagcheRoute/nagcheRoute";
+import MapucheHistory from "../../containers/MapucheHistory/mapucheHistory";
 
 function Routes() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -67,11 +69,7 @@ function Routes() {
         </Route>
         <Route path="/marketplace" exact component={Marketplace} />
         <Route exact path="/marketplace/:id" component={ItemPage} />
-        <Route
-          path="/listitem"
-          exact
-          component={ListItem}
-        >
+        <Route path="/listitem" exact component={ListItem}>
           {loggedInAsCrafter ? null : <Redirect push to="/home" />}
         </Route>
         <Route path="/home" exact component={Home} />
@@ -98,6 +96,8 @@ function Routes() {
         />
         <Route path="/crafters" exact component={Crafters} />
         <Route exact path="/crafters/:id" component={CraftersPage} />
+        <Route path="/nagcheRoute" exact component={NagcheRoute} />
+        <Route path="/mapucheHistory" exact component={MapucheHistory} />
       </Switch>
     </Router>
   );

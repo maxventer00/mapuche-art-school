@@ -27,11 +27,12 @@ import { doc, getDocs } from "firebase/firestore";
 const useStyles = makeStyles((theme) =>
   createStyles({
     h1_header: {
-      fontSize: 64,
+      fontSize: 50,
       color: "#ffffff",
       padding: 15,
-      paddingTop: 30,
-      fontFamily: "Beth Ellen, cursive",
+      paddingTop: 150,
+      fontFamily: "Prata",
+      marginTop: 0,
     },
     description: {
       color: "#ffffff",
@@ -61,7 +62,6 @@ const useStyles = makeStyles((theme) =>
       display: "flex",
       flexGrowing: 1,
       paddingBottom: "100px",
-
     },
     searchOptions: {
       width: "100%",
@@ -77,8 +77,7 @@ const useStyles = makeStyles((theme) =>
       marginTop: "25px",
       marginBottom: "0px",
     },
-    listingCards:
-    {
+    listingCards: {
       minHeight: 380,
       minWidth: 250,
       maxWidth: 250,
@@ -104,7 +103,6 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-
 const theme = createTheme();
 
 function Marketplace() {
@@ -122,7 +120,6 @@ function Marketplace() {
 
     querySnapshot.forEach((doc) => {
       setShopData((arr: any) => [...arr, doc]);
-
     });
   };
 
@@ -141,7 +138,11 @@ function Marketplace() {
         setLoggedIn(true);
         // Get user type
         const firestore = app.firestore();
-        await firestore.collection("userData").doc(user.uid).get().then((snapshot) => setUserInfo(snapshot.data()));
+        await firestore
+          .collection("userData")
+          .doc(user.uid)
+          .get()
+          .then((snapshot) => setUserInfo(snapshot.data()));
       } else {
         setLoggedIn(false);
       }
@@ -183,14 +184,15 @@ function Marketplace() {
         maxWidth={false}
         className={`${classes.marketContainer}`}
       >
-
         {isCrafter ? (
           <div className={classes.listButton}>
             <Button
               style={{ maxWidth: "155px" }}
               className={classes.outlined}
               variant="outlined"
-              onClick={() => { history.push("/listitem") }}
+              onClick={() => {
+                history.push("/listitem");
+              }}
             >
               List an Item
             </Button>
@@ -199,12 +201,15 @@ function Marketplace() {
         <Grid container justifyContent="center" alignItems="center">
           <List sx={{ columns: 3, width: 1200, margin: "auto" }}>
             {shopData.map(
-              (doc: any, item: {
-                itemTitle: string | undefined;
-                itemDescription: string | undefined;
-                photoURL: string | undefined;
-                price: number | undefined;
-              }) => {
+              (
+                doc: any,
+                item: {
+                  itemTitle: string | undefined;
+                  itemDescription: string | undefined;
+                  photoURL: string | undefined;
+                  price: number | undefined;
+                }
+              ) => {
                 let id = doc.id;
                 item = doc.data();
 
@@ -212,8 +217,7 @@ function Marketplace() {
                 console.log("id : " + id);
                 return (
                   <>
-                    <ListItem key={id}
-                    >
+                    <ListItem key={id}>
                       <Card
                         className={classes.listingCards}
                         sx={{ borderRadius: 5 }}
@@ -282,7 +286,6 @@ function Marketplace() {
         </Grid>
 
         <Footer />
-
       </Container>
     </>
   );

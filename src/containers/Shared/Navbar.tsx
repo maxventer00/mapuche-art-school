@@ -22,6 +22,7 @@ const useStyles = makeStyles(
         justifyContent: "space-between",
         backgroundColor: "transparent",
         marginRight: "6%",
+        color: "transparent",
       },
       flag: {
         height: "4rem",
@@ -36,8 +37,8 @@ const useStyles = makeStyles(
         color: "Black",
         fontWeight: 900,
         "font-size": "1.05rem",
-        "text-shadow": "0px 2px 9px rgba(0,0,0,0.72)",
-        "textShadowColor": '0 0 15px rgba(255,255,255,.5)',
+        "text-shadow": "0px 1px 5px rgba(0,0,0,0.72)",
+        textShadowColor: "0 0 5px rgba(255,255,255,.5)",
         [theme.breakpoints.down("md")]: {
           "font-size": "1rem",
         },
@@ -50,10 +51,9 @@ const useStyles = makeStyles(
         "margin-top": ".1rem!important",
         fontFamily: "Prata!important",
         "margin-left": "-5rem!important",
-        "text-shadow": "0px 2px 9px rgba(0,0,0,0.92)",
-        "textShadowColor": '0 0 15px rgba(255,255,255,.5)',
+        "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+        textShadowColor: "0 0 5px rgba(255,255,255,.5)",
         "font-size": "1.75rem!important",
-        
 
         [theme.breakpoints.down("lg")]: {
           "font-size": "1.75rem",
@@ -63,9 +63,6 @@ const useStyles = makeStyles(
           display: "none",
         },
       },
-      appbar: {
-        backgroundColor: "transparent",
-      },
     })
 );
 
@@ -74,7 +71,7 @@ export default function Navbar() {
   const classes = useStyles();
 
   return (
-    <AppBar className={classes.appbar} position="fixed">
+    <AppBar style={{ background: "rgba(30, 30, 30, 0.8)" }} position="fixed">
       <Toolbar className={classes.toolbar}>
         <Link href={"/home"}>
           <Avatar
@@ -85,44 +82,68 @@ export default function Navbar() {
           />
         </Link>
         <Typography className={classes.linkMain}>
-        <Link href={"/home"} underline="none" color="black">
-          Mapuche Arts & Crafts School
-        </Link>
+          <Link href={"/home"} underline="none" color="white">
+            Mapuche Arts & Crafts School
+          </Link>
         </Typography>
-        <NavLink className={classes.link} to="/home" style={isActive => ({
-            color: isActive ? "#0039A6" : "black",
-            textDecoration: "none"
-          })}>
+        <NavLink
+          className={classes.link}
+          to="/home"
+          style={(isActive) => ({
+            color: isActive ? "#0039A6" : "white",
+            textDecoration: "none",
+          })}
+        >
           Home
         </NavLink>
-        <NavLink className={classes.link}  to="/test" style={isActive => ({
-            color: isActive ? "#0039A6" : "black",
-            textDecoration: "none"
-          })}>
+        <NavLink
+          className={classes.link}
+          to="/mapucheHistory"
+          style={(isActive) => ({
+            color: isActive ? "#0039A6" : "white",
+            textDecoration: "none",
+          })}
+        >
           Mapuche History
         </NavLink>
-        <NavLink className={classes.link} to="/nagcheHistory" style={isActive => ({
-            color: isActive ? "#0039A6" : "black",
-            textDecoration: "none"
-          })}>
+        <NavLink
+          className={classes.link}
+          to="/nagcheHistory"
+          style={(isActive) => ({
+            color: isActive ? "#0039A6" : "white",
+            textDecoration: "none",
+          })}
+        >
           Nagche History
         </NavLink>
-        <NavLink className={classes.link} to="/test2" style={isActive => ({
-            color: isActive ? "#0039A6" : "black",
-            textDecoration: "none"
-          })}>
+        <NavLink
+          className={classes.link}
+          to="/nagcheRoute"
+          style={(isActive) => ({
+            color: isActive ? "#0039A6" : "white",
+            textDecoration: "none",
+          })}
+        >
           Nagche Route
         </NavLink>
-        <NavLink className={classes.link} to="/crafters" style={isActive => ({
-            color: isActive ? "#0039A6" : "black",
-            textDecoration: "none"
-          })}>
+        <NavLink
+          className={classes.link}
+          to="/crafters"
+          style={(isActive) => ({
+            color: isActive ? "#0039A6" : "white",
+            textDecoration: "none",
+          })}
+        >
           Crafters
         </NavLink>
-        <NavLink className={classes.link} to="/marketplace" style={isActive => ({
-            color: isActive ? "#0039A6" : "black",
-            textDecoration: "none"
-          })}>
+        <NavLink
+          className={classes.link}
+          to="/marketplace"
+          style={(isActive) => ({
+            color: isActive ? "#0039A6" : "white",
+            textDecoration: "none",
+          })}
+        >
           Marketplace
         </NavLink>
       </Toolbar>
