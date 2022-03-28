@@ -176,7 +176,7 @@ function Home() {
             </Button>
           </div>
         )}
-
+        <Footer />
       </Container>
     </>
   );
