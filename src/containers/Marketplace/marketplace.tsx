@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import { useHistory } from "react-router";
 import homapageBackground from "../../images/homeBackground.png";
+import losSauces from "../../images/losSauces.jpg";
 import Footer from "../Shared/footer";
 import Navbar from "../Shared/Navbar";
 import app from "../../base";
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) =>
       fontSize: 64,
       color: "#ffffff",
       padding: 15,
-      paddingTop: 20,
+      paddingTop: 30,
       fontFamily: "Beth Ellen, cursive",
     },
     description: {
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) =>
       fontFamily: "ABeeZee, sans-serif",
     },
     container: {
-      backgroundImage: "url(" + homapageBackground + ")",
+      backgroundImage: "url(" + losSauces + ")",
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
@@ -84,10 +85,10 @@ const useStyles = makeStyles((theme) =>
       margin: "auto",
     },
     outlined: {
-      backgroundColor: "transparent",
-      color: "white",
+      backgroundColor: "#f2dfcd",
+      //color: "white",
       boxShadow: "none",
-      borderWidth: "2px",
+      borderWidth: "4px",
       borderColor: "white",
       fontFamily: "Lato",
       fontStyle: "normal",
@@ -196,7 +197,7 @@ function Marketplace() {
           </div>
         ) : null}
         <Grid container justifyContent="center" alignItems="center">
-          <List sx={{ columns: 4, gap: 3 }}>
+          <List sx={{ columns: 3, width: 1200, margin: "auto" }}>
             {shopData.map(
               (doc: any, item: {
                 itemTitle: string | undefined;
