@@ -1,8 +1,7 @@
 //imports
 import { AppBar, Avatar, Link, Toolbar, Typography } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
-import { createTheme } from "@mui/material/styles";
-import ProzaLibreMedium from 'fonts/ProzaLibreMedium.tff';
+import { NavLink } from "react-router-dom";
 
 //creating an instance of makestyles function
 const useStyles = makeStyles(
@@ -25,7 +24,6 @@ const useStyles = makeStyles(
         marginRight: "6%",
       },
       flag: {
-        "margin-top": "1.25rem",
         height: "4rem",
         width: "4rem",
         [theme.breakpoints.down("sm")]: {
@@ -34,11 +32,12 @@ const useStyles = makeStyles(
         },
       },
       link: {
-        "margin-top": "2rem",
         fontFamily: "Proza Libre",
-        color: "white",
+        color: "Black",
         fontWeight: 900,
-        "margin-right": "-1rem",
+        "font-size": "1.05rem",
+        "text-shadow": "0px 2px 9px rgba(0,0,0,0.72)",
+        "textShadowColor": '0 0 15px rgba(255,255,255,.5)',
         [theme.breakpoints.down("md")]: {
           "font-size": "1rem",
         },
@@ -48,10 +47,13 @@ const useStyles = makeStyles(
         },
       },
       linkMain: {
-        "margin-top": "1.25rem",
-        fontFamily: "Prata",
-        "margin-left": "-5.5rem",
-        "font-size": "2.25rem",
+        "margin-top": ".1rem!important",
+        fontFamily: "Prata!important",
+        "margin-left": "-5rem!important",
+        "text-shadow": "0px 2px 9px rgba(0,0,0,0.92)",
+        "textShadowColor": '0 0 15px rgba(255,255,255,.5)',
+        "font-size": "1.75rem!important",
+        
 
         [theme.breakpoints.down("lg")]: {
           "font-size": "1.75rem",
@@ -67,8 +69,6 @@ const useStyles = makeStyles(
     })
 );
 
-const theme = createTheme();
-
 //components and functions here
 export default function Navbar() {
   const classes = useStyles();
@@ -76,34 +76,55 @@ export default function Navbar() {
   return (
     <AppBar className={classes.appbar} position="fixed">
       <Toolbar className={classes.toolbar}>
-        <Avatar
-          className={classes.flag}
-          alt="Flag"
-          src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Ancient_mapuche_flag.svg"
-          variant="square"
-        />
+        <Link href={"/home"}>
+          <Avatar
+            className={classes.flag}
+            alt="Flag"
+            src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Ancient_mapuche_flag.svg"
+            variant="square"
+          />
+        </Link>
         <Typography className={classes.linkMain}>
+        <Link href={"/home"} underline="none" color="black">
           Mapuche Arts & Crafts School
+        </Link>
         </Typography>
-
-        <Link className={classes.link} href="#">
+        <NavLink className={classes.link} to="/home" style={isActive => ({
+            color: isActive ? "#0039A6" : "black",
+            textDecoration: "none"
+          })}>
           Home
-        </Link>
-        <Link className={classes.link} href="#">
+        </NavLink>
+        <NavLink className={classes.link}  to="/test" style={isActive => ({
+            color: isActive ? "#0039A6" : "black",
+            textDecoration: "none"
+          })}>
           Mapuche History
-        </Link>
-        <Link className={classes.link} href="#">
+        </NavLink>
+        <NavLink className={classes.link} to="/nagcheHistory" style={isActive => ({
+            color: isActive ? "#0039A6" : "black",
+            textDecoration: "none"
+          })}>
           Nagche History
-        </Link>
-        <Link className={classes.link} href="#">
+        </NavLink>
+        <NavLink className={classes.link} to="/test2" style={isActive => ({
+            color: isActive ? "#0039A6" : "black",
+            textDecoration: "none"
+          })}>
           Nagche Route
-        </Link>
-        <Link className={classes.link} href="#">
+        </NavLink>
+        <NavLink className={classes.link} to="/crafters" style={isActive => ({
+            color: isActive ? "#0039A6" : "black",
+            textDecoration: "none"
+          })}>
           Crafters
-        </Link>
-        <Link className={classes.link} href="#">
+        </NavLink>
+        <NavLink className={classes.link} to="/marketplace" style={isActive => ({
+            color: isActive ? "#0039A6" : "black",
+            textDecoration: "none"
+          })}>
           Marketplace
-        </Link>
+        </NavLink>
       </Toolbar>
     </AppBar>
   );
