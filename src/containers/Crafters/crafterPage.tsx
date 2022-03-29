@@ -15,7 +15,7 @@ import "../../containers/Home/fonts.css";
 import { height, textAlign } from "@mui/system";
 import IconButton from "@mui/material/IconButton";
 import Navbar from "../Shared/Navbar";
-import { Button, Typography } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import profilePlaceholder from "../../images/profilePlaceholder.png";
 import app from "../../base";
 import { getDocs } from "firebase/firestore";
@@ -79,6 +79,24 @@ const useStyles = makeStyles((theme) =>
       alignContent: "center",
       backgroundColor: "#F7ECE1",
     },
+    contained: {
+      backgroundColor: "#B8A088",
+      color: "white",
+      boxShadow: "none",
+      borderWidth: "5px",
+      borderColor: "white",
+      fontFamily: "Lato",
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: "25px",
+      lineHeight: "30px",
+      width: "500px",
+      marginTop: "50px",
+      "&:hover": {
+        backgroundColor: "#8A7866",
+        boxShadow: "none",
+      },
+    },
     outlined: {
       backgroundColor: "transparent",
       color: "white",
@@ -104,19 +122,36 @@ const useStyles = makeStyles((theme) =>
     },
     blogPostContainer: {
       fontSize: "25px",
-      paddingBottom: "150px",
       textAlign: "left",
       marginLeft: "3%",
       marginRight: "3%",
       backgroundColor: "white",
-      marginBottom: "15px",
-      marginTop: "15px",
+      marginTop: "75px",
+      paddingTop: "15px",
+      paddingBottom: "15px",
+      paddingLeft: "35px",
+      paddingRight: "15px",
+      borderRadius: "5px",
     },
     blogPostTitle: {
+      fontSize: "28px",
       fontFamily: "Lato",
+      paddingBottom: 0,
+      marginBottom: 0,
     },
     blogPostDescription: {
+      marginTop: "15px",
+      fontSize: "22px",
       fontFamily: "Lato",
+      dispay: "block",
+    },
+    blogPostDate: {
+      fontSize: "15px",
+      fontFamily: "Lato",
+    },
+    signoutButtonContainer: {
+      float: "right",
+      marginRight: "3%",
     },
   })
 );
@@ -135,6 +170,11 @@ function CraftersPage() {
   const [userID, setUserID] = useState<any>();
 
   const [allowBlogPost, setAllowBlogPost] = useState(false);
+  const [openBlogPost, setOpenBlogPost] = useState(false);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+
+  const [blogPosts, setBlogPosts] = useState<any>([]);
 
   const userCheck = () => {
     app.auth().onAuthStateChanged(function (user) {
@@ -148,7 +188,7 @@ function CraftersPage() {
     });
   };
 
-  const getCrafterDetails = () => {
+  const getCrafterDetails = async () => {
     const firestore = app.firestore();
 
     const crafterData = firestore
@@ -156,6 +196,35 @@ function CraftersPage() {
       .doc(crafterID)
       .get()
       .then((snapshot) => setCrafter(snapshot.data()));
+
+    const collectionRef = firestore
+      .collection("userData")
+      .doc(crafterID)
+      .collection("blogPosts");
+
+    const querySnapshot = await getDocs(collectionRef);
+    querySnapshot.forEach((doc) => {
+      if (blogPosts.includes(doc.data()) === false) {
+        setBlogPosts((blogPosts: any) => [...blogPosts, doc.data()]);
+      }
+    });
+  };
+
+  const submitPost = () => {
+    const current = new Date();
+    const date = `${current.getDate()}/${
+      current.getMonth() + 1
+    }/${current.getFullYear()}`;
+
+    const firestore = app.firestore();
+
+    firestore.collection("userData").doc(userID).collection("blogPosts").add({
+      title: title,
+      description: description,
+      date: date,
+    });
+    setOpenBlogPost(false);
+    blogPosts.push({ title: title, description: description, date: date });
   };
 
   useEffect(() => {
@@ -218,23 +287,95 @@ function CraftersPage() {
 
       <div className={classes.productsContainer}>
         <h1
-          style={{ fontSize: "35px", marginTop: "0px", paddingBottom: "10px" }}
+          style={{
+            fontSize: "35px",
+            marginTop: "0px",
+            paddingBottom: "10px",
+          }}
         >
           Blog Posts
         </h1>
 
-        <div className={classes.blogPostContainer}>
-          <text>My new favourite type of art!</text>
-          <text>Description</text>
-        </div>
+        {allowBlogPost ? (
+          <div className={classes.signoutButtonContainer}>
+            <Button
+              style={{ maxWidth: "255px" }}
+              className={classes.outlined}
+              variant="outlined"
+              onClick={() => setOpenBlogPost(!openBlogPost)}
+            >
+              Create New Post
+            </Button>
+          </div>
+        ) : null}
 
-        <div className={classes.blogPostContainer}>
-          <text>Title</text>
-          <text>Description</text>
-        </div>
+        {openBlogPost ? (
+          <div className={classes.blogPostContainer}>
+            <p className={classes.blogPostDescription}>New Post</p>
+
+            <TextField
+              className={classes.blogPostTitle}
+              variant="outlined"
+              placeholder="Title"
+              required
+              size="medium"
+              margin="dense"
+              onChange={(e) => setTitle(e.target.value)}
+            />
+
+            <TextField
+              className={classes.blogPostDescription}
+              variant="outlined"
+              placeholder="Description"
+              required
+              multiline
+              minRows={5}
+              size="medium"
+              fullWidth
+              margin="normal"
+              onChange={(e) => setDescription(e.target.value)}
+            />
+
+            <Button
+              style={{
+                maxWidth: "255px",
+                marginTop: "25px",
+                marginBottom: "25px",
+              }}
+              className={classes.contained}
+              variant="contained"
+              onClick={() => submitPost()}
+            >
+              Create New Post
+            </Button>
+          </div>
+        ) : null}
+
+        {blogPosts
+          .slice(0)
+          .reverse()
+          .map((blogPost: any) => {
+            console.log(blogPost);
+            return (
+              <>
+                <div className={classes.blogPostContainer}>
+                  <h1 className={classes.blogPostTitle}>{blogPost.title}</h1>
+                  <text className={classes.blogPostDate}>{blogPost.date}</text>
+                  <p className={classes.blogPostDescription}>
+                    {blogPost.description}
+                  </p>
+                </div>
+              </>
+            );
+          })}
 
         <h1
-          style={{ fontSize: "35px", marginTop: "0px", paddingBottom: "115px" }}
+          style={{
+            fontSize: "35px",
+            marginTop: "0px",
+            paddingBottom: "115px",
+            paddingTop: "85px",
+          }}
         >
           Products For Sale
         </h1>
