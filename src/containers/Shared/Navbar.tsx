@@ -35,10 +35,10 @@ const useStyles = makeStyles(
       link: {
         fontFamily: "Proza Libre",
         color: "Black",
-        fontWeight: 900,
+        fontWeight: 800,
         "font-size": "1.05rem",
-        "text-shadow": "0 0 10px #FFFFFF",
-        textShadowColor: "2px 2px 18px rgba(255,255,255,0.86)",
+        "text-shadow": "0 0 15px #FFFFFF",
+        textShadowColor: "0 50px 18px rgba(255,255,255,0.5)",
         [theme.breakpoints.down("md")]: {
           "font-size": "1rem",
         },
