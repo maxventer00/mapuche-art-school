@@ -15,12 +15,13 @@ import {
   ListItem,
 } from "@mui/material";
 import { useHistory } from "react-router";
-import homapageBackground from "../../images/homeBackground.png";
-import losSauces from "../../images/losSauces.jpg";
+import marketplaceBackground from "../../images/marketplaceBackground.png";
 import Footer from "../Shared/footer";
 import Navbar from "../Shared/Navbar";
 import app from "../../base";
 import { doc, getDocs } from "firebase/firestore";
+import { Parallax } from "react-parallax";
+import { width } from "@mui/system";
 
 //import { getUserType } from "./FirebaseQuearys/MarketpalceQuearys";
 
@@ -28,9 +29,10 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     h1_header: {
       fontSize: 50,
-      color: "#ffffff",
+      fontBold: true,
+      color: "#e7c6a5",
       padding: 15,
-      paddingTop: 150,
+      paddingTop: 30,
       fontFamily: "Prata",
       marginTop: 0,
     },
@@ -49,11 +51,11 @@ const useStyles = makeStyles((theme) =>
       fontFamily: "ABeeZee, sans-serif",
     },
     container: {
-      backgroundImage: "url(" + losSauces + ")",
+
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
-      height: "50%",
+      height: "100%",
     },
     marketContainer: {
       position: "absolute",
@@ -166,24 +168,27 @@ function Marketplace() {
   return (
     <>
       {/* Header Container */}
-      <Container
-        disableGutters
-        maxWidth={false}
-        className={`${classes.container}`}
-      >
-        <Navbar />
-        <h1 className={`${classes.h1_header}`}>Marketplace</h1>
-      </Container>
+
+
+      <Navbar />
+
+      <Parallax bgImage={marketplaceBackground} strength={600}  >
+        <div style={{ height: 1000 }}>
+        </div>
+      </Parallax>
 
       {/* Marketplace Container */}
 
       {/* ADD SEACH OPTIONS HERE SOMEHOW */}
 
       <Container
-        disableGutters
+        //disableGutters
         maxWidth={false}
         className={`${classes.marketContainer}`}
       >
+        <div className={classes.h1_header}>
+          <Typography variant="h1">Marketplace</Typography>
+        </div>
         {isCrafter ? (
           <div className={classes.listButton}>
             <Button
