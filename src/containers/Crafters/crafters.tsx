@@ -153,9 +153,8 @@ function Crafters() {
 
   return (
     <>
-
       <Navbar />
-      <Parallax bgImage={homapageBackground} strength={600} >
+      <Parallax bgImage={allCraftersBanner} strength={600}>
         <h1 className={classes.header}>Crafters</h1>
 
         <span className={classes.description}>
