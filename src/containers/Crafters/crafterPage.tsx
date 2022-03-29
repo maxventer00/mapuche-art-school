@@ -126,7 +126,7 @@ const useStyles = makeStyles((theme) =>
       marginLeft: "3%",
       marginRight: "3%",
       backgroundColor: "white",
-      marginTop: "75px",
+      marginTop: "25px",
       paddingTop: "15px",
       paddingBottom: "15px",
       paddingLeft: "35px",
@@ -296,16 +296,29 @@ function CraftersPage() {
           Blog Posts
         </h1>
 
-        {allowBlogPost ? (
-          <div className={classes.signoutButtonContainer}>
-            <Button
-              style={{ maxWidth: "255px" }}
-              className={classes.outlined}
-              variant="outlined"
-              onClick={() => setOpenBlogPost(!openBlogPost)}
+        <div style={{ paddingBottom: "35px" }}>
+          {allowBlogPost ? (
+            <div className={classes.signoutButtonContainer}>
+              <Button
+                style={{ maxWidth: "255px" }}
+                className={classes.outlined}
+                variant="outlined"
+                onClick={() => setOpenBlogPost(!openBlogPost)}
+              >
+                Create New Post
+              </Button>
+            </div>
+          ) : null}
+        </div>
+
+        {blogPosts.length === 0 ? (
+          <div className={classes.blogPostContainer}>
+            <p
+              className={classes.blogPostTitle}
+              style={{ marginTop: "10px", marginBottom: "10px" }}
             >
-              Create New Post
-            </Button>
+              This crafter has no blog posts!
+            </p>
           </div>
         ) : null}
 
