@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) =>
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
       height: 900,
-      padding: 0,
+      paddingTop: 20,
       maxHeight: 900,
       backgroundImage: "url(" + allCraftersBanner + ")",
       backgroundColor: "rgba(100, 100, 100, 0.9)",
@@ -153,9 +153,8 @@ function Crafters() {
 
   return (
     <>
-
       <Navbar />
-      <Parallax bgImage={homapageBackground} strength={600} >
+      <Parallax bgImage={allCraftersBanner} strength={600}>
         <h1 className={classes.header}>Crafters</h1>
 
         <span className={classes.description}>

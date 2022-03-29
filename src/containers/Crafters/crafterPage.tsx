@@ -19,6 +19,7 @@ import { Button, Typography } from "@mui/material";
 import profilePlaceholder from "../../images/profilePlaceholder.png";
 import app from "../../base";
 import { getDocs } from "firebase/firestore";
+import crafterBanner from "../../images/crafterBanner.jpg";
 
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
@@ -54,7 +55,8 @@ const useStyles = makeStyles((theme) =>
       height: 400,
       padding: 0,
       maxHeight: 500,
-      //backgroundImage: "url(" + crafterBanner + ")",
+      backgroundImage: "url(" + crafterBanner + ")",
+      paddingTop: 20,
       backgroundColor: "rgba(100, 100, 100, 0.5)",
       backgroundBlendMode: "multiply",
     },
@@ -100,6 +102,22 @@ const useStyles = makeStyles((theme) =>
       marginTop: "0px",
       marginBottom: "50px",
     },
+    blogPostContainer: {
+      fontSize: "25px",
+      paddingBottom: "150px",
+      textAlign: "left",
+      marginLeft: "3%",
+      marginRight: "3%",
+      backgroundColor: "white",
+      marginBottom: "15px",
+      marginTop: "15px",
+    },
+    blogPostTitle: {
+      fontFamily: "Lato",
+    },
+    blogPostDescription: {
+      fontFamily: "Lato",
+    },
   })
 );
 
@@ -113,6 +131,23 @@ function CraftersPage() {
   const location = useLocation<any>();
   const crafterID = location.state.crafterID;
 
+  const [loggedIn, setLoggedIn] = useState(true);
+  const [userID, setUserID] = useState<any>();
+
+  const [allowBlogPost, setAllowBlogPost] = useState(false);
+
+  const userCheck = () => {
+    app.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        // User is signed in.
+        setUserID(user.uid);
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
+    });
+  };
+
   const getCrafterDetails = () => {
     const firestore = app.firestore();
 
@@ -125,11 +160,14 @@ function CraftersPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    userCheck();
     getCrafterDetails();
   }, []);
 
   useEffect(() => {
-    console.log(crafter);
+    if (crafterID === userID) {
+      setAllowBlogPost(true);
+    }
   }, [crafter]);
 
   return (
@@ -180,10 +218,20 @@ function CraftersPage() {
 
       <div className={classes.productsContainer}>
         <h1
-          style={{ fontSize: "35px", marginTop: "0px", paddingBottom: "115px" }}
+          style={{ fontSize: "35px", marginTop: "0px", paddingBottom: "10px" }}
         >
           Blog Posts
         </h1>
+
+        <div className={classes.blogPostContainer}>
+          <text>My new favourite type of art!</text>
+          <text>Description</text>
+        </div>
+
+        <div className={classes.blogPostContainer}>
+          <text>Title</text>
+          <text>Description</text>
+        </div>
 
         <h1
           style={{ fontSize: "35px", marginTop: "0px", paddingBottom: "115px" }}
