@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) =>
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
       height: 1180,
-      padding: 0,
+      paddingTop: 60,
       maxHeight: 1180,
     },
     tint: {

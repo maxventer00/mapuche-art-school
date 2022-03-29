@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) =>
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
       height: 900,
-      padding: 0,
+      paddingTop: 20,
       maxHeight: 900,
       backgroundImage: "url(" + allCraftersBanner + ")",
       backgroundColor: "rgba(100, 100, 100, 0.9)",
