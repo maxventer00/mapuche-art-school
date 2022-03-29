@@ -20,6 +20,9 @@ import profilePlaceholder from "../../images/profilePlaceholder.png";
 import app from "../../base";
 import { getDocs } from "firebase/firestore";
 import crafterBanner from "../../images/crafterBanner.jpg";
+import Aos from "aos";
+import "aos/dist/aos.css";
+
 
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
@@ -212,9 +215,8 @@ function CraftersPage() {
 
   const submitPost = () => {
     const current = new Date();
-    const date = `${current.getDate()}/${
-      current.getMonth() + 1
-    }/${current.getFullYear()}`;
+    const date = `${current.getDate()}/${current.getMonth() + 1
+      }/${current.getFullYear()}`;
 
     const firestore = app.firestore();
 
@@ -231,6 +233,7 @@ function CraftersPage() {
     window.scrollTo(0, 0);
     userCheck();
     getCrafterDetails();
+    Aos.init({ duration: 500 });
   }, []);
 
   useEffect(() => {
@@ -371,7 +374,7 @@ function CraftersPage() {
             console.log(blogPost);
             return (
               <>
-                <div className={classes.blogPostContainer}>
+                <div data-aos="fade-up" className={classes.blogPostContainer}>
                   <h1 className={classes.blogPostTitle}>{blogPost.title}</h1>
                   <text className={classes.blogPostDate}>{blogPost.date}</text>
                   <p className={classes.blogPostDescription}>

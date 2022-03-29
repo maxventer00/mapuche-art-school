@@ -170,7 +170,7 @@ function Home() {
             <Button
               className={classes.contained}
               variant="contained"
-              onClick={() => history.push("/marketplace")}
+              onClick={() => history.push("/login")}
             >
               Login/Sign up
             </Button>
