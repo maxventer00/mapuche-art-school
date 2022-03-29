@@ -20,6 +20,7 @@ import profilePlaceholder from "../../images/profilePlaceholder.png";
 import app from "../../base";
 import { getDocs } from "firebase/firestore";
 import allCraftersBanner from "../../images/allCraftersBanner.jpg";
+import { Parallax } from "react-parallax";
 
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
@@ -41,6 +42,7 @@ const useStyles = makeStyles((theme) =>
       display: "inline-block",
       width: 600,
       padding: 15,
+      paddingBottom: 100,
       overflow: "hidden",
       textOverflow: "ellipsis",
       wordWrap: "break-word",
@@ -151,12 +153,9 @@ function Crafters() {
 
   return (
     <>
-      <Container
-        disableGutters
-        maxWidth={false}
-        className={classes.imgcontainer}
-      >
-        <Navbar />
+
+      <Navbar />
+      <Parallax bgImage={homapageBackground} strength={600} >
         <h1 className={classes.header}>Crafters</h1>
 
         <span className={classes.description}>
@@ -170,7 +169,7 @@ function Crafters() {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
         </span>
-      </Container>
+      </Parallax>
 
       <Container
         disableGutters

@@ -21,6 +21,7 @@ import Navbar from "../Shared/Navbar";
 import app from "../../base";
 import { doc, getDocs } from "firebase/firestore";
 import { Parallax } from "react-parallax";
+import { width } from "@mui/system";
 
 //import { getUserType } from "./FirebaseQuearys/MarketpalceQuearys";
 
@@ -171,7 +172,7 @@ function Marketplace() {
 
       <Navbar />
 
-      <Parallax bgImage={marketplaceBackground} strength={600} >
+      <Parallax bgImage={marketplaceBackground} strength={600}  >
         <div style={{ height: 1000 }}>
         </div>
       </Parallax>
@@ -181,7 +182,7 @@ function Marketplace() {
       {/* ADD SEACH OPTIONS HERE SOMEHOW */}
 
       <Container
-        disableGutters
+        //disableGutters
         maxWidth={false}
         className={`${classes.marketContainer}`}
       >
