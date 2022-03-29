@@ -22,6 +22,9 @@ import app from "../../base";
 import { doc, getDocs } from "firebase/firestore";
 import { Parallax } from "react-parallax";
 import { width } from "@mui/system";
+import Aos from "aos";
+import "aos/dist/aos.css";
+
 
 //import { getUserType } from "./FirebaseQuearys/MarketpalceQuearys";
 
@@ -105,9 +108,15 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
+
 const theme = createTheme();
 
 function Marketplace() {
+
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
+
   const classes = useStyles();
 
   const history = useHistory();
@@ -173,7 +182,7 @@ function Marketplace() {
       <Navbar />
 
       <Parallax bgImage={marketplaceBackground} strength={600}  >
-        <div style={{ height: 1000 }}>
+        <div style={{ height: 1400 }}>
         </div>
       </Parallax>
 
@@ -204,7 +213,7 @@ function Marketplace() {
           </div>
         ) : null}
         <Grid container justifyContent="center" alignItems="center">
-          <List sx={{ columns: 3, width: 1200, margin: "auto" }}>
+          <List data-aos="fade-up" sx={{ columns: 3, width: 1200, margin: "auto", paddingBottom: "60px" }}>
             {shopData.map(
               (
                 doc: any,
