@@ -56,11 +56,12 @@ const useStyles = makeStyles((theme) =>
       marginTop: "55px",
     },
     h1_header: {
-      fontSize: 50,
+      fontSize: 48,
       color: "#ffffff",
       padding: 15,
-      paddingTop: 120,
+      paddingTop: 150,
       fontFamily: "Prata",
+      marginTop: 0,
     },
     description: {
       color: "#ffffff",
