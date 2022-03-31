@@ -15,13 +15,14 @@ import "../../containers/Home/fonts.css";
 import { height, textAlign } from "@mui/system";
 import IconButton from "@mui/material/IconButton";
 import Navbar from "../Shared/Navbar";
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, List, ListItem, TextField, Typography } from "@mui/material";
 import profilePlaceholder from "../../images/profilePlaceholder.png";
 import app from "../../base";
 import { getDocs } from "firebase/firestore";
 import crafterBanner from "../../images/crafterBanner.jpg";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import Carousel from "react-material-ui-carousel";
 
 
 // Way to add EXTRA css values
@@ -156,6 +157,21 @@ const useStyles = makeStyles((theme) =>
       float: "right",
       marginRight: "3%",
     },
+    listingCards: {
+      minHeight: 300,
+      minWidth: 500,
+      maxWidth: 500,
+      margin: "auto",
+    },
+    carousel: {
+      maxWidth: "33%",
+      margin: "auto",
+      backgroundColor: "F7ECE1",
+      color: "F7ECE1",
+      marginBottom: "20px",
+    },
+
+
   })
 );
 
@@ -178,6 +194,8 @@ function CraftersPage() {
   const [description, setDescription] = useState("");
 
   const [blogPosts, setBlogPosts] = useState<any>([]);
+  const [userProducts, setUserProducts] = useState<any>([]);
+
 
   const userCheck = () => {
     app.auth().onAuthStateChanged(function (user) {
@@ -213,6 +231,29 @@ function CraftersPage() {
     });
   };
 
+
+
+  const getUsersProducts = async () => {
+    if (userProducts.length === 0) {
+      const firestore = app.firestore();
+
+      const collectionRef = firestore.collection("productData");
+      const querySnapshot = await getDocs(collectionRef);
+
+      querySnapshot.forEach((doc) => {
+        if (
+          doc.data().listingUser === crafterID &&
+          userProducts.includes(doc.data()) === false
+        ) {
+          setUserProducts((arr: any) => [...arr, doc.data()]);
+        }
+      });
+    }
+  };
+
+
+
+
   const submitPost = () => {
     const current = new Date();
     const date = `${current.getDate()}/${current.getMonth() + 1
@@ -233,6 +274,7 @@ function CraftersPage() {
     window.scrollTo(0, 0);
     userCheck();
     getCrafterDetails();
+    getUsersProducts();
     Aos.init({ duration: 500 });
   }, []);
 
@@ -395,8 +437,90 @@ function CraftersPage() {
         >
           Products For Sale
         </h1>
+        <Carousel
+        next={(next, active) => console.log(`we left ${active}, and are now at ${next}`)}
+        prev={(prev, active) => console.log(`we left ${active}, and are now at ${prev}`)}
+        className={classes.carousel}
+        navButtonsAlwaysVisible={true}
+      >
+        {
+          userProducts.map(
+            (
+
+              item: {
+                itemTitle: string | undefined;
+                itemDescription: string | undefined;
+                photoURL: string | undefined;
+                price: number | undefined;
+              }
+            ) => {
+
+
+              return (
+                <>
+                  <ListItem>
+                    <Card
+                      className={classes.listingCards}
+                      sx={{ borderRadius: 5 }}
+
+                    >
+                      <CardActionArea
+                        sx={{ display: "column", border: `5px solid white` }}
+                      >
+                        <CardMedia
+                          component="img"
+                          height="200"
+                          width="90"
+                          sx={{ borderRadius: 5 }}
+                          image={item.photoURL}
+                          alt="No Image Available"
+                        />
+                        <CardContent sx={{ flexDirection: "row" }}>
+                          <Grid container justifyContent="space-between">
+                            <Typography
+                              gutterBottom
+                              variant="h5"
+                              component="div"
+                              color="#AC5435"
+                            >
+                              {item.itemTitle}
+                            </Typography>
+                          </Grid>
+
+                          <Typography
+                            variant="body2"
+                            color="#AC5435"
+                            align="left"
+                          >
+                            Price: ${item.price}
+                          </Typography>
+                          <CardActions sx={{ justifyContent: "end" }}>
+                            <Button
+                              size="small"
+                              color="secondary"
+                              variant="contained"
+
+                              sx={{ borderRadius: 5, maxHeight: 25 }}
+                            >
+                              VIEW
+                            </Button>
+                          </CardActions>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </ListItem>
+                </>
+              );
+            }
+          )
+
+        }
+      </Carousel>
+
       </div>
+      
     </>
+
   );
 }
 

@@ -113,6 +113,7 @@ const theme = createTheme();
 
 function Marketplace() {
 
+  {/* */}
   useEffect(() => {
     window.scrollTo(0, 0);
     Aos.init({ duration: 2000 });
@@ -134,10 +135,6 @@ function Marketplace() {
       setShopData((arr: any) => [...arr, doc]);
     });
   };
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   const [loggedIn, setLoggedIn] = useState(true);
   const [userInfo, setUserInfo] = useState<any>();
@@ -162,7 +159,8 @@ function Marketplace() {
   };
 
   useEffect(() => {
-    userCheck();
+    getData();
+    userCheck(); 
   }, []);
 
   useEffect(() => {
@@ -183,7 +181,7 @@ function Marketplace() {
       <Navbar />
 
       <Parallax bgImage={marketplaceBackground} strength={600}  >
-        <div style={{ height: 1400 }}>
+        <div style={{ height: 1100 }}>
         </div>
       </Parallax>
 
