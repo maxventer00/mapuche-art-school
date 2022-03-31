@@ -90,7 +90,7 @@ export default function Navbar() {
           className={classes.link}
           to="/home"
           style={(isActive) => ({
-            color: isActive ? "#0039A6" : "black",
+            color: isActive ? "#0039A6" : "white",
             textDecoration: "none",
             "text-shadow": isActive
               ? "0 0 10px #FFFFFF"
@@ -106,7 +106,7 @@ export default function Navbar() {
           className={classes.link}
           to="/mapucheHistory"
           style={(isActive) => ({
-            color: isActive ? "#0039A6" : "black",
+            color: isActive ? "#0039A6" : "white",
             textDecoration: "none",
             "text-shadow": isActive
               ? "0 0 10px #FFFFFF"
@@ -122,7 +122,7 @@ export default function Navbar() {
           className={classes.link}
           to="/nagcheHistory"
           style={(isActive) => ({
-            color: isActive ? "#0039A6" : "black",
+            color: isActive ? "#0039A6" : "white",
             textDecoration: "none",
             "text-shadow": isActive
               ? "0 0 10px #FFFFFF"
@@ -138,7 +138,7 @@ export default function Navbar() {
           className={classes.link}
           to="/nagcheRoute"
           style={(isActive) => ({
-            color: isActive ? "#0039A6" : "black",
+            color: isActive ? "#0039A6" : "white",
             textDecoration: "none",
             "text-shadow": isActive
               ? "0 0 10px #FFFFFF"
@@ -154,7 +154,7 @@ export default function Navbar() {
           className={classes.link}
           to="/crafters"
           style={(isActive) => ({
-            color: isActive ? "#0039A6" : "black",
+            color: isActive ? "#0039A6" : "white",
             textDecoration: "none",
             "text-shadow": isActive
               ? "0 0 10px #FFFFFF"
@@ -170,7 +170,7 @@ export default function Navbar() {
           className={classes.link}
           to="/marketplace"
           style={(isActive) => ({
-            color: isActive ? "#0039A6" : "black",
+            color: isActive ? "#0039A6" : "white",
             textDecoration: "none",
             "text-shadow": isActive
               ? "0 0 10px #FFFFFF"

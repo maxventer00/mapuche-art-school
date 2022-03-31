@@ -66,6 +66,7 @@ const useStyles = makeStyles((theme) =>
     },
     bgImg: {
       backgroundImage: "url(" + loginBackground + ")",
+      height: "100%",
     },
     textFld: {
       width: 500,
