@@ -90,8 +90,14 @@ export default function Navbar() {
           className={classes.link}
           to="/home"
           style={(isActive) => ({
-            color: isActive ? "#0039A6" : "white",
+            color: isActive ? "#0039A6" : "black",
             textDecoration: "none",
+            "text-shadow": isActive
+              ? "0 0 10px #FFFFFF"
+              : "0px 2px 9px rgba(0,0,0,0.72)",
+            textShadowColour: isActive
+              ? "2px 2px 20px #FFFFFF"
+              : "0 0 15px rgba(255,255,255,.5)",
           })}
         >
           Home
@@ -100,8 +106,14 @@ export default function Navbar() {
           className={classes.link}
           to="/mapucheHistory"
           style={(isActive) => ({
-            color: isActive ? "#0039A6" : "white",
+            color: isActive ? "#0039A6" : "black",
             textDecoration: "none",
+            "text-shadow": isActive
+              ? "0 0 10px #FFFFFF"
+              : "0px 2px 9px rgba(0,0,0,0.72)",
+            textShadowColour: isActive
+              ? "2px 2px 20px #FFFFFF"
+              : "0 0 15px rgba(255,255,255,.5)",
           })}
         >
           Mapuche History
@@ -110,8 +122,14 @@ export default function Navbar() {
           className={classes.link}
           to="/nagcheHistory"
           style={(isActive) => ({
-            color: isActive ? "#0039A6" : "white",
+            color: isActive ? "#0039A6" : "black",
             textDecoration: "none",
+            "text-shadow": isActive
+              ? "0 0 10px #FFFFFF"
+              : "0px 2px 9px rgba(0,0,0,0.72)",
+            textShadowColour: isActive
+              ? "2px 2px 20px #FFFFFF"
+              : "0 0 15px rgba(255,255,255,.5)",
           })}
         >
           Nagche History
@@ -120,8 +138,14 @@ export default function Navbar() {
           className={classes.link}
           to="/nagcheRoute"
           style={(isActive) => ({
-            color: isActive ? "#0039A6" : "white",
+            color: isActive ? "#0039A6" : "black",
             textDecoration: "none",
+            "text-shadow": isActive
+              ? "0 0 10px #FFFFFF"
+              : "0px 2px 9px rgba(0,0,0,0.72)",
+            textShadowColour: isActive
+              ? "2px 2px 20px #FFFFFF"
+              : "0 0 15px rgba(255,255,255,.5)",
           })}
         >
           Nagche Route
@@ -130,8 +154,14 @@ export default function Navbar() {
           className={classes.link}
           to="/crafters"
           style={(isActive) => ({
-            color: isActive ? "#0039A6" : "white",
+            color: isActive ? "#0039A6" : "black",
             textDecoration: "none",
+            "text-shadow": isActive
+              ? "0 0 10px #FFFFFF"
+              : "0px 2px 9px rgba(0,0,0,0.72)",
+            textShadowColour: isActive
+              ? "2px 2px 20px #FFFFFF"
+              : "0 0 15px rgba(255,255,255,.5)",
           })}
         >
           Crafters
@@ -140,13 +170,19 @@ export default function Navbar() {
           className={classes.link}
           to="/marketplace"
           style={(isActive) => ({
-            color: isActive ? "#0039A6" : "white",
+            color: isActive ? "#0039A6" : "black",
             textDecoration: "none",
+            "text-shadow": isActive
+              ? "0 0 10px #FFFFFF"
+              : "0px 2px 9px rgba(0,0,0,0.72)",
+            textShadowColour: isActive
+              ? "2px 2px 20px #FFFFFF"
+              : "0 0 15px rgba(255,255,255,.5)",
           })}
         >
           Marketplace
         </NavLink>
       </Toolbar>
-    </AppBar >
+    </AppBar>
   );
 }
