@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) =>
       fontFamily: "ABeeZee, sans-serif",
     },
     container: {
-
+      
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
@@ -67,6 +67,7 @@ const useStyles = makeStyles((theme) =>
       display: "flex",
       flexGrowing: 1,
       paddingBottom: "100px",
+      
     },
     searchOptions: {
       width: "100%",
@@ -113,7 +114,7 @@ const theme = createTheme();
 
 function Marketplace() {
 
-  {/* */}
+  {/* */ }
   useEffect(() => {
     window.scrollTo(0, 0);
     Aos.init({ duration: 2000 });
@@ -160,7 +161,7 @@ function Marketplace() {
 
   useEffect(() => {
     getData();
-    userCheck(); 
+    userCheck();
   }, []);
 
   useEffect(() => {
@@ -181,7 +182,7 @@ function Marketplace() {
       <Navbar />
 
       <Parallax bgImage={marketplaceBackground} strength={600}  >
-        <div style={{ height: 1100 }}>
+        <div style={{ height: 600 }}>
         </div>
       </Parallax>
 

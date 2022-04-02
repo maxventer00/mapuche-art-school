@@ -20,6 +20,7 @@ import {
   CardContent,
   CardActions,
   Button,
+  TextField,
 } from "@mui/material";
 import app from "../../base";
 import { getDocs } from "firebase/firestore";
@@ -28,16 +29,13 @@ import Footer from "../Shared/footer";
 const useStyles = makeStyles((theme) =>
   createStyles({
     container: {
-      backgroundColor: "#F7ECE1",
-      backgroundPosition: "center",
-      backgroundSize: "cover",
-      backgroundRepeat: "no-repeat",
+      position: "absolute",
+      width: "100%",
       height: "100%",
-      padding: "20px",
-      maxHeight: 1800,
+      backgroundColor: "#F7ECE1",
       display: "flex",
-      flexDirection: "row",
       flexGrowing: 1,
+      paddingBottom: "100px",
     },
     content: {
       display: "flex",
@@ -68,6 +66,84 @@ const useStyles = makeStyles((theme) =>
       maxHeight: 550,
       borderRadius: 15,
     },
+    signoutButtonContainer: {
+      float: "right",
+      marginRight: "3%",
+      marginTop: "3%",
+    },
+    outlined: {
+      backgroundColor: "transparent",
+      color: "white",
+      boxShadow: "none",
+      borderWidth: "2px",
+      borderColor: "white",
+      fontFamily: "Lato",
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: "25px",
+      lineHeight: "30px",
+      width: "500px",
+      marginTop: "20px",
+      "&:hover": {
+        backgroundColor: "#8A7866",
+      },
+    },
+    contained: {
+      backgroundColor: "#B8A088",
+      color: "white",
+      boxShadow: "none",
+      borderWidth: "5px",
+      borderColor: "white",
+      fontFamily: "Lato",
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: "25px",
+      lineHeight: "30px",
+      width: "500px",
+      marginTop: "50px",
+      "&:hover": {
+        backgroundColor: "#8A7866",
+        boxShadow: "none",
+      },
+    },
+    itemEditContainer: {
+      fontSize: "25px",
+      textAlign: "left",
+      marginLeft: "3%",
+      marginRight: "3%",
+      backgroundColor: "white",
+      marginTop: "25px",
+      paddingTop: "15px",
+      paddingBottom: "15px",
+      paddingLeft: "35px",
+      paddingRight: "15px",
+      borderRadius: "5px",
+
+    },
+    itemEditTitle: {
+      fontSize: "28px",
+      fontFamily: "Lato",
+      paddingBottom: 0,
+      marginBottom: 0,
+    },
+    itemEditPrice: {
+      fontSize: "28px",
+      fontFamily: "Lato",
+      paddingBottom: 0,
+      marginBottom: 0,
+    },
+    itemEditStock: {
+      fontSize: "28px",
+      fontFamily: "Lato",
+      paddingBottom: 0,
+      marginBottom: 0,
+    },
+    itemEditDescription: {
+      marginTop: "15px",
+      fontSize: "22px",
+      fontFamily: "Lato",
+      dispay: "block",
+    },
   })
 );
 
@@ -79,11 +155,38 @@ function ItemPage() {
 
   const [itemData, setItemData] = useState<any>([]);
   const location = useLocation<any>();
+  const [userID, setUserID] = useState<any>();
   let itemId = "";
 
   if (location.state) {
     itemId = location.state.itemUid;
   }
+
+  const [loggedIn, setLoggedIn] = useState(true);
+  const [userInfo, setUserInfo] = useState<any>();
+  const [isOwner, setIsOwner] = useState(false);
+  const [allowItemEdit, setAllowItemEdit] = useState(false);
+  const [openItemEdit, setOpenItemEdit] = useState(false);
+
+  const [itemTitle, setItemTitle] = useState(itemData.itemTitle);
+  const [price, setPrice] = useState(itemData.itemPrice);
+  const [itemDescription, setItemDescription] = useState(itemData.itemDescription);
+  const [itemStock, setItemStock] = useState(itemData.itemStock);
+
+
+  const userCheck = () => {
+    app.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        // User is signed in.
+        setUserID(user.uid);
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
+    });
+  };
+
+
 
   const getItemData = () => {
     const firestore = app.firestore();
@@ -99,14 +202,40 @@ function ItemPage() {
     }
   };
 
+  const updateListing = () => {
+    const firestore = app.firestore();
+    const itemRef = firestore.collection("productData").doc(itemId);
+
+    itemRef.update({
+      itemTitle: itemTitle,
+      price: price,
+      itemDescription: itemDescription,
+      itemStock: itemStock,
+
+    });
+  };
+
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    userCheck();
     getItemData();
   }, []);
 
   useEffect(() => {
-    console.log("Item: " + itemData);
+    if (itemData) {
+      if (itemData.listingUser === userID) {
+        setIsOwner(true);
+        setAllowItemEdit(true);
+
+      } else {
+        setIsOwner(false);
+        setAllowItemEdit(false);
+
+      }
+    }
   }, [itemData]);
+
 
   return (
     <>
@@ -161,8 +290,91 @@ function ItemPage() {
                   </CardActionArea>
                 </Card>
               </ListItem>
+
             </List>
+            <div style={{ paddingBottom: "35px" }}>
+              {allowItemEdit ? (
+                <div className={classes.signoutButtonContainer}>
+                  <Button
+                    style={{ maxWidth: "255px" }}
+                    className={classes.outlined}
+                    variant="outlined"
+                    onClick={() => setOpenItemEdit(!openItemEdit)}
+                  >
+                    Manage Listing
+                  </Button>
+                </div>
+              ) : null}
+
+
+            </div>
+            {openItemEdit ? (
+              <div className={classes.itemEditContainer}>
+                <p className={classes.itemEditDescription}>Edit Your Listing</p>
+
+                <TextField
+                  className={classes.itemEditTitle}
+                  variant="outlined"
+                  placeholder="Title"
+                  required
+                  size="medium"
+                  margin="dense"
+                  onChange={(e) => setItemTitle(e.target.value)}
+                />
+
+                <TextField
+                  className={classes.itemEditPrice}
+                  variant="outlined"
+                  placeholder="Price"
+                  required
+                  size="medium"
+                  margin="dense"
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+                <TextField
+                  className={classes.itemEditStock}
+                  variant="outlined"
+                  placeholder="Items In Stock"
+                  required
+                  size="medium"
+                  margin="dense"
+                  onChange={(e) => setItemStock(e.target.value)}
+                />
+
+
+
+                <TextField
+                  className={classes.itemEditDescription}
+                  variant="outlined"
+                  placeholder="Description"
+                  required
+                  multiline
+                  minRows={5}
+                  size="medium"
+                  fullWidth
+                  margin="normal"
+                  onChange={(e) => setItemDescription(e.target.value)}
+                />
+
+                <Button
+                  style={{
+                    maxWidth: "255px",
+                    marginTop: "25px",
+                    marginBottom: "25px",
+                  }}
+                  className={classes.contained}
+                  variant="contained"
+                  onClick={() => updateListing()}
+                >
+                  Update Listing
+                </Button>
+              </div>
+            ) : null}
+
           </div>
+
+
+
 
           <div className={`${classes.photo}`}>
             <List sx={{ columns: 1, gap: 3 }}>
@@ -183,9 +395,11 @@ function ItemPage() {
               </ListItem>
             </List>
           </div>
-          <Footer />
+
         </Container>
 
+
+        <Footer />
 
       </Container>
     </>

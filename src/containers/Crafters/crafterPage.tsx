@@ -438,87 +438,87 @@ function CraftersPage() {
           Products For Sale
         </h1>
         <Carousel
-        next={(next, active) => console.log(`we left ${active}, and are now at ${next}`)}
-        prev={(prev, active) => console.log(`we left ${active}, and are now at ${prev}`)}
-        className={classes.carousel}
-        navButtonsAlwaysVisible={true}
-      >
-        {
-          userProducts.map(
-            (
+          next={(next, active) => console.log(`we left ${active}, and are now at ${next}`)}
+          prev={(prev, active) => console.log(`we left ${active}, and are now at ${prev}`)}
+          className={classes.carousel}
+          navButtonsAlwaysVisible={true}
+        >
+          {
+            userProducts.map(
+              (
 
-              item: {
-                itemTitle: string | undefined;
-                itemDescription: string | undefined;
-                photoURL: string | undefined;
-                price: number | undefined;
-              }
-            ) => {
+                item: {
+                  itemTitle: string | undefined;
+                  itemDescription: string | undefined;
+                  photoURL: string | undefined;
+                  price: number | undefined;
+                }
+              ) => {
 
 
-              return (
-                <>
-                  <ListItem>
-                    <Card
-                      className={classes.listingCards}
-                      sx={{ borderRadius: 5 }}
+                return (
+                  <>
+                    <ListItem>
+                      <Card
+                        className={classes.listingCards}
+                        sx={{ borderRadius: 5 }}
 
-                    >
-                      <CardActionArea
-                        sx={{ display: "column", border: `5px solid white` }}
                       >
-                        <CardMedia
-                          component="img"
-                          height="200"
-                          width="90"
-                          sx={{ borderRadius: 5 }}
-                          image={item.photoURL}
-                          alt="No Image Available"
-                        />
-                        <CardContent sx={{ flexDirection: "row" }}>
-                          <Grid container justifyContent="space-between">
+                        <CardActionArea
+                          sx={{ display: "column", border: `5px solid white` }}
+                        >
+                          <CardMedia
+                            component="img"
+                            height="200"
+                            width="90"
+                            sx={{ borderRadius: 5 }}
+                            image={item.photoURL}
+                            alt="No Image Available"
+                          />
+                          <CardContent sx={{ flexDirection: "row" }}>
+                            <Grid container justifyContent="space-between">
+                              <Typography
+                                gutterBottom
+                                variant="h5"
+                                component="div"
+                                color="#AC5435"
+                              >
+                                {item.itemTitle}
+                              </Typography>
+                            </Grid>
+
                             <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
+                              variant="body2"
                               color="#AC5435"
+                              align="left"
                             >
-                              {item.itemTitle}
+                              Price: ${item.price}
                             </Typography>
-                          </Grid>
+                            <CardActions sx={{ justifyContent: "end" }}>
+                              <Button
+                                size="small"
+                                color="secondary"
+                                variant="contained"
 
-                          <Typography
-                            variant="body2"
-                            color="#AC5435"
-                            align="left"
-                          >
-                            Price: ${item.price}
-                          </Typography>
-                          <CardActions sx={{ justifyContent: "end" }}>
-                            <Button
-                              size="small"
-                              color="secondary"
-                              variant="contained"
+                                sx={{ borderRadius: 5, maxHeight: 25 }}
+                              >
+                                VIEW
+                              </Button>
+                            </CardActions>
+                          </CardContent>
+                        </CardActionArea>
+                      </Card>
+                    </ListItem>
+                  </>
+                );
+              }
+            )
 
-                              sx={{ borderRadius: 5, maxHeight: 25 }}
-                            >
-                              VIEW
-                            </Button>
-                          </CardActions>
-                        </CardContent>
-                      </CardActionArea>
-                    </Card>
-                  </ListItem>
-                </>
-              );
-            }
-          )
-
-        }
-      </Carousel>
+          }
+        </Carousel>
 
       </div>
-      
+
     </>
 
   );
