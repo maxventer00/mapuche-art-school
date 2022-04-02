@@ -310,7 +310,22 @@ function ItemPage() {
             </div>
             {openItemEdit ? (
               <div className={classes.itemEditContainer}>
-                <p className={classes.itemEditDescription}>Edit Your Listing</p>
+                <p className={classes.itemEditDescription}>Edit Your Listing
+                  <Button
+                    style={{
+                      maxWidth: "255px",
+
+
+                      float: "right",
+
+                    }}
+                    className={classes.contained}
+                    variant="contained"
+                    onClick={() => updateListing()}
+                  >
+                    Update Listing
+                  </Button></p>
+
 
                 <TextField
                   className={classes.itemEditTitle}
@@ -356,18 +371,7 @@ function ItemPage() {
                   onChange={(e) => setItemDescription(e.target.value)}
                 />
 
-                <Button
-                  style={{
-                    maxWidth: "255px",
-                    marginTop: "25px",
-                    marginBottom: "25px",
-                  }}
-                  className={classes.contained}
-                  variant="contained"
-                  onClick={() => updateListing()}
-                >
-                  Update Listing
-                </Button>
+
               </div>
             ) : null}
 
