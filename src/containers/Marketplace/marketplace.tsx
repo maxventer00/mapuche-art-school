@@ -80,6 +80,16 @@ const useStyles = makeStyles((theme) =>
       flexGrowing: 1,
       paddingBottom: "100px",
     },
+    filterContainer: {
+      backgroundColor: "white",
+      width: "300px",
+      minHeight: "700px",
+      borderRadius: "3px",
+      float: "left",
+      marginLeft: "5%",
+      display: "flex",
+      flexShrink: "3",
+    },
     searchOptions: {
       width: "100%",
       height: 50,
@@ -232,120 +242,127 @@ function Marketplace() {
             </Button>
           </div>
         ) : null}
-        <Grid container justifyContent="center" alignItems="center">
-          <List
-            data-aos="fade-up"
-            sx={{
-              columns: 3,
-              width: 1000,
-              margin: "auto",
-              marginBottom: "60px",
-            }}
-          >
-            {shopData.map(
-              (
-                doc: any,
-                item: {
-                  itemTitle: string | undefined;
-                  itemDescription: string | undefined;
-                  photoURL: string | undefined;
-                  price: number | undefined;
-                }
-              ) => {
-                let id = doc.id;
-                item = doc.data();
 
-                console.log("item : " + item.itemTitle);
-                console.log("id : " + id);
-                return (
-                  <>
-                    <ListItem
-                      key={id}
-                      style={{
-                        marginBottom: "60px",
-                      }}
-                    >
-                      <Card
-                        className={classes.listingCards}
-                        sx={{ borderRadius: 2 }}
-                        onClick={() =>
-                          history.push({
-                            pathname: `/marketplace/${id}`,
-                            state: { itemUid: id },
-                          })
-                        }
-                      >
-                        <CardActionArea
-                          sx={{ display: "column", border: `5px solid white` }}
-                        >
-                          {item.photoURL ? (
-                            <CardMedia
-                              component="img"
-                              height="200"
-                              width="90"
-                              sx={{ borderRadius: 2 }}
-                              image={item.photoURL}
-                              alt="No Image Available"
-                            />
-                          ) : (
-                            <CardMedia
-                              component="img"
-                              height="200"
-                              width="90"
-                              sx={{
-                                borderRadius: 2,
-                                minHeight: 200,
-                                minWidth: 90,
-                              }}
-                              image={placeholderImage}
-                              alt="No Image Available"
-                            />
-                          )}
+        <div className={classes.filterContainer}></div>
 
-                          <CardContent sx={{ flexDirection: "row" }}>
-                            <Grid container justifyContent="space-between">
-                              <Typography
-                                gutterBottom
-                                variant="h5"
-                                component="div"
-                                color="#AC5435"
-                              >
-                                {item.itemTitle}
-                              </Typography>
-                            </Grid>
-
-                            <Typography
-                              variant="body2"
-                              color="#AC5435"
-                              align="left"
-                            >
-                              Price: ${item.price}
-                            </Typography>
-                            <CardActions sx={{ justifyContent: "end" }}>
-                              <Button
-                                size="small"
-                                color="secondary"
-                                variant="contained"
-                                onClick={() =>
-                                  history.push({
-                                    pathname: `/marketplace/${id}`,
-                                    state: { itemId: id },
-                                  })
-                                }
-                                sx={{ borderRadius: 5, maxHeight: 25 }}
-                              >
-                                VIEW
-                              </Button>
-                            </CardActions>
-                          </CardContent>
-                        </CardActionArea>
-                      </Card>
-                    </ListItem>
-                  </>
-                );
+        <Grid
+          container
+          spacing={5}
+          columns={{ xs: 4, sm: 10, md: 13, lg: 15, xl: 18 }}
+          justifyContent="flex-end"
+          alignItems="flex-start"
+          direction="row"
+          maxWidth={1300}
+          marginLeft="5%"
+          flexShrink={10}
+        >
+          {shopData.map(
+            (
+              doc: any,
+              item: {
+                itemTitle: string | undefined;
+                itemDescription: string | undefined;
+                photoURL: string | undefined;
+                price: number | undefined;
               }
-            )}
-          </List>
+            ) => {
+              let id = doc.id;
+              item = doc.data();
+
+              console.log("item : " + item.itemTitle);
+              console.log("id : " + id);
+              return (
+                <>
+                  <Grid
+                    item
+                    xs={2}
+                    sm={4}
+                    md={4}
+                    key={id}
+                    style={{
+                      marginBottom: "60px",
+                    }}
+                  >
+                    <Card
+                      className={classes.listingCards}
+                      sx={{ borderRadius: 2 }}
+                      onClick={() =>
+                        history.push({
+                          pathname: `/marketplace/${id}`,
+                          state: { itemUid: id },
+                        })
+                      }
+                    >
+                      <CardActionArea
+                        sx={{ display: "column", border: `5px solid white` }}
+                      >
+                        {item.photoURL ? (
+                          <CardMedia
+                            component="img"
+                            height="200"
+                            width="90"
+                            sx={{ borderRadius: 2 }}
+                            image={item.photoURL}
+                            alt="No Image Available"
+                          />
+                        ) : (
+                          <CardMedia
+                            component="img"
+                            height="200"
+                            width="90"
+                            sx={{
+                              borderRadius: 2,
+                              minHeight: 200,
+                              minWidth: 90,
+                            }}
+                            image={placeholderImage}
+                            alt="No Image Available"
+                          />
+                        )}
+
+                        <CardContent sx={{ flexDirection: "row" }}>
+                          <Grid container justifyContent="space-between">
+                            <Typography
+                              gutterBottom
+                              variant="h5"
+                              component="div"
+                              color="#AC5435"
+                            >
+                              {item.itemTitle}
+                            </Typography>
+                          </Grid>
+
+                          <Typography
+                            variant="body2"
+                            color="#AC5435"
+                            align="left"
+                          >
+                            Price: ${item.price}
+                          </Typography>
+                          <CardActions sx={{ justifyContent: "end" }}>
+                            <Button
+                              size="small"
+                              color="secondary"
+                              variant="contained"
+                              onClick={() =>
+                                history.push({
+                                  pathname: `/marketplace/${id}`,
+                                  state: { itemId: id },
+                                })
+                              }
+                              sx={{ borderRadius: 5, maxHeight: 25 }}
+                            >
+                              VIEW
+                            </Button>
+                          </CardActions>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Grid>
+                </>
+              );
+            }
+          )}
         </Grid>
 
         <Footer />
