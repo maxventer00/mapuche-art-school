@@ -15,7 +15,7 @@ import {
   ListItem,
 } from "@mui/material";
 import { useHistory } from "react-router";
-import marketplaceBackground from "../../images/marketplaceBackground.png";
+import marketplaceBackground from "../../images/marketplaceBackground.jpg";
 import Footer from "../Shared/footer";
 import Navbar from "../Shared/Navbar";
 import app from "../../base";
@@ -24,18 +24,23 @@ import { Parallax } from "react-parallax";
 import { width } from "@mui/system";
 import Aos from "aos";
 import "aos/dist/aos.css";
-
-
+import placeholderImage from "../../images/profilePlaceholder.png";
 //import { getUserType } from "./FirebaseQuearys/MarketpalceQuearys";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     h1_header: {
-      fontSize: 50,
-      fontBold: true,
-      color: "#e7c6a5",
+      fontSize: 48,
+      color: "#ffffff",
       padding: 15,
-      paddingTop: 30,
+      paddingTop: 150,
+      fontFamily: "Prata",
+      marginTop: 0,
+    },
+    subtitle: {
+      fontSize: 35,
+      color: "#AC5435",
+      paddingTop: 80,
       fontFamily: "Prata",
       marginTop: 0,
     },
@@ -48,13 +53,20 @@ const useStyles = makeStyles((theme) =>
       display: "inline-block",
       width: 600,
       padding: 15,
+      paddingBottom: 100,
       overflow: "hidden",
       textOverflow: "ellipsis",
       wordWrap: "break-word",
       fontFamily: "ABeeZee, sans-serif",
     },
+    description2: {
+      fontSize: 18,
+      color: "#AC5435",
+      fontFamily: "Lato",
+      fontWeight: 500,
+      marginBottom: 65,
+    },
     container: {
-      
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
@@ -67,7 +79,6 @@ const useStyles = makeStyles((theme) =>
       display: "flex",
       flexGrowing: 1,
       paddingBottom: "100px",
-      
     },
     searchOptions: {
       width: "100%",
@@ -109,12 +120,12 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-
 const theme = createTheme();
 
 function Marketplace() {
-
-  {/* */ }
+  {
+    /* */
+  }
   useEffect(() => {
     window.scrollTo(0, 0);
     Aos.init({ duration: 2000 });
@@ -133,7 +144,9 @@ function Marketplace() {
     const querySnapshot = await getDocs(collectionRef);
 
     querySnapshot.forEach((doc) => {
-      setShopData((arr: any) => [...arr, doc]);
+      if (shopData.includes(doc.data()) === false) {
+        setShopData((arr: any) => [...arr, doc]);
+      }
     });
   };
 
@@ -176,17 +189,23 @@ function Marketplace() {
 
   return (
     <>
-      {/* Header Container */}
-
-
       <Navbar />
 
-      <Parallax bgImage={marketplaceBackground} strength={600}  >
-        <div style={{ height: 600 }}>
-        </div>
-      </Parallax>
+      <Parallax bgImage={marketplaceBackground} strength={600}>
+        <h1 className={classes.h1_header}>Marketplace</h1>
 
-      {/* Marketplace Container */}
+        <span className={classes.description}>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with
+          the release of Letraset sheets containing Lorem Ipsum passages, and
+          more recently with desktop publishing software like Aldus PageMaker
+          including versions of Lorem Ipsum.
+        </span>
+      </Parallax>
 
       {/* ADD SEACH OPTIONS HERE SOMEHOW */}
 
@@ -195,9 +214,10 @@ function Marketplace() {
         maxWidth={false}
         className={`${classes.marketContainer}`}
       >
-        <div className={classes.h1_header}>
-          <Typography variant="h1">Marketplace</Typography>
-        </div>
+        <h1 className={classes.subtitle}>Marketplace</h1>
+        <h2 className={classes.description2}>
+          Click on a listing to view more about it and purchase!
+        </h2>
         {isCrafter ? (
           <div className={classes.listButton}>
             <Button
@@ -213,7 +233,15 @@ function Marketplace() {
           </div>
         ) : null}
         <Grid container justifyContent="center" alignItems="center">
-          <List data-aos="fade-up" sx={{ columns: 3, width: 1200, margin: "auto", paddingBottom: "60px" }}>
+          <List
+            data-aos="fade-up"
+            sx={{
+              columns: 3,
+              width: 1000,
+              margin: "auto",
+              marginBottom: "60px",
+            }}
+          >
             {shopData.map(
               (
                 doc: any,
@@ -231,10 +259,15 @@ function Marketplace() {
                 console.log("id : " + id);
                 return (
                   <>
-                    <ListItem key={id}>
+                    <ListItem
+                      key={id}
+                      style={{
+                        marginBottom: "60px",
+                      }}
+                    >
                       <Card
                         className={classes.listingCards}
-                        sx={{ borderRadius: 5 }}
+                        sx={{ borderRadius: 2 }}
                         onClick={() =>
                           history.push({
                             pathname: `/marketplace/${id}`,
@@ -245,14 +278,30 @@ function Marketplace() {
                         <CardActionArea
                           sx={{ display: "column", border: `5px solid white` }}
                         >
-                          <CardMedia
-                            component="img"
-                            height="200"
-                            width="90"
-                            sx={{ borderRadius: 5 }}
-                            image={item.photoURL}
-                            alt="No Image Available"
-                          />
+                          {item.photoURL ? (
+                            <CardMedia
+                              component="img"
+                              height="200"
+                              width="90"
+                              sx={{ borderRadius: 2 }}
+                              image={item.photoURL}
+                              alt="No Image Available"
+                            />
+                          ) : (
+                            <CardMedia
+                              component="img"
+                              height="200"
+                              width="90"
+                              sx={{
+                                borderRadius: 2,
+                                minHeight: 200,
+                                minWidth: 90,
+                              }}
+                              image={placeholderImage}
+                              alt="No Image Available"
+                            />
+                          )}
+
                           <CardContent sx={{ flexDirection: "row" }}>
                             <Grid container justifyContent="space-between">
                               <Typography
