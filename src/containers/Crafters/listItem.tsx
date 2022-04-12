@@ -166,10 +166,6 @@ function ListItem() {
     const [itemStock, setItemStock] = useState("");
     const [listingUser, setListingUser] = useState<any>();
 
-
-
-
-
     const userCheck = async () => {
         app.auth().onAuthStateChanged(async function (user) {
             if (user) {
@@ -190,7 +186,6 @@ function ListItem() {
     {/* Make sure they are a crafter */ }
     const ListItemToFireBase = async () => {
         try {
-
             const firestore = app.firestore();
             const auth = getAuth();
             const user = auth.currentUser;
@@ -202,7 +197,7 @@ function ListItem() {
                     price: price,
                     itemDescription: itemDescription,
                     itemStock: itemStock,
-                    photoURL: photoURL,
+                    photoURL: photoURLs,
                     listingUser: user.uid,
                 });
                 console.log(res.id);
@@ -213,40 +208,62 @@ function ListItem() {
             } else {
                 // No user is signed in.
             }
-
-
         }
         catch (error) {
             alert(error);
         }
-
     }
 
-
-    const [photoURL, setPhotoURL] = useState("");
-    const [image, setImage] = useState<File | undefined>();
+    const [photoURLs, setPhotoURLs] = useState<any[]>([]);
+    const [images, setImages] = useState<any[]>([]);
+    const imageTarget = images.length - 1;
 
     const uploadPhoto = async () => {
-        if (image == null) return;
+        if (images.length === 0) return;
+
+        // Boom now we are loading 
+        console.log("Images to upload...");
+        console.log(images);
 
         const storage = getStorage();
-        const imageRef = ref(storage, "images/" + image.name);
+        const tempArray: any = []
 
-        uploadBytesResumable(imageRef, image)
-            .then((snapshot) => {
-                getDownloadURL(snapshot.ref).then((url) => {
-                    setPhotoURL(url);
+        images.map((image: File) => {
+            const imageRef = ref(storage, "images/" + image.name);
+
+            uploadBytesResumable(imageRef, image)
+                .then((snapshot) => {
+                    getDownloadURL(snapshot.ref).then((url) => {
+                        console.log("Uploaded " + image.name);
+                        tempArray.push(url);
+                    });
+                })
+                .catch((error) => {
+                    console.error("Upload failed", error);
                 });
-            })
-            .catch((error) => {
-                console.error("Upload failed", error);
-            });
+        });
+
+        setPhotoURLs(tempArray);
+        // Now we have finished loading!
     };
+
+    // OLD ATTEMPT
+    // const storage = getStorage();
+    // const imageRef = ref(storage, "images/" + image.name);
+
+    // uploadBytesResumable(imageRef, image)
+    //     .then((snapshot) => {
+    //         getDownloadURL(snapshot.ref).then((url) => {
+    //             setPhotoURL(url);
+    //         });
+    //     })
+    //     .catch((error) => {
+    //         console.error("Upload failed", error);
+    //     });
 
     useEffect(() => {
         uploadPhoto();
-    }, [image]);
-
+    }, [images]);
 
     return (
         <>
@@ -261,10 +278,10 @@ function ListItem() {
 
                 <div className={classes.formContainer}>
 
-                    {photoURL ? (
+                    {photoURLs ? (
                         <div className={classes.photoContainer}>
                             <img
-                                src={photoURL}
+                                src={photoURLs[0]}
                                 style={{
                                     maxHeight: "100%",
                                     maxWidth: "100%",
@@ -385,34 +402,24 @@ function ListItem() {
                             #Browse File
                             <input
                                 type="file"
+                                multiple
                                 hidden
                                 accept="image/png, image/jpeg, image/jpg"
                                 onChange={(e) => {
                                     if (e.target.files !== null) {
-                                        setImage(e.target.files[0]);
+                                        if (e.target.files.length > 0) {
+                                            const tempArray = []
+                                            for (var i = 0; i < e.target.files.length; i++) {
+                                                tempArray.push(e.target.files[i]);
+                                                console.log("Added image " + e.target.files[i].name);
+                                            }
+                                            setImages(tempArray);
+                                        }
                                     }
                                 }}
                             />
 
                         </Button>
-
-                        {/* push photo to firebase */}
-
-
-                        <Button
-                            size="large"
-                            variant="contained"
-                            style={{
-                                marginRight: "20px",
-
-                                maxWidth: "60%",
-
-                            }}
-                            onClick={() => ListItemToFireBase()}
-                        >
-                            Upload file
-                        </Button>
-
 
                         <Button
                             size="large"
@@ -426,6 +433,7 @@ function ListItem() {
                         >
                             List Item
                         </Button>
+
                     </div>
                 </Container>
 
