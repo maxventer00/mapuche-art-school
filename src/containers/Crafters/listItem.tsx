@@ -165,6 +165,8 @@ function ListItem() {
     const [itemDescription, setItemDescription] = useState("");
     const [itemStock, setItemStock] = useState("");
     const [listingUser, setListingUser] = useState<any>();
+    const [listButton, setListButton] = useState(false);
+    const [progresspercent, setProgresspercent] = useState(0);
 
     const userCheck = async () => {
         app.auth().onAuthStateChanged(async function (user) {
@@ -236,15 +238,23 @@ function ListItem() {
                     getDownloadURL(snapshot.ref).then((url) => {
                         console.log("Uploaded " + image.name);
                         tempArray.push(url);
+                        if (tempArray.length === images.length) {
+                            setListButton(true);
+                        }
                     });
                 })
                 .catch((error) => {
                     console.error("Upload failed", error);
-                });
+                })
+
+
+
+
         });
 
         setPhotoURLs(tempArray);
         // Now we have finished loading!
+
     };
 
     // OLD ATTEMPT
@@ -421,18 +431,20 @@ function ListItem() {
 
                         </Button>
 
-                        <Button
-                            size="large"
-                            variant="contained"
-                            style={{
-                                marginRight: "20px",
-                                maxWidth: "60%",
+                        {listButton ? (
+                            <Button
+                                size="large"
+                                variant="contained"
+                                style={{
+                                    marginRight: "20px",
+                                    maxWidth: "60%",
 
-                            }}
-                            onClick={() => ListItemToFireBase()}
-                        >
-                            List Item
-                        </Button>
+                                }}
+                                onClick={() => ListItemToFireBase()}
+                            >
+                                List Item
+                            </Button>
+                        ) : null}
 
                     </div>
                 </Container>
