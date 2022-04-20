@@ -168,6 +168,7 @@ function ListItem() {
     const [listButton, setListButton] = useState(false);
     const [progresspercent, setProgresspercent] = useState(0);
 
+
     const userCheck = async () => {
         app.auth().onAuthStateChanged(async function (user) {
             if (user) {
@@ -226,31 +227,40 @@ function ListItem() {
         // Boom now we are loading 
         console.log("Images to upload...");
         console.log(images);
+        const firestore = app.firestore();
+        const auth = getAuth();
+        const user = auth.currentUser;
 
         const storage = getStorage();
         const tempArray: any = []
 
-        images.map((image: File) => {
-            const imageRef = ref(storage, "images/" + image.name);
+        if (user != null) {
 
-            uploadBytesResumable(imageRef, image)
-                .then((snapshot) => {
-                    getDownloadURL(snapshot.ref).then((url) => {
-                        console.log("Uploaded " + image.name);
-                        tempArray.push(url);
-                        if (tempArray.length === images.length) {
-                            setListButton(true);
-                        }
-                    });
-                })
-                .catch((error) => {
-                    console.error("Upload failed", error);
-                })
+            images.map((image: File) => {
+                const imageRef = ref(storage, "images/" + user.uid + "/" + image.name);
+
+                uploadBytesResumable(imageRef, image)
+                    .then((snapshot) => {
+                        getDownloadURL(snapshot.ref).then((url) => {
+                            console.log("Uploaded " + image.name);
+                            tempArray.push(url);
+                            if (tempArray.length === images.length) {
+                                setListButton(true);
+                            }
+                        });
+                    })
+                    .catch((error) => {
+                        console.error("Upload failed", error);
+                    })
+            });
+        }
+        else {
+            alert("You must be logged in to upload photos");
+        }
 
 
 
 
-        });
 
         setPhotoURLs(tempArray);
         // Now we have finished loading!

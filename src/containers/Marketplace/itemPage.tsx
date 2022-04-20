@@ -21,10 +21,12 @@ import {
   CardActions,
   Button,
   TextField,
+  IconButton,
 } from "@mui/material";
 import app from "../../base";
 import { getDocs } from "firebase/firestore";
 import Footer from "../Shared/footer";
+import EmailIcon from '@mui/icons-material/Email';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -304,7 +306,17 @@ function ItemPage() {
                     Manage Listing
                   </Button>
                 </div>
-              ) : null}
+              ) : <div className={classes.signoutButtonContainer}>
+                <Button
+                  style={{ maxWidth: "255px" }}
+                  className={classes.outlined}
+                  variant="outlined"
+                //onClick={() => setOpenItemEdit(!openItemEdit)}  change functionality
+                >
+                  <EmailIcon />
+                  Email Lister
+                </Button>
+              </div>}
 
 
             </div>
