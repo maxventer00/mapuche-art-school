@@ -1,5 +1,5 @@
 import { createStyles, makeStyles } from "@mui/styles";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import {
   Typography,
   Button,
@@ -13,6 +13,10 @@ import {
   Grid,
   List,
   ListItem,
+  Input,
+  TextField,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
 import { useHistory } from "react-router";
 import marketplaceBackground from "../../images/marketplaceBackground.jpg";
@@ -25,10 +29,29 @@ import { width } from "@mui/system";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import placeholderImage from "../../images/profilePlaceholder.png";
+import SearchIcon from "@mui/icons-material/Search";
+import ClearIcon from "@mui/icons-material/Clear";
+import LoadingAnimation from "../LoadingAnimation";
 //import { getUserType } from "./FirebaseQuearys/MarketpalceQuearys";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
+    contained: {
+      color: "white",
+      boxShadow: "none",
+      borderWidth: "5px",
+      borderColor: "white",
+      fontFamily: "Lato",
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: "25px",
+      height: "55px",
+      marginTop: "20px",
+      "&:hover": {
+        backgroundColor: "#8A7866",
+        boxShadow: "none",
+      },
+    },
     h1_header: {
       fontSize: 48,
       color: "#ffffff",
@@ -127,6 +150,12 @@ const useStyles = makeStyles((theme) =>
         backgroundColor: "#8A7866",
       },
     },
+    searchBar: {
+      marginBottom: "65px",
+      backgroundColor: "white",
+      marginLeft: "8%",
+      marginRight: "8%",
+    },
   })
 );
 
@@ -142,15 +171,20 @@ function Marketplace() {
   }, []);
 
   const classes = useStyles();
-
   const history = useHistory();
-
   const [shopData, setShopData] = useState<any>([]);
+  const [loggedIn, setLoggedIn] = useState(true);
+  const [userInfo, setUserInfo] = useState<any>();
+  const [isCrafter, setIsCrafter] = useState(false);
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [searchResponse, setSearchResponse] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const firestore = app.firestore();
+  const collectionRef = firestore.collection("productData");
 
   const getData = async () => {
-    const firestore = app.firestore();
-
-    const collectionRef = firestore.collection("productData");
+    setIsLoading(true);
     const querySnapshot = await getDocs(collectionRef);
 
     querySnapshot.forEach((doc) => {
@@ -158,11 +192,9 @@ function Marketplace() {
         setShopData((arr: any) => [...arr, doc]);
       }
     });
-  };
 
-  const [loggedIn, setLoggedIn] = useState(true);
-  const [userInfo, setUserInfo] = useState<any>();
-  const [isCrafter, setIsCrafter] = useState(false);
+    setIsLoading(false);
+  };
 
   const userCheck = async () => {
     app.auth().onAuthStateChanged(async function (user) {
@@ -181,6 +213,143 @@ function Marketplace() {
       }
     });
   };
+
+  const searchItem = async () => {
+    setShopData([]);
+    setIsLoading(true);
+
+    const querySnapshot = await getDocs(collectionRef);
+
+    querySnapshot.forEach((doc) => {
+      let productTitle = doc.data().itemTitle;
+
+      if (productTitle === searchKeyword) {
+        if (shopData.includes(doc.data()) === false) {
+          setShopData((arr: any) => [...arr, doc]);
+        }
+      }
+
+      if (shopData.length === 0) {
+        setSearchResponse(
+          "Sorry no results for this searh keyword were found!"
+        );
+      }
+    });
+
+    setIsLoading(false);
+  };
+
+  const memoMap = useMemo(
+    () =>
+      shopData.map(
+        (
+          doc: any,
+          item: {
+            itemTitle: string | undefined;
+            itemDescription: string | undefined;
+            photoURL: string | undefined;
+            price: number | undefined;
+          }
+        ) => {
+          let id = doc.id;
+          item = doc.data();
+
+          return (
+            <>
+              <Grid
+                item
+                xs={2}
+                sm={4}
+                md={4}
+                key={id}
+                style={{
+                  marginBottom: "60px",
+                }}
+              >
+                <Card
+                  className={classes.listingCards}
+                  sx={{ borderRadius: 2 }}
+                  onClick={() =>
+                    history.push({
+                      pathname: `/marketplace/${id}`,
+                      state: { itemUid: id },
+                    })
+                  }
+                >
+                  <CardActionArea
+                    sx={{ display: "column", border: `5px solid white` }}
+                  >
+                    {item.photoURL ? (
+                      <CardMedia
+                        component="img"
+                        height="200"
+                        width="90"
+                        sx={{ borderRadius: 2 }}
+                        image={item.photoURL}
+                        alt="No Image Available"
+                      />
+                    ) : (
+                      <CardMedia
+                        component="img"
+                        height="200"
+                        width="90"
+                        sx={{
+                          borderRadius: 2,
+                          minHeight: 200,
+                          minWidth: 90,
+                        }}
+                        image={placeholderImage}
+                        alt="No Image Available"
+                      />
+                    )}
+
+                    <CardContent sx={{ flexDirection: "row" }}>
+                      <Grid container justifyContent="space-between">
+                        <Typography
+                          gutterBottom
+                          variant="h5"
+                          component="div"
+                          color="#AC5435"
+                        >
+                          {item.itemTitle}
+                        </Typography>
+                      </Grid>
+
+                      <Typography variant="body2" color="#AC5435" align="left">
+                        Price: ${item.price}
+                      </Typography>
+                      <CardActions sx={{ justifyContent: "end" }}>
+                        <Button
+                          size="small"
+                          color="secondary"
+                          variant="contained"
+                          onClick={() =>
+                            history.push({
+                              pathname: `/marketplace/${id}`,
+                              state: { itemId: id },
+                            })
+                          }
+                          sx={{ borderRadius: 5, maxHeight: 25 }}
+                        >
+                          VIEW
+                        </Button>
+                      </CardActions>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
+            </>
+          );
+        }
+      ),
+    [shopData]
+  );
+
+  useEffect(() => {
+    if (searchKeyword.length === 0) {
+      getData();
+    }
+  }, [searchKeyword]);
 
   useEffect(() => {
     getData();
@@ -217,8 +386,6 @@ function Marketplace() {
         </span>
       </Parallax>
 
-      {/* ADD SEACH OPTIONS HERE SOMEHOW */}
-
       <Container
         //disableGutters
         maxWidth={false}
@@ -243,129 +410,55 @@ function Marketplace() {
           </div>
         ) : null}
 
-        <div className={classes.filterContainer}></div>
+        <div className={classes.searchBar}>
+          <Button
+            className={classes.contained}
+            color="secondary"
+            variant="contained"
+            style={{ float: "right" }}
+            onClick={() => searchItem()}
+          >
+            Search!
+          </Button>
 
-        <Grid
-          container
-          spacing={5}
-          columns={{ xs: 4, sm: 10, md: 13, lg: 15, xl: 18 }}
-          justifyContent="flex-end"
-          alignItems="flex-start"
-          direction="row"
-          maxWidth={1300}
-          marginLeft="5%"
-          flexShrink={10}
-        >
-          {shopData.map(
-            (
-              doc: any,
-              item: {
-                itemTitle: string | undefined;
-                itemDescription: string | undefined;
-                photoURL: string | undefined;
-                price: number | undefined;
-              }
-            ) => {
-              let id = doc.id;
-              item = doc.data();
+          <TextField
+            style={{ width: "30%", float: "right", marginBottom: "25px" }}
+            placeholder="Search Items"
+            onChange={(e) => setSearchKeyword(e.target.value)}
+            value={searchKeyword}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={() => setSearchKeyword("")} edge="end">
+                    {searchKeyword.length > 0 ? <ClearIcon /> : null}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </div>
 
-              console.log("item : " + item.itemTitle);
-              console.log("id : " + id);
-              return (
-                <>
-                  <Grid
-                    item
-                    xs={2}
-                    sm={4}
-                    md={4}
-                    key={id}
-                    style={{
-                      marginBottom: "60px",
-                    }}
-                  >
-                    <Card
-                      className={classes.listingCards}
-                      sx={{ borderRadius: 2 }}
-                      onClick={() =>
-                        history.push({
-                          pathname: `/marketplace/${id}`,
-                          state: { itemUid: id },
-                        })
-                      }
-                    >
-                      <CardActionArea
-                        sx={{ display: "column", border: `5px solid white` }}
-                      >
-                        {item.photoURL ? (
-                          <CardMedia
-                            component="img"
-                            height="200"
-                            width="90"
-                            sx={{ borderRadius: 2 }}
-                            image={item.photoURL}
-                            alt="No Image Available"
-                          />
-                        ) : (
-                          <CardMedia
-                            component="img"
-                            height="200"
-                            width="90"
-                            sx={{
-                              borderRadius: 2,
-                              minHeight: 200,
-                              minWidth: 90,
-                            }}
-                            image={placeholderImage}
-                            alt="No Image Available"
-                          />
-                        )}
-
-                        <CardContent sx={{ flexDirection: "row" }}>
-                          <Grid container justifyContent="space-between">
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="div"
-                              color="#AC5435"
-                            >
-                              {item.itemTitle}
-                            </Typography>
-                          </Grid>
-
-                          <Typography
-                            variant="body2"
-                            color="#AC5435"
-                            align="left"
-                          >
-                            Price: ${item.price}
-                          </Typography>
-                          <CardActions sx={{ justifyContent: "end" }}>
-                            <Button
-                              size="small"
-                              color="secondary"
-                              variant="contained"
-                              onClick={() =>
-                                history.push({
-                                  pathname: `/marketplace/${id}`,
-                                  state: { itemId: id },
-                                })
-                              }
-                              sx={{ borderRadius: 5, maxHeight: 25 }}
-                            >
-                              VIEW
-                            </Button>
-                          </CardActions>
-                        </CardContent>
-                      </CardActionArea>
-                    </Card>
-                  </Grid>
-                </>
-              );
-            }
-          )}
-        </Grid>
-
-        <Footer />
+        {isLoading ? (
+          <LoadingAnimation zIndex={1} paddingBottom={40} />
+        ) : (
+          <Grid
+            style={{ marginTop: "40px" }}
+            container
+            spacing={4}
+            columns={{ xs: 4, sm: 10, md: 13, lg: 15, xl: 18 }}
+            justifyContent="center"
+            alignItems="center"
+            direction="row"
+            flexShrink={10}
+          >
+            {memoMap}
+          </Grid>
+        )}
       </Container>
     </>
   );
