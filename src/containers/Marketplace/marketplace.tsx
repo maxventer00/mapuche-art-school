@@ -223,7 +223,7 @@ function Marketplace() {
     querySnapshot.forEach((doc) => {
       let productTitle = doc.data().itemTitle;
 
-      if (productTitle === searchKeyword) {
+      if (productTitle.includes(searchKeyword)) {
         if (shopData.includes(doc.data()) === false) {
           setShopData((arr: any) => [...arr, doc]);
         }
