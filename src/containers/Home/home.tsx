@@ -12,6 +12,7 @@ import Navbar from "../Shared/Navbar";
 import { Typography, Button, TextField } from "@mui/material";
 import app from "../../base";
 import Footer from "../Shared/footer";
+import axios from "axios";
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -176,9 +177,7 @@ function Home() {
             </Button>
           </div>
         )}
-
       </Container>
-
     </>
   );
 }

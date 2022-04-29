@@ -5,6 +5,7 @@ import crafter from "../../images/crafter.png";
 import { useHistory } from "react-router";
 import Navbar from "../Shared/Navbar";
 import app from "../../base";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -122,11 +123,21 @@ export default function SignupCrafter() {
         // Update their display name
         await app.auth().onAuthStateChanged(function (user) {
           if (user) {
+            let crafterID = userID;
+
             user
               .updateProfile({
                 displayName: firstName + " " + lastName,
               })
-              .then(function () {
+              .then(async function () {
+                // Send out crafter approval emails
+                await axios.get(
+                  `https://us-central1-mapuche-art.cloudfunctions.net/sendUserConfirmationEmail?crafterEmail=${
+                    user.email
+                  }&crafterName=${
+                    firstName + " " + lastName
+                  }&crafterID=${crafterID}`
+                );
                 history.push("/signup/crafter/profile");
               });
           }

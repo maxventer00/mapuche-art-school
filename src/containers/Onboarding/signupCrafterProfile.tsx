@@ -201,6 +201,7 @@ export default function SignupCrafterProfile() {
   };
 
   const bounceUserProfile = async () => {
+    await delay(3000);
     try {
       // Update their profile pic url, location, bio
       await app.auth().onAuthStateChanged(function (user) {
