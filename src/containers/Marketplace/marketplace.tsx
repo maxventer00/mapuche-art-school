@@ -134,7 +134,7 @@ const useStyles = makeStyles((theme) =>
       margin: "auto",
     },
     outlined: {
-      backgroundColor: "#f2dfcd",
+      backgroundColor: "#AC5435",
       //color: "white",
       boxShadow: "none",
       borderWidth: "4px",
@@ -142,7 +142,7 @@ const useStyles = makeStyles((theme) =>
       fontFamily: "Lato",
       fontStyle: "normal",
       fontWeight: "bold",
-      fontSize: "25px",
+      fontSize: "45px",
       lineHeight: "30px",
       width: "500px",
       marginTop: "20px",
@@ -395,10 +395,11 @@ function Marketplace() {
         <h2 className={classes.description2}>
           Click on a listing to view more about it and purchase!
         </h2>
-        {isCrafter ? (
-          <div className={classes.listButton}>
+
+        <div className={classes.searchBar}>
+          {isCrafter ? (
             <Button
-              style={{ maxWidth: "155px" }}
+              style={{ maxWidth: "255px", float: "left", height: "55px" }}
               className={classes.outlined}
               variant="outlined"
               onClick={() => {
@@ -407,10 +408,8 @@ function Marketplace() {
             >
               List an Item
             </Button>
-          </div>
-        ) : null}
+          ) : null}
 
-        <div className={classes.searchBar}>
           <Button
             className={classes.contained}
             color="secondary"

@@ -21,6 +21,7 @@ import app from "../../base";
 import { getDocs } from "firebase/firestore";
 import allCraftersBanner from "../../images/allCraftersBanner.jpg";
 import { Parallax } from "react-parallax";
+import LoadingAnimation from "../LoadingAnimation";
 
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
@@ -127,7 +128,10 @@ function Crafters() {
   const [crafters, setCrafters] = useState<any>([]);
   const [crafterDetails, setCrafterDetails] = useState<any>([]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const getCrafters = async () => {
+    setIsLoading(true);
     if (crafters.length === 0) {
       const firestore = app.firestore();
 
@@ -138,6 +142,7 @@ function Crafters() {
         // Only add crafters
         if (
           doc.data().userType === "Crafter" &&
+          doc.data().crafterApproved &&
           crafters.includes(doc.data()) === false
         ) {
           setCrafters((arr: any) => [...arr, doc.data()]);
@@ -145,6 +150,7 @@ function Crafters() {
         }
       });
     }
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -181,64 +187,70 @@ function Crafters() {
           Click on a crafter to learn more about them and discover their art!
         </h2>
 
-        {crafterDetails.map((doc: any) => {
-          let crafter = doc.data();
-          let id = doc.id;
+        {isLoading ? (
+          <LoadingAnimation zIndex={1} paddingBottom={40} />
+        ) : (
+          <>
+            {crafterDetails.map((doc: any) => {
+              let crafter = doc.data();
+              let id = doc.id;
 
-          return (
-            <>
-              <div
-                className={classes.crafterDisplay}
-                onClick={() =>
-                  history.push({
-                    pathname: `/crafters/${id}`,
-                    state: { crafterID: id },
-                  })
-                }
-              >
-                <div className={classes.photoContainer}>
-                  {crafter.photoURL ? (
-                    <img
-                      src={crafter.photoURL}
-                      style={{
-                        maxWidth: 230,
-                        maxHeight: 230,
-                        marginBottom: 50,
-                        float: "left",
-                        height: "100%",
-                        width: "100%",
-                        objectFit: "cover",
-                      }}
-                    />
-                  ) : (
-                    <img
-                      src={profilePlaceholder}
-                      style={{
-                        maxWidth: 230,
-                        maxHeight: 230,
-                        marginBottom: 50,
-                        float: "left",
-                      }}
-                    />
-                  )}
-                </div>
-                <h2 className={classes.crafterHeading}>{crafter.name}</h2>
-                <h2
-                  className={classes.crafterHeading}
-                  style={{ display: "inline" }}
-                >
-                  Location:{"  "}
-                </h2>
-                <h2
-                  className={classes.crafterHeading}
-                  style={{ fontWeight: 500, display: "inline" }}
-                >
-                  {crafter.userLocation}
-                </h2>
-              </div>
-            </>
-          );
-        })}
+              return (
+                <>
+                  <div
+                    className={classes.crafterDisplay}
+                    onClick={() =>
+                      history.push({
+                        pathname: `/crafters/${id}`,
+                        state: { crafterID: id },
+                      })
+                    }
+                  >
+                    <div className={classes.photoContainer}>
+                      {crafter.photoURL ? (
+                        <img
+                          src={crafter.photoURL}
+                          style={{
+                            maxWidth: 230,
+                            maxHeight: 230,
+                            marginBottom: 50,
+                            float: "left",
+                            height: "100%",
+                            width: "100%",
+                            objectFit: "cover",
+                          }}
+                        />
+                      ) : (
+                        <img
+                          src={profilePlaceholder}
+                          style={{
+                            maxWidth: 230,
+                            maxHeight: 230,
+                            marginBottom: 50,
+                            float: "left",
+                          }}
+                        />
+                      )}
+                    </div>
+                    <h2 className={classes.crafterHeading}>{crafter.name}</h2>
+                    <h2
+                      className={classes.crafterHeading}
+                      style={{ display: "inline" }}
+                    >
+                      Location:{"  "}
+                    </h2>
+                    <h2
+                      className={classes.crafterHeading}
+                      style={{ fontWeight: 500, display: "inline" }}
+                    >
+                      {crafter.userLocation}
+                    </h2>
+                  </div>
+                </>
+              );
+            })}
+          </>
+        )}
       </Container>
     </>
   );

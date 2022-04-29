@@ -167,6 +167,7 @@ export default function Login() {
               fontSize: 25,
               marginTop: 100,
               marginBottom: 30,
+              color: "white",
             }}
           >
             Haven’t made an account yet?

@@ -120,7 +120,7 @@ const useStyles = makeStyles((theme) =>
       float: "left",
       borderWidth: "2px",
       borderStyle: "solid",
-      borderColor: "#B8A000",
+      borderColor: "#FFFFFF",
       marginBottom: 35,
     },
   })
@@ -144,6 +144,10 @@ export default function SignupCrafterProfile() {
 
   const [photoURL, setPhotoURL] = useState("");
   const [image, setImage] = useState<File | undefined>();
+
+  const [finishedSignup, setFinishedSignup] = useState(false);
+  const delay = (ms: number | undefined) =>
+    new Promise((res) => setTimeout(res, ms));
 
   const uploadPhoto = async () => {
     if (image == null) return;
@@ -184,9 +188,10 @@ export default function SignupCrafterProfile() {
                 photoURL: photoURL,
                 userType: "Crafter",
                 name: name,
+                crafterApproved: false,
               });
 
-              history.push("/");
+              setFinishedSignup(true);
             });
         }
       });
@@ -195,9 +200,39 @@ export default function SignupCrafterProfile() {
     }
   };
 
+  const bounceUserProfile = async () => {
+    try {
+      // Update their profile pic url, location, bio
+      await app.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          if (user.photoURL) {
+            history.push("/");
+          }
+        }
+      });
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const redirTimer = async () => {
+    await delay(5000);
+    history.push("/");
+  };
+
   useEffect(() => {
     uploadPhoto();
   }, [image]);
+
+  useEffect(() => {
+    if (finishedSignup === true) {
+      redirTimer();
+    }
+  }, [finishedSignup]);
+
+  useEffect(() => {
+    bounceUserProfile();
+  }, []);
 
   return (
     <>
@@ -208,144 +243,159 @@ export default function SignupCrafterProfile() {
           Crafter Signup
         </Typography>
 
-        <div className={classes.profileConatiner}>
-          {photoURL ? (
-            <div className={classes.photoContainer}>
-              <img
-                src={photoURL}
-                style={{
-                  maxWidth: 20,
-                  maxHeight: 230,
-                  marginBottom: 50,
-                  float: "left",
-                  height: "100%",
-                  width: "100%",
-                  objectFit: "cover",
-                }}
-              />
-            </div>
-          ) : (
-            <div className={classes.photoContainer}>
-              <img
-                src={profilePlaceholder}
-                style={{
-                  maxWidth: 260,
-                  maxHeight: 230,
-                  marginBottom: 50,
-                }}
-              />
-            </div>
-          )}
-
+        {finishedSignup ? (
           <Typography
+            className={classes.subtitle}
             variant="h4"
-            style={{
-              fontSize: 22,
-              float: "left",
-              marginLeft: 20,
-              color: "white",
-            }}
+            paddingBottom="700px"
+            marginX="10%"
           >
-            Profile Picture
+            Thanks for signing up! You will be able to list products and have
+            your profile viewed after the administrators have approved your
+            account!
           </Typography>
+        ) : (
+          <>
+            <div className={classes.profileConatiner}>
+              {photoURL ? (
+                <div className={classes.photoContainer}>
+                  <img
+                    src={photoURL}
+                    style={{
+                      maxWidth: 230,
+                      maxHeight: 230,
+                      marginBottom: 50,
+                      float: "left",
+                      height: "100%",
+                      width: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+              ) : (
+                <div className={classes.photoContainer}>
+                  <img
+                    src={profilePlaceholder}
+                    style={{
+                      maxWidth: 260,
+                      maxHeight: 230,
+                      marginBottom: 50,
+                    }}
+                  />
+                </div>
+              )}
 
-          <Button
-            size="large"
-            variant="outlined"
-            style={{
-              marginTop: 90,
-              maxWidth: 250,
-              maxHeight: 40,
-              display: "flex",
-              float: "left",
-              marginLeft: 20,
-            }}
-            component="label"
-          >
-            Choose Image
-            <input
-              type="file"
-              hidden
-              onChange={(e) => {
-                if (e.target.files !== null) {
-                  setImage(e.target.files[0]);
-                }
-              }}
-            />
-          </Button>
-        </div>
+              <Typography
+                variant="h4"
+                style={{
+                  fontSize: 22,
+                  float: "left",
+                  marginLeft: 20,
+                  color: "white",
+                }}
+              >
+                Profile Picture
+              </Typography>
 
-        <div className={classes.fieldContainer}>
-          <TextField
-            className={classes.textFldAbout}
-            label="About Yourself"
-            variant="filled"
-            InputProps={{
-              classes: {
-                input: classes.input,
-              },
-            }}
-            InputLabelProps={{
-              classes: {
-                root: classes.label,
-              },
-            }}
-            value={userBio}
-            onChange={(e) => setUserBio(e.target.value)}
-          />
+              <Button
+                size="large"
+                variant="outlined"
+                style={{
+                  marginTop: 90,
+                  maxWidth: 250,
+                  maxHeight: 40,
+                  display: "flex",
+                  float: "left",
+                  marginLeft: 20,
+                }}
+                component="label"
+              >
+                Choose Image
+                <input
+                  type="file"
+                  hidden
+                  onChange={(e) => {
+                    if (e.target.files !== null) {
+                      setImage(e.target.files[0]);
+                    }
+                  }}
+                />
+              </Button>
+            </div>
 
-          <TextField
-            className={classes.textFld}
-            label="Location"
-            variant="filled"
-            InputProps={{
-              classes: {
-                input: classes.input,
-              },
-            }}
-            InputLabelProps={{
-              classes: {
-                root: classes.label,
-              },
-            }}
-            value={userLocation}
-            onChange={(e) => setUserLocation(e.target.value)}
-          />
+            <div className={classes.fieldContainer}>
+              <TextField
+                className={classes.textFldAbout}
+                label="About Yourself"
+                variant="filled"
+                InputProps={{
+                  classes: {
+                    input: classes.input,
+                  },
+                }}
+                InputLabelProps={{
+                  classes: {
+                    root: classes.label,
+                  },
+                }}
+                value={userBio}
+                onChange={(e) => setUserBio(e.target.value)}
+              />
 
-          <div className={classes.buttonContainer}>
-            <Button
-              size="large"
-              variant="outlined"
-              className={classes.outlined}
-              onClick={() => history.push("/signup")}
-              style={{
-                marginTop: 50,
-                maxWidth: 300,
-                display: "flex",
-                float: "left",
-                marginRight: 10,
-              }}
-            >
-              Back
-            </Button>
+              <TextField
+                className={classes.textFld}
+                label="Location"
+                variant="filled"
+                InputProps={{
+                  classes: {
+                    input: classes.input,
+                  },
+                }}
+                InputLabelProps={{
+                  classes: {
+                    root: classes.label,
+                  },
+                }}
+                value={userLocation}
+                onChange={(e) => setUserLocation(e.target.value)}
+              />
 
-            <Button
-              size="large"
-              variant="contained"
-              className={classes.contained}
-              onClick={() => SignUp()}
-              style={{
-                marginTop: 50,
-                maxWidth: 300,
-                display: "flex",
-                float: "right",
-                marginLeft: 10,
-              }}
-            >
-              Submit details
-            </Button>
-          </div>
-        </div>
+              <div className={classes.buttonContainer}>
+                <Button
+                  size="large"
+                  variant="outlined"
+                  className={classes.outlined}
+                  onClick={() => history.push("/signup")}
+                  style={{
+                    marginTop: 50,
+                    maxWidth: 300,
+                    display: "flex",
+                    float: "left",
+                    marginRight: 10,
+                  }}
+                >
+                  Back
+                </Button>
+
+                <Button
+                  size="large"
+                  variant="contained"
+                  className={classes.contained}
+                  onClick={() => SignUp()}
+                  style={{
+                    marginTop: 50,
+                    maxWidth: 300,
+                    display: "flex",
+                    float: "right",
+                    marginLeft: 10,
+                  }}
+                >
+                  Submit details
+                </Button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

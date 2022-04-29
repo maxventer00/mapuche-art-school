@@ -1,7 +1,9 @@
 //imports
+import React, { useState, useEffect } from "react";
 import { AppBar, Avatar, Link, Toolbar, Typography } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import { NavLink } from "react-router-dom";
+import app from "../../base";
 
 //creating an instance of makestyles function
 const useStyles = makeStyles(
@@ -68,6 +70,23 @@ const useStyles = makeStyles(
 
 //components and functions here
 export default function Navbar() {
+  const [loggedIn, setLoggedIn] = useState(true);
+
+  const userCheck = () => {
+    app.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        // User is signed in.
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
+    });
+  };
+
+  useEffect(() => {
+    userCheck();
+  }, []);
+
   const classes = useStyles();
 
   return (
@@ -182,6 +201,25 @@ export default function Navbar() {
         >
           Marketplace
         </NavLink>
+
+        {loggedIn ? null : (
+          <NavLink
+            className={classes.link}
+            to="/login"
+            style={(isActive) => ({
+              color: isActive ? "#0039A6" : "white",
+              textDecoration: "none",
+              "text-shadow": isActive
+                ? "0 0 10px #FFFFFF"
+                : "0px 2px 9px rgba(0,0,0,0.72)",
+              textShadowColour: isActive
+                ? "2px 2px 20px #FFFFFF"
+                : "0 0 15px rgba(255,255,255,.5)",
+            })}
+          >
+            Login/Sign Up
+          </NavLink>
+        )}
       </Toolbar>
     </AppBar>
   );

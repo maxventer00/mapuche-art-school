@@ -116,6 +116,7 @@ export default function SignupCrafter() {
           .set({
             name: firstName + " " + lastName,
             userType: "Crafter",
+            crafterApproved: false,
           });
 
         // Update their display name
