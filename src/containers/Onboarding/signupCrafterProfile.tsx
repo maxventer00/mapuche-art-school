@@ -18,6 +18,7 @@ import {
 } from "firebase/storage";
 import app from "../../base";
 import Navbar from "../Shared/Navbar";
+import { getAuth } from "firebase/auth";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -149,21 +150,42 @@ export default function SignupCrafterProfile() {
   const delay = (ms: number | undefined) =>
     new Promise((res) => setTimeout(res, ms));
 
+  const userCheck = async () => {
+    app.auth().onAuthStateChanged(async function (user) {
+      if (user) {
+        // Get user type
+        const firestore = app.firestore();
+        await firestore
+          .collection("userData")
+          .doc(user.uid)
+          .get()
+      }
+    });
+  };
+  useEffect(() => {
+    userCheck();
+  }, []);
+
   const uploadPhoto = async () => {
     if (image == null) return;
+    const firestore = app.firestore();
+    const auth = getAuth();
+    const user = auth.currentUser;
 
     const storage = getStorage();
-    const imageRef = ref(storage, "images/" + image.name);
+    if (user != null) {
+      const imageRef = ref(storage, "images/" + user.uid + "/" + image.name);
 
-    uploadBytesResumable(imageRef, image)
-      .then((snapshot) => {
-        getDownloadURL(snapshot.ref).then((url) => {
-          setPhotoURL(url);
+      uploadBytesResumable(imageRef, image)
+        .then((snapshot) => {
+          getDownloadURL(snapshot.ref).then((url) => {
+            setPhotoURL(url);
+          });
+        })
+        .catch((error) => {
+          console.error("Upload failed", error);
         });
-      })
-      .catch((error) => {
-        console.error("Upload failed", error);
-      });
+    };
   };
 
   const SignUp = async () => {
