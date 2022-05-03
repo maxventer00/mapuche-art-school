@@ -70,10 +70,6 @@ export default function LanguageMenu() {
     setAnchorEl(null);
   };
 
-  useEffect(() => {
-    console.log(language);
-  }, [language]);
-
   return (
     <div>
       <Button
