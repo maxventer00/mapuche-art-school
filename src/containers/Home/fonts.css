@@ -2,3 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=ABeeZee:ital@1&family=Beth+Ellen&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Proza+Libre:wght@600;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+
+#map {
+    height: 100%;
+  }

@@ -1,17 +1,14 @@
 import { createStyles, makeStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import homapageBackground from "../../images/homeBackground.png";
+import Paper from '@mui/material/Paper';
 import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
 import "../../containers/Home/fonts.css";
-import { height } from "@mui/system";
-import IconButton from "@mui/material/IconButton";
 import Navbar from "../Shared/Navbar";
-import { Typography, Button, TextField } from "@mui/material";
+import { Button} from "@mui/material";
 import app from "../../base";
-import Footer from "../Shared/footer";
+import { Parallax } from "react-parallax";
+import cholchol from "../../images/cholchol.jpg";
+import eljoven from "../../images/eljoven.png";
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -62,6 +59,13 @@ const useStyles = makeStyles((theme) =>
       paddingTop: 150,
       fontFamily: "Prata",
       marginTop: 0,
+      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
+    },
+    pictureheader: {
+      fontSize: 48,
+      color: "#000000",
+      fontFamily: "Prata",
     },
     description: {
       color: "#ffffff",
@@ -77,6 +81,23 @@ const useStyles = makeStyles((theme) =>
       textOverflow: "ellipsis",
       wordWrap: "break-word",
       fontFamily: "ABeeZee, sans-serif",
+      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
+    },
+    dummytext: {
+      color: "#000000",
+      margin: "auto",
+      textAlign: "center",
+      marginTop: 20,
+      fontSize: 18,
+      display: "inline-block",
+      width: 800,
+      padding: 15,
+      paddingBottom: 55,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      wordWrap: "break-word",
+      fontFamily: "ABeeZee, sans-serif",
     },
     contactUs: {
       width: 200,
@@ -85,14 +106,33 @@ const useStyles = makeStyles((theme) =>
       textTransform: "none",
       marginTop: 30,
     },
-    container: {
-      backgroundImage: "url(" + homapageBackground + ")",
+    imgcontainer: {
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
-      height: 1180,
+      height: 900,
+      paddingTop: 20,
+      maxHeight: 900,
+      backgroundImage: "url(" + cholchol + ")",
+      backgroundColor: "rgba(100, 100, 100, 0.9)",
+      backgroundBlendMode: "multiply",
+    },
+    pictures: {
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      height: 600,
+      width: "75%",
+      textAlign: "center",
+      marginLeft: "13%",
+      backgroundImage: "url(" + eljoven + ")",
+    },
+    maincontainer: {
+      backgroundColor: "#F7ECE1",
+      backgroundPosition: "center",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
       padding: 0,
-      maxHeight: 1180,
+      minHeight: "100%",
     },
     tint: {
       maxHeight: 1180,
@@ -103,11 +143,8 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const theme = createTheme();
-
 function NagcheHistory() {
   const classes = useStyles();
-  const history = useHistory();
 
   const [loggedIn, setLoggedIn] = useState(true);
 
@@ -135,10 +172,10 @@ function NagcheHistory() {
       <Container
         disableGutters
         maxWidth={false}
-        className={`${classes.container}`}
+        className={`${classes.maincontainer}`}
       >
         <Navbar />
-
+        <Parallax bgImage={cholchol} strength={600}>
         {loggedIn ? (
           <div className={classes.signoutButtonContainer}>
             <Button
@@ -153,26 +190,25 @@ function NagcheHistory() {
         ) : null}
 
         <h1 className={`${classes.h1_header}`}>Nagche History</h1>
-
-        <iframe
-          src="https://www.google.com/maps/d/embed?mid=18sEmxSI0fk5Mk6k3iPVTeL6uPk2N1Q22&ehbc=2E312F"
-          width="640"
-          height="480"
-        ></iframe>
-
-        {loggedIn ? null : (
-          <div>
-            <Button
-              className={classes.contained}
-              variant="contained"
-              onClick={() => history.push("/marketplace")}
-            >
-              Login/Sign up
-            </Button>
-          </div>
-        )}
+        <span className={`${classes.description}`}>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with
+          the release of Letraset sheets containing Lorem Ipsum passages, and
+          more recently with desktop publishing software like Aldus PageMaker
+          including versions of Lorem Ipsum.
+        </span>
+         </Parallax>
+         <h1 className={`${classes.pictureheader}`}>Lautaro</h1>
+        <Paper square={true} elevation={24} className={`${classes.pictures}`}>
+        </Paper>
+        <span className={`${classes.dummytext}`}>
+        Lautaro was the son of a Mapuche lonko (a chief who holds office during peacetime) called, Curiñancu (Kurüñamku in the Mapuche language, Mapudungun, ‘aguilucho negro’ meaning ‘black harrier’) and was born in 1533. He lived a normal life until, at the age of 11, he was captured by the Spanish and forced into servitude by Don Pedro de Valdivia and became his personal servant. Since it was difficult for the Spaniards to pronounce Lautaro’s original name, Leftraru, they gave him the name of Felipe Lautaro. Don Pedro de Valdivia was a Spanish conqueror of Chile and then became the captain general of Chile.
+        </span>
       </Container>
-      <Footer />
     </>
   );
 }
