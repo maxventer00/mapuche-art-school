@@ -4,6 +4,8 @@ import { AppBar, Avatar, Link, Toolbar, Typography } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import { NavLink } from "react-router-dom";
 import app from "../../base";
+import BasicMenu from "./LanguageMenu";
+import LanguageMenu from "./LanguageMenu";
 
 //creating an instance of makestyles function
 const useStyles = makeStyles(
@@ -23,7 +25,6 @@ const useStyles = makeStyles(
         diplay: "flex",
         justifyContent: "space-between",
         backgroundColor: "transparent",
-        marginRight: "6%",
         color: "transparent",
       },
       flag: {
@@ -220,6 +221,7 @@ export default function Navbar() {
             Login/Sign Up
           </NavLink>
         )}
+        <LanguageMenu />
       </Toolbar>
     </AppBar>
   );
