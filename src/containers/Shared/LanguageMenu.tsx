@@ -4,6 +4,8 @@ import Button from "@mui/material/Button";
 import Menu, { MenuProps } from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useContext, useEffect, useState } from "react";
+import { LanguageContext } from "../../App";
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
@@ -49,14 +51,28 @@ const StyledMenu = styled((props: MenuProps) => (
 }));
 
 export default function LanguageMenu() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const language: any = useContext(LanguageContext);
+  const [selectionValue, setSelectionValue] = useState<String | null>(null);
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
+  const handleSelect = (e: any) => {
+    language.setLanguage(e.target.innerText);
+    handleClose();
+  };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+    console.log(language);
+  }, [language]);
 
   return (
     <div>
@@ -82,13 +98,13 @@ export default function LanguageMenu() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={(e) => handleSelect(e)} disableRipple>
           English
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={(e) => handleSelect(e)} disableRipple>
           Spanish
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={(e) => handleSelect(e)} disableRipple>
           Mapudungun
         </MenuItem>
       </StyledMenu>

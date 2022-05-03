@@ -1,11 +1,11 @@
 //imports
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { AppBar, Avatar, Link, Toolbar, Typography } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import { NavLink } from "react-router-dom";
 import app from "../../base";
-import BasicMenu from "./LanguageMenu";
 import LanguageMenu from "./LanguageMenu";
+import { LanguageContext } from "../../App";
 
 //creating an instance of makestyles function
 const useStyles = makeStyles(
@@ -72,6 +72,7 @@ const useStyles = makeStyles(
 //components and functions here
 export default function Navbar() {
   const [loggedIn, setLoggedIn] = useState(true);
+  const language: any = useContext(LanguageContext);
 
   const userCheck = () => {
     app.auth().onAuthStateChanged(function (user) {
@@ -86,6 +87,7 @@ export default function Navbar() {
 
   useEffect(() => {
     userCheck();
+    console.log(language.language);
   }, []);
 
   const classes = useStyles();
