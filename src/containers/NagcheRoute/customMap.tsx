@@ -23,10 +23,10 @@ function CustomMap({ google, locations = [] }: any) {
         lat: -38.2555834745345,
         lng: -72.88456333399817,
       }}
-      zoom={(locations.length = 10)}
+      //   zoom={(locations.length = 10)}
     >
       {locations.map((coords: any) => (
-        <Marker position={coords} />
+        <Marker /* position={coords} */ />
       ))}
     </Map>
   );
