@@ -347,12 +347,12 @@ function Marketplace() {
 
   useEffect(() => {
     if (searchKeyword.length === 0) {
+      setShopData([]);
       getData();
     }
   }, [searchKeyword]);
 
   useEffect(() => {
-    getData();
     userCheck();
   }, []);
 
