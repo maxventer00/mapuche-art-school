@@ -6,6 +6,8 @@ import { NavLink } from "react-router-dom";
 import app from "../../base";
 import LanguageMenu from "./LanguageMenu";
 import { LanguageContext } from "../../App";
+import DrawerNavbar from "./DrawerNavbar";
+import { Box } from "@mui/system";
 
 //creating an instance of makestyles function
 const useStyles = makeStyles(
@@ -23,7 +25,7 @@ const useStyles = makeStyles(
       },
       toolbar: {
         diplay: "flex",
-        justifyContent: "space-between",
+        justifyContent: "flex-start",
         backgroundColor: "transparent",
         color: "transparent",
       },
@@ -34,6 +36,7 @@ const useStyles = makeStyles(
           height: "3rem",
           width: "3rem",
         },
+        paddingRight: "100px",
       },
       link: {
         fontFamily: "Proza Libre",
@@ -51,6 +54,7 @@ const useStyles = makeStyles(
         },
       },
       linkMain: {
+        float: "left",
         "margin-top": ".1rem!important",
         fontFamily: "Prata!important",
         "margin-left": "-5rem!important",
@@ -65,6 +69,9 @@ const useStyles = makeStyles(
         [theme.breakpoints.down("md")]: {
           display: "none",
         },
+      },
+      drawer: {
+        marginLeft: "auto",
       },
     })
 );
@@ -108,7 +115,7 @@ export default function Navbar() {
             Mapuche Arts & Crafts School
           </Link>
         </Typography>
-        <NavLink
+        {/* <NavLink
           className={classes.link}
           to="/home"
           style={(isActive) => ({
@@ -223,7 +230,11 @@ export default function Navbar() {
             Login/Sign Up
           </NavLink>
         )}
-        <LanguageMenu />
+        <LanguageMenu /> */}
+
+        <div className={classes.drawer}>
+          <DrawerNavbar />
+        </div>
       </Toolbar>
     </AppBar>
   );
