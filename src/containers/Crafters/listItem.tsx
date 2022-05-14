@@ -14,6 +14,7 @@ import app from "../../base";
 import Navbar from "../Shared/Navbar";
 import profilePlaceholder from "../../images/profilePlaceholder.png";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Carousel from "react-material-ui-carousel";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -81,10 +82,13 @@ const useStyles = makeStyles((theme) =>
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
       height: 600,
-      width: "75%",
+      width: "95%",
       textAlign: "center",
       margin: "auto",
-
+    },
+    image: {
+      margin: "auto",
+      content: "contain",
     },
     inputs: {
       backgroundPosition: "center",
@@ -98,12 +102,19 @@ const useStyles = makeStyles((theme) =>
     buttons: {
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
-      height: "7%",
+      height: "6%",
       width: "50%",
       textAlign: "center",
       margin: "auto",
       marginTop: "110px",
-      backgroundColor: "transparent",
+
+    },
+    carousel: {
+      margin: "auto",
+      height: "100%",
+      width: "100%",
+      content: "contain",
+
     },
   })
 );
@@ -271,14 +282,88 @@ function ListItem() {
               <Item>
 
                 <Paper square={true} elevation={24} className={`${classes.pictures}`}>
-                  <img
-                    src={photoURLs[0]}
+
+                  <Carousel
+                    className={classes.carousel}
+                    navButtonsAlwaysVisible={true}
+                  >
+                    {
+                      photoURLs.map(
+                        (
+                          url: string, index: number
+                        ) => {
+                          return (
+
+                            <img
+                              key={index}
+                              src={url}
+                              alt="item"
+                              className={`${classes.image}`}
+                              style={{
+                                height: "100%",
+                                width: "100%",
+
+                              }}
+                            />
+
+                          );
+                        }
+                      )
+
+                    }
+                  </Carousel>
+
+
+
+
+
+
+
+
+
+
+
+                  {/* Loop hough photoURLs Array */}
+                  {/* <img
+                    src={
+                      photoURLs[0]}
+
                     style={{
-                      maxHeight: 600,
-                      maxWidth: "50%",
+                      maxHeight: 200,
+                      maxWidth: "20%",
                       marginTop: "10%",
                     }}
                   />
+                  <img
+                    src={
+                      photoURLs[1]}
+
+                    style={{
+                      maxHeight: 200,
+                      maxWidth: "20%",
+                      marginTop: "10%",
+                    }}
+                  />
+                  <img
+                    src={
+                      photoURLs[2]}
+
+                    style={{
+                      maxHeight: 200,
+                      maxWidth: "20%",
+                      marginTop: "10%",
+                    }}
+                  />
+                  <img
+                    src={
+                      photoURLs[3]}
+
+                    style={{
+                      maxHeight: 200,
+                      maxWidth: "20%",
+                      marginTop: "10%",
+                    }}
+                  /> */}
                 </Paper>
 
 
@@ -368,15 +453,16 @@ function ListItem() {
               </Item>
               <Item className={`${classes.buttons}`}>
                 <Button
-                  size="large"
+                  size="medium"
                   variant="contained"
                   component="label"
                   style={{
-                    marginRight: "20px",
-                    maxWidth: "50%",
+                    fontSize: "13px",
+                    maxWidth: "60%",
+                    paddingLeft: "20px",
                   }}
                 >
-                  #Browse File
+                  #Browse Photos
                   <input
                     type="file"
                     multiple
@@ -399,12 +485,13 @@ function ListItem() {
 
                 {listButton ? (
                   <Button
-                    size="large"
+                    size="medium"
+
                     variant="contained"
                     style={{
-                      
+                      fontSize: "13px",
                       maxWidth: "50%",
-                      
+
                     }}
                     onClick={() => ListItemToFireBase()}
                   >
