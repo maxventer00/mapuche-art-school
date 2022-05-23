@@ -71,6 +71,12 @@ export default function TemporaryDrawer() {
         </ListItem>
         <ListItem button>
           <ListItemText
+            primary="Nagche Route"
+            onClick={() => history.push("/nagcheRoute")}
+          />
+        </ListItem>
+        <ListItem button>
+          <ListItemText
             primary="Crafters"
             onClick={() => history.push("/crafters")}
           />
