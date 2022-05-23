@@ -12,7 +12,7 @@ import Navbar from "../Shared/Navbar";
 import { Typography, Button, TextField } from "@mui/material";
 import app from "../../base";
 import Footer from "../Shared/footer";
-import axios from "axios";
+
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -62,6 +62,8 @@ const useStyles = makeStyles((theme) =>
       padding: 15,
       paddingTop: 120,
       fontFamily: "Prata",
+      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
     },
     description: {
       color: "#ffffff",
@@ -77,6 +79,8 @@ const useStyles = makeStyles((theme) =>
       textOverflow: "ellipsis",
       wordWrap: "break-word",
       fontFamily: "ABeeZee, sans-serif",
+      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
     },
     contactUs: {
       width: 200,

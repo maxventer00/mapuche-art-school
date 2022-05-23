@@ -22,6 +22,7 @@ const StyledMenu = styled((props: MenuProps) => (
   />
 ))(({ theme }) => ({
   "& .MuiPaper-root": {
+    fontFamily: "Proza Libre",
     borderRadius: 6,
     marginTop: theme.spacing(1),
     minWidth: 180,

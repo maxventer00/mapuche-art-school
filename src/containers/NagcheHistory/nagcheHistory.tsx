@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) =>
     },
     pictureheader: {
       fontSize: 48,
-      color: "#000000",
+      color: "#AC5435",
       fontFamily: "Prata",
     },
     description: {
@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) =>
       textShadowColor: "0 0 5px rgba(255,255,255,.5)",
     },
     dummytext: {
-      color: "#000000",
+      color: "#AC5435",
       margin: "auto",
       textAlign: "center",
       marginTop: 20,

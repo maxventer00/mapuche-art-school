@@ -73,7 +73,6 @@ const useStyles = makeStyles((theme) =>
       fontSize: 48,
       color: "#AC5435",
       fontFamily: "Prata",
-
     },
     description: {
       color: "#ffffff",

@@ -21,7 +21,6 @@ type Anchor = "top" | "left" | "bottom" | "right";
 export default function TemporaryDrawer() {
   const [loggedIn, setLoggedIn] = useState(true);
   const language: any = useContext(LanguageContext);
-
   const history = useHistory();
 
   const [state, setState] = React.useState({
@@ -44,11 +43,17 @@ export default function TemporaryDrawer() {
 
   const list = (anchor: Anchor) => (
     <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      sx={{
+      color: "#fff",
+      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
+      width: anchor === "top" || anchor === "bottom" ? "auto" : 225,
+      marginTop: "3.5rem", }}
       role="presentation"
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
+      
+      <List sx={{bgcolor: "transparent" }}>
         <ListItem button>
           <ListItemText primary="Home" onClick={() => history.push("/home")} />
         </ListItem>
