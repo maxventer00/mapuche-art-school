@@ -15,6 +15,7 @@ import Navbar from "../Shared/Navbar";
 import profilePlaceholder from "../../images/profilePlaceholder.png";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Carousel from "react-material-ui-carousel";
+import { useLocation } from "react-router-dom";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -139,7 +140,11 @@ function ListItem() {
   const [itemStock, setItemStock] = useState("");
   const [listingUser, setListingUser] = useState<any>();
   const [listButton, setListButton] = useState(false);
-  const [progresspercent, setProgresspercent] = useState(0);
+
+
+  const location = useLocation<any>();
+  const [listingUserName, setListingUserName] = useState<any>();
+  
 
   const userCheck = async () => {
     app.auth().onAuthStateChanged(async function (user) {
@@ -161,6 +166,10 @@ function ListItem() {
     userCheck();
   }, []);
 
+  {
+    /* Make sure they are a crafter */
+  }
+
   useEffect(() => {
     if (listingUser) {
       if (listingUser.crafterApproved === false) {
@@ -172,16 +181,28 @@ function ListItem() {
     }
   }, [listingUser]);
 
-  {
-    /* Make sure they are a crafter */
-  }
   const ListItemToFireBase = async () => {
     try {
       const firestore = app.firestore();
       const auth = getAuth();
       const user = auth.currentUser;
+      // get name
+      const crafterName = firestore
+        .collection("userData")
+        .doc(user.uid)
+        .get()
+        .then(snapshot => {
+          const data = snapshot.data();
+          if (!data) {
+            //No data returned
+          } else {
+            setListingUserName(data.name);
+          }
+        });
+
 
       if (user) {
+
         const res = await firestore.collection("productData").add({
           itemTitle: itemTitle,
           price: price,
@@ -189,6 +210,7 @@ function ListItem() {
           itemStock: itemStock,
           photoURL: photoURLs,
           listingUser: user.uid,
+          listingUserName: listingUserName,
         });
         console.log(res.id);
         firestore

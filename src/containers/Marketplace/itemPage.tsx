@@ -156,6 +156,7 @@ function ItemPage() {
   const history = useHistory();
 
   const [itemData, setItemData] = useState<any>([]);
+  const [crafterData, setCrafterData] = useState<any>([]);
   const location = useLocation<any>();
   const [userID, setUserID] = useState<any>();
   let itemId = "";
@@ -174,6 +175,8 @@ function ItemPage() {
   const [price, setPrice] = useState(itemData.itemPrice);
   const [itemDescription, setItemDescription] = useState(itemData.itemDescription);
   const [itemStock, setItemStock] = useState(itemData.itemStock);
+
+  const crafterID = location.state.crafterID;
 
 
   const userCheck = () => {
@@ -222,6 +225,7 @@ function ItemPage() {
     window.scrollTo(0, 0);
     userCheck();
     getItemData();
+    
   }, []);
 
   useEffect(() => {
@@ -276,7 +280,7 @@ function ItemPage() {
                       </Typography>
                       <br />
                       <Typography variant="body2" color="#AC5435" align="left">
-                        listed by: {itemData.listingUser}
+                        listed by: {crafterData.name}
                       </Typography>
                       <CardActions sx={{ justifyContent: "end" }}>
                         <Button
@@ -413,9 +417,6 @@ function ItemPage() {
           </div>
 
         </Container>
-
-
-        <Footer />
 
       </Container>
     </>
