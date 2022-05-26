@@ -186,6 +186,8 @@ function ListItem() {
       const firestore = app.firestore();
       const auth = getAuth();
       const user = auth.currentUser;
+      if(user)
+      {
       // get name
       const crafterName = firestore
         .collection("userData")
@@ -223,6 +225,7 @@ function ListItem() {
       } else {
         // No user is signed in.
       }
+    }
     } catch (error) {
       alert(error);
     }
