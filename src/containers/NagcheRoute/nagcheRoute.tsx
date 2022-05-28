@@ -60,6 +60,8 @@ const useStyles = makeStyles((theme) =>
       paddingTop: 150,
       fontFamily: "Prata",
       marginTop: 0,
+      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
     },
     description: {
       color: "#ffffff",
