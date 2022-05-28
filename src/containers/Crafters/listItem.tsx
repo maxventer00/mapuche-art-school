@@ -139,12 +139,13 @@ function ListItem() {
   const [itemDescription, setItemDescription] = useState("");
   const [itemStock, setItemStock] = useState("");
   const [listingUser, setListingUser] = useState<any>();
+  const [listingUserEmail, setListingUserEmail] = useState<any>();
   const [listButton, setListButton] = useState(false);
 
 
   const location = useLocation<any>();
-  const [listingUserName, setListingUserName] = useState<any>();
-  
+  // const [listingUserName, setListingUserName] = useState<any>();
+
 
   const userCheck = async () => {
     app.auth().onAuthStateChanged(async function (user) {
@@ -186,25 +187,8 @@ function ListItem() {
       const firestore = app.firestore();
       const auth = getAuth();
       const user = auth.currentUser;
-      if(user)
-      {
-      // get name
-      const crafterName = firestore
-        .collection("userData")
-        .doc(user.uid)
-        .get()
-        .then(snapshot => {
-          const data = snapshot.data();
-          if (!data) {
-            //No data returned
-          } else {
-            setListingUserName(data.name);
-          }
-        });
-
 
       if (user) {
-
         const res = await firestore.collection("productData").add({
           itemTitle: itemTitle,
           price: price,
@@ -212,7 +196,7 @@ function ListItem() {
           itemStock: itemStock,
           photoURL: photoURLs,
           listingUser: user.uid,
-          listingUserName: listingUserName,
+          listingUserEmail: user.email,
         });
         console.log(res.id);
         firestore
@@ -225,7 +209,6 @@ function ListItem() {
       } else {
         // No user is signed in.
       }
-    }
     } catch (error) {
       alert(error);
     }

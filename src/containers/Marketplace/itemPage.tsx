@@ -4,7 +4,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import "../../containers/Home/fonts.css";
@@ -175,6 +175,7 @@ function ItemPage() {
   const [price, setPrice] = useState(itemData.itemPrice);
   const [itemDescription, setItemDescription] = useState(itemData.itemDescription);
   const [itemStock, setItemStock] = useState(itemData.itemStock);
+  const [listerEmail, setListerEmail] = useState(itemData.listerEmail);
 
   const crafterID = location.state.crafterID;
 
@@ -184,6 +185,8 @@ function ItemPage() {
       if (user) {
         // User is signed in.
         setUserID(user.uid);
+        setListerEmail(user.email);
+        console.log("user email: " + user.email);
         setLoggedIn(true);
       } else {
         setLoggedIn(false);
@@ -221,11 +224,15 @@ function ItemPage() {
   };
 
 
+
+
+
   useEffect(() => {
     window.scrollTo(0, 0);
     userCheck();
     getItemData();
-    
+    console.log("user email: " + listerEmail);
+
   }, []);
 
   useEffect(() => {
@@ -315,11 +322,14 @@ function ItemPage() {
                   style={{ maxWidth: "255px" }}
                   className={classes.outlined}
                   variant="outlined"
-                //onClick={() => setOpenItemEdit(!openItemEdit)}  change functionality
+                  onClick={() => window.location.href = 'mailto:' + itemData.listingUserEmail + '?subject=I want to buy your item!'}
+
+
                 >
                   <EmailIcon />
-                  Email Lister
+                  Email Seller
                 </Button>
+
               </div>}
 
 
