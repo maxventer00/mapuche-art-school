@@ -322,7 +322,7 @@ function ItemPage() {
                   style={{ maxWidth: "255px" }}
                   className={classes.outlined}
                   variant="outlined"
-                  onClick={() => window.location.href = 'mailto:' + itemData.listingUserEmail + '?subject=I want to buy your item!'}
+                  onClick={() => window.location.href = 'mailto:' + itemData.listingUserEmail + '?subject=I want to buy your item, ' + itemData.itemTitle + '&body=Hi, I would like to buy your item, ' + itemData.itemTitle}
 
 
                 >
