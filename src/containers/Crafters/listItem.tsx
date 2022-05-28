@@ -15,6 +15,7 @@ import Navbar from "../Shared/Navbar";
 import profilePlaceholder from "../../images/profilePlaceholder.png";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Carousel from "react-material-ui-carousel";
+import { useLocation } from "react-router-dom";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -138,8 +139,13 @@ function ListItem() {
   const [itemDescription, setItemDescription] = useState("");
   const [itemStock, setItemStock] = useState("");
   const [listingUser, setListingUser] = useState<any>();
+  const [listingUserEmail, setListingUserEmail] = useState<any>();
   const [listButton, setListButton] = useState(false);
-  const [progresspercent, setProgresspercent] = useState(0);
+
+
+  const location = useLocation<any>();
+  // const [listingUserName, setListingUserName] = useState<any>();
+
 
   const userCheck = async () => {
     app.auth().onAuthStateChanged(async function (user) {
@@ -161,6 +167,10 @@ function ListItem() {
     userCheck();
   }, []);
 
+  {
+    /* Make sure they are a crafter */
+  }
+
   useEffect(() => {
     if (listingUser) {
       if (listingUser.crafterApproved === false) {
@@ -172,9 +182,6 @@ function ListItem() {
     }
   }, [listingUser]);
 
-  {
-    /* Make sure they are a crafter */
-  }
   const ListItemToFireBase = async () => {
     try {
       const firestore = app.firestore();
@@ -189,6 +196,7 @@ function ListItem() {
           itemStock: itemStock,
           photoURL: photoURLs,
           listingUser: user.uid,
+          listingUserEmail: user.email,
         });
         console.log(res.id);
         firestore

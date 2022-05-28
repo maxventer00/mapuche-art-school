@@ -4,7 +4,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import "../../containers/Home/fonts.css";
@@ -156,6 +156,7 @@ function ItemPage() {
   const history = useHistory();
 
   const [itemData, setItemData] = useState<any>([]);
+  const [crafterData, setCrafterData] = useState<any>([]);
   const location = useLocation<any>();
   const [userID, setUserID] = useState<any>();
   let itemId = "";
@@ -174,6 +175,9 @@ function ItemPage() {
   const [price, setPrice] = useState(itemData.itemPrice);
   const [itemDescription, setItemDescription] = useState(itemData.itemDescription);
   const [itemStock, setItemStock] = useState(itemData.itemStock);
+  const [listerEmail, setListerEmail] = useState(itemData.listerEmail);
+
+  const crafterID = location.state.crafterID;
 
 
   const userCheck = () => {
@@ -181,6 +185,8 @@ function ItemPage() {
       if (user) {
         // User is signed in.
         setUserID(user.uid);
+        setListerEmail(user.email);
+        console.log("user email: " + user.email);
         setLoggedIn(true);
       } else {
         setLoggedIn(false);
@@ -218,10 +224,15 @@ function ItemPage() {
   };
 
 
+
+
+
   useEffect(() => {
     window.scrollTo(0, 0);
     userCheck();
     getItemData();
+    console.log("user email: " + listerEmail);
+
   }, []);
 
   useEffect(() => {
@@ -276,7 +287,7 @@ function ItemPage() {
                       </Typography>
                       <br />
                       <Typography variant="body2" color="#AC5435" align="left">
-                        listed by: {itemData.listingUser}
+                        listed by: {crafterData.name}
                       </Typography>
                       <CardActions sx={{ justifyContent: "end" }}>
                         <Button
@@ -311,11 +322,14 @@ function ItemPage() {
                   style={{ maxWidth: "255px" }}
                   className={classes.outlined}
                   variant="outlined"
-                //onClick={() => setOpenItemEdit(!openItemEdit)}  change functionality
+                  onClick={() => window.location.href = 'mailto:' + itemData.listingUserEmail + '?subject=I want to buy your item, ' + itemData.itemTitle + '&body=Hi, I would like to buy your item, ' + itemData.itemTitle}
+
+
                 >
                   <EmailIcon />
-                  Email Lister
+                  Email Seller
                 </Button>
+
               </div>}
 
 
@@ -413,9 +427,6 @@ function ItemPage() {
           </div>
 
         </Container>
-
-
-        <Footer />
 
       </Container>
     </>
