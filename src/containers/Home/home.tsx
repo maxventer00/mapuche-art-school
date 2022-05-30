@@ -159,15 +159,10 @@ function Home() {
         <h1 className={`${classes.h1_header}`}>Mapuche Art School</h1>
 
         <span className={`${classes.description}`}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum. Yup
+        <p>- The School of Arts and Crafts was created in 2018, promoted by CONADI as one of the components of the Puel Nahuelbuta Indigenous Development Area. </p>
+        <p>- The area covered corresponds to the Nagche Territory, which includes the Mapuche communities of Chol Chol, Galvarino, Traiguén, Lumaco, Los Sauces and Purén.</p>
+        <p>- Silversmithing, textiles, pottery, basketry,carving.</p>
+
         </span>
 
         {loggedIn ? null : (
