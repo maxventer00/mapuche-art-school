@@ -161,6 +161,21 @@ const useStyles = makeStyles((theme) =>
       marginLeft: "8%",
       marginRight: "8%",
     },
+    silversmithing:{
+      display:"none"
+    },
+    textiles:{
+      display:"none"
+    },
+    basketry:{
+      display:"none"
+    },
+    pottery:{
+      display:"none"
+    },
+    woodcarving:{
+      display:"none"
+    },
   })
 );
 
@@ -378,7 +393,8 @@ function Marketplace() {
       <Parallax bgImage={marketplaceBackground} strength={600}>
         <h1 className={classes.h1_header}>Marketplace</h1>
         <MarketplaceBar />
-        <span style={{ display: "none"}}className={classes.description}>
+        
+        <span id = "silversmithing" style={{ display: "none"}}className={classes.silversmithing}>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
@@ -389,7 +405,7 @@ function Marketplace() {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
         </span>
-        <span style={{ display: "none"}}className={classes.description}>
+        <span id = "textiles" style={{ display: "none"}}className={classes.textiles}>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
@@ -400,7 +416,7 @@ function Marketplace() {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
         </span>
-        <span style={{ display: "none"}}className={classes.description}>
+        <span id = "basketry" style={{ display: "none"}}className={classes.basketry}>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
@@ -411,7 +427,18 @@ function Marketplace() {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
         </span>
-        <span style={{ display: "none"}}className={classes.description}>
+        <span id = "pottery" style={{ display: "none"}}className={classes.pottery}>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book. It has survived not only
+          five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged. It was popularised in the 1960s with
+          the release of Letraset sheets containing Lorem Ipsum passages, and
+          more recently with desktop publishing software like Aldus PageMaker
+          including versions of Lorem Ipsum.
+        </span>
+        <span id = "woodcarving" style={{ display: "none"}}className={classes.woodcarving}>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
