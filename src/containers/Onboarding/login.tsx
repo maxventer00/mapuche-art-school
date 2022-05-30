@@ -2,7 +2,7 @@ import { Typography, Button, TextField, Container } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import loginBackground from "../../images/loginBackground.png";
+import homapageBackground from "../../images/homeBackground.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import app from "../../base";
 import Navbar from "../Shared/Navbar";
@@ -65,8 +65,10 @@ const useStyles = makeStyles((theme) =>
       paddingTop: 70,
     },
     bgImg: {
-      backgroundImage: "url(" + loginBackground + ")",
-      height: "100%",
+      backgroundImage: "url(" + homapageBackground + ")",
+      backgroundPosition: "center",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
     },
     textFld: {
       width: 500,

@@ -1,7 +1,7 @@
 import { Typography, Button, TextField, createTheme } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import React, { useCallback, useEffect, useState } from "react";
-import customer from "../../images/customer.png";
+import customer from "../../images/customer.jpg";
 import { useHistory, withRouter } from "react-router";
 import Navbar from "../Shared/Navbar";
 import app from "../../base";
@@ -45,6 +45,8 @@ const useStyles = makeStyles((theme) =>
     },
     backgroundImg: {
       backgroundImage: "url(" + customer + ")",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
     },
     subtitle: {
       fontSize: 48,
