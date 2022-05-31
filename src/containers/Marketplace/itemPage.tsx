@@ -210,6 +210,8 @@ function ItemPage() {
     }
   };
 
+
+
   const updateListing = () => {
     const firestore = app.firestore();
     const itemRef = firestore.collection("productData").doc(itemId);
@@ -287,7 +289,7 @@ function ItemPage() {
                       </Typography>
                       <br />
                       <Typography variant="body2" color="#AC5435" align="left">
-                        listed by: {crafterData.name}
+                        listed by: {itemData.listingUserName}
                       </Typography>
                       <CardActions sx={{ justifyContent: "end" }}>
                         <Button

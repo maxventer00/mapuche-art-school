@@ -197,6 +197,7 @@ function ListItem() {
           photoURL: photoURLs,
           listingUser: user.uid,
           listingUserEmail: user.email,
+          listingUserName: user.displayName,
         });
         console.log(res.id);
         firestore
@@ -206,6 +207,10 @@ function ListItem() {
             itemsListed: listingUser.itemsListed + 1,
             itemsListedId: listingUser.itemsListedId + "," + res.id,
           });
+          alert(
+            "Item has been sucessfully listed! You can now view your listing in the marketplace!"
+          );
+          history.push("/marketplace");
       } else {
         // No user is signed in.
       }
