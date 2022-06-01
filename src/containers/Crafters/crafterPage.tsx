@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) =>
     bio: {
       fontFamily: "Prata",
       color: "#AC5435",
-      fontSize: 25,
+      fontSize: 15,
     },
     location: {
       fontFamily: "Prata",
