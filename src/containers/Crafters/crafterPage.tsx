@@ -41,7 +41,11 @@ const useStyles = makeStyles((theme) =>
     bio: {
       fontFamily: "Prata",
       color: "#AC5435",
-      fontSize: 15,
+      fontSize: 18,
+      width: "72%",
+      height: "10%",
+      marginLeft: "25%",
+      textAlign: "left",
     },
     location: {
       fontFamily: "Prata",
