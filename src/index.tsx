@@ -6,6 +6,24 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
+    <style>{"\
+    .css-1160xiw-MuiPaper-root-MuiDrawer-paper {\
+      background: 0 !important;\
+      top: 4rem !important;\
+      box-shadow: none !important;\
+    }\
+    .css-1vfk20j-MuiTypography-root {\
+      margin: 0 !important;\
+      font-family: Lato,Prata !important;\
+      font-weight: 500 !important;\
+      font-size: 1.2rem !important;\
+      line-height: 1.5 !important;\
+      display: block !important;\
+    }\
+    .css-185z3ai-MuiPaper-root {\
+      margin-bottom: 0.75% !important;\
+    }\
+    "}</style>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
