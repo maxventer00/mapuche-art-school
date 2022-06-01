@@ -148,21 +148,15 @@ const useStyles = makeStyles((theme) =>
 const theme = createTheme();
 
 function ItemPage() {
-  let myHeaders = new Headers();
-  myHeaders.append("apikey", "nTP3CtpU299252QthkvXRhbcNi7Jq9Zq");
-
   const classes = useStyles();
   const history = useHistory();
 
   const [itemData, setItemData] = useState<any>([]);
   const [crafterData, setCrafterData] = useState<any>([]);
   const location = useLocation<any>();
-  const [userID, setUserID] = useState<any>();
-  let itemId = "";
+  let itemID = location.state.itemID;
 
-  if (location.state) {
-    itemId = location.state.itemUid;
-  }
+  const [userID, setUserID] = useState<any>();
 
   const [loggedIn, setLoggedIn] = useState(true);
   const [userInfo, setUserInfo] = useState<any>();
@@ -203,10 +197,10 @@ function ItemPage() {
   const getItemData = () => {
     const firestore = app.firestore();
 
-    if (itemId) {
+    if (itemID) {
       const itemInfo = firestore
         .collection("productData")
-        .doc(itemId)
+        .doc(itemID)
         .get()
         .then((snapshot) => setItemData(snapshot.data()));
     } else {
@@ -216,7 +210,7 @@ function ItemPage() {
 
   const updateListing = () => {
     const firestore = app.firestore();
-    const itemRef = firestore.collection("productData").doc(itemId);
+    const itemRef = firestore.collection("productData").doc(itemID);
 
     itemRef.update({
       itemTitle: itemTitle,

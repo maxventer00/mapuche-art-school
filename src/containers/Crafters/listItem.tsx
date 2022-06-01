@@ -191,23 +191,24 @@ function ListItem() {
       const firestore = app.firestore();
       const auth = getAuth();
       const user = auth.currentUser;
-      let userName; 
-
+      let userName;
 
       if (user) {
-        await firestore.collection("userData").get().then((snapshot) => {
-          let serviceCostTotal = 0;
-          snapshot.forEach((doc) => {
-            if(doc.id == user.uid)
-            {
-              userName = doc.data().name;
-              
-            }
-          
-          })
-          // Do whatever you want with serviceCostTotal
-     });
-        const res = await firestore.collection("productData").add({
+        await firestore
+          .collection("userData")
+          .get()
+          .then((snapshot) => {
+            let serviceCostTotal = 0;
+            snapshot.forEach((doc) => {
+              if (doc.id == user.uid) {
+                userName = doc.data().name;
+              }
+            });
+            // Do whatever you want with serviceCostTotal
+          });
+        const res = firestore.collection("productData").doc();
+
+        res.set({
           itemTitle: itemTitle,
           price: price,
           itemDescription: itemDescription,
@@ -216,6 +217,7 @@ function ListItem() {
           listingUser: user.uid,
           listingUserEmail: user.email,
           listingUserName: userName,
+          itemID: res.id,
         });
         console.log(res.id);
         firestore
