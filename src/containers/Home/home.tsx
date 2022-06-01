@@ -156,7 +156,7 @@ function Home() {
           </div>
         ) : null}
 
-        <h1 className={`${classes.h1_header}`}>Mapuche Art School</h1>
+        <h1 className={`${classes.h1_header}`}>Nagche Arts & Crafts school</h1>
 
         <span className={`${classes.description}`}>
         <p>- The School of Arts and Crafts was created in 2018, promoted by CONADI as one of the components of the Puel Nahuelbuta Indigenous Development Area. </p>
