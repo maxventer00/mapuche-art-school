@@ -112,7 +112,7 @@ export default function Navbar() {
         </Link>
         <Typography className={classes.linkMain}>
           <Link href={"/home"} underline="none" color="white">
-            Mapuche Arts & Crafts School
+            Nagche Arts & Crafts School
           </Link>
         </Typography>
         {/* <NavLink

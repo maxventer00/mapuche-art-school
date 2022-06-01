@@ -162,20 +162,20 @@ const useStyles = makeStyles((theme) =>
       marginLeft: "8%",
       marginRight: "8%",
     },
-    silversmithing:{
-      display:"none"
+    silversmithing: {
+      display: "none",
     },
-    textiles:{
-      display:"none"
+    textiles: {
+      display: "none",
     },
-    basketry:{
-      display:"none"
+    basketry: {
+      display: "none",
     },
-    pottery:{
-      display:"none"
+    pottery: {
+      display: "none",
     },
-    woodcarving:{
-      display:"none"
+    woodcarving: {
+      display: "none",
     },
   })
 );
@@ -271,10 +271,11 @@ function Marketplace() {
             itemDescription: string | undefined;
             photoURL: string | undefined;
             price: number | undefined;
+            itemID: string | undefined;
           }
         ) => {
-          let id = doc.id;
           item = doc.data();
+          let id = item.itemID;
 
           return (
             <>
@@ -294,7 +295,7 @@ function Marketplace() {
                   onClick={() =>
                     history.push({
                       pathname: `/marketplace/${id}`,
-                      state: { itemUid: id },
+                      state: { itemID: id },
                     })
                   }
                 >
@@ -348,7 +349,7 @@ function Marketplace() {
                           onClick={() =>
                             history.push({
                               pathname: `/marketplace/${id}`,
-                              state: { itemId: id },
+                              state: { itemID: id },
                             })
                           }
                           sx={{ borderRadius: 5, maxHeight: 25 }}
@@ -395,8 +396,12 @@ function Marketplace() {
       <Parallax bgImage={marketplaceBackground} strength={600}>
         <h1 className={classes.h1_header}>Marketplace</h1>
         <MarketplaceBar />
-        
-        <span id = "silversmithing" style={{ display: "none"}}className={classes.silversmithing}>
+
+        <span
+          id="silversmithing"
+          style={{ display: "none" }}
+          className={classes.silversmithing}
+        >
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
@@ -407,7 +412,11 @@ function Marketplace() {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
         </span>
-        <span id = "textiles" style={{ display: "none"}}className={classes.textiles}>
+        <span
+          id="textiles"
+          style={{ display: "none" }}
+          className={classes.textiles}
+        >
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
@@ -418,7 +427,11 @@ function Marketplace() {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
         </span>
-        <span id = "basketry" style={{ display: "none"}}className={classes.basketry}>
+        <span
+          id="basketry"
+          style={{ display: "none" }}
+          className={classes.basketry}
+        >
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
@@ -429,7 +442,11 @@ function Marketplace() {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
         </span>
-        <span id = "pottery" style={{ display: "none"}}className={classes.pottery}>
+        <span
+          id="pottery"
+          style={{ display: "none" }}
+          className={classes.pottery}
+        >
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
@@ -440,7 +457,11 @@ function Marketplace() {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
         </span>
-        <span id = "woodcarving" style={{ display: "none"}}className={classes.woodcarving}>
+        <span
+          id="woodcarving"
+          style={{ display: "none" }}
+          className={classes.woodcarving}
+        >
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and

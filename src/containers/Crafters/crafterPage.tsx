@@ -15,7 +15,19 @@ import "../../containers/Home/fonts.css";
 import { height, textAlign } from "@mui/system";
 import IconButton from "@mui/material/IconButton";
 import Navbar from "../Shared/Navbar";
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, List, ListItem, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Grid,
+  List,
+  ListItem,
+  TextField,
+  Typography,
+} from "@mui/material";
 import profilePlaceholder from "../../images/profilePlaceholder.png";
 import app from "../../base";
 import { getDocs } from "firebase/firestore";
@@ -23,7 +35,6 @@ import crafterBanner from "../../images/crafterBanner.jpg";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Carousel from "react-material-ui-carousel";
-
 
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
@@ -41,7 +52,11 @@ const useStyles = makeStyles((theme) =>
     bio: {
       fontFamily: "Prata",
       color: "#AC5435",
-      fontSize: 25,
+      fontSize: 18,
+      width: "72%",
+      height: "10%",
+      marginLeft: "25%",
+      textAlign: "left",
     },
     location: {
       fontFamily: "Prata",
@@ -170,8 +185,6 @@ const useStyles = makeStyles((theme) =>
       color: "F7ECE1",
       marginBottom: "20px",
     },
-
-
   })
 );
 
@@ -195,7 +208,7 @@ function CraftersPage() {
 
   const [blogPosts, setBlogPosts] = useState<any>([]);
   const [userProducts, setUserProducts] = useState<any>([]);
-
+  const [setUserProductDetails, setUserProductsDetails] = useState<any>([]);
 
   const userCheck = () => {
     app.auth().onAuthStateChanged(function (user) {
@@ -231,8 +244,6 @@ function CraftersPage() {
     });
   };
 
-
-
   const getUsersProducts = async () => {
     if (userProducts.length === 0) {
       const firestore = app.firestore();
@@ -251,13 +262,11 @@ function CraftersPage() {
     }
   };
 
-
-
-
   const submitPost = () => {
     const current = new Date();
-    const date = `${current.getDate()}/${current.getMonth() + 1
-      }/${current.getFullYear()}`;
+    const date = `${current.getDate()}/${
+      current.getMonth() + 1
+    }/${current.getFullYear()}`;
 
     const firestore = app.firestore();
 
@@ -437,90 +446,84 @@ function CraftersPage() {
         >
           Products For Sale
         </h1>
-        <Carousel
-          next={(next, active) => console.log(`we left ${active}, and are now at ${next}`)}
-          prev={(prev, active) => console.log(`we left ${active}, and are now at ${prev}`)}
-          className={classes.carousel}
-          navButtonsAlwaysVisible={true}
-        >
-          {
-            userProducts.map(
-              (
+        <Carousel className={classes.carousel} navButtonsAlwaysVisible={true}>
+          {userProducts.map(
+            (item: {
+              itemTitle: string | undefined;
+              itemDescription: string | undefined;
+              photoURL: string | undefined;
+              price: number | undefined;
+              itemID: string | undefined;
+            }) => {
+              let id = item.itemID;
 
-                item: {
-                  itemTitle: string | undefined;
-                  itemDescription: string | undefined;
-                  photoURL: string | undefined;
-                  price: number | undefined;
-                }
-              ) => {
-
-
-                return (
-                  <>
-                    <ListItem>
-                      <Card
-                        className={classes.listingCards}
-                        sx={{ borderRadius: 5 }}
-
+              return (
+                <>
+                  <ListItem>
+                    <Card
+                      className={classes.listingCards}
+                      sx={{ borderRadius: 5 }}
+                    >
+                      <CardActionArea
+                        sx={{ display: "column", border: `5px solid white` }}
                       >
-                        <CardActionArea
-                          sx={{ display: "column", border: `5px solid white` }}
+                        <CardMedia
+                          component="img"
+                          height="200"
+                          width="90"
+                          sx={{ borderRadius: 5 }}
+                          image={item.photoURL}
+                          alt="No Image Available"
+                        />
+                        <CardContent
+                          sx={{ flexDirection: "row" }}
+                          onClick={() =>
+                            history.push({
+                              pathname: `/marketplace/${id}`,
+                              state: { itemID: id },
+                            })
+                          }
                         >
-                          <CardMedia
-                            component="img"
-                            height="200"
-                            width="90"
-                            sx={{ borderRadius: 5 }}
-                            image={item.photoURL}
-                            alt="No Image Available"
-                          />
-                          <CardContent sx={{ flexDirection: "row" }}>
-                            <Grid container justifyContent="space-between">
-                              <Typography
-                                gutterBottom
-                                variant="h5"
-                                component="div"
-                                color="#AC5435"
-                              >
-                                {item.itemTitle}
-                              </Typography>
-                            </Grid>
-
+                          <Grid container justifyContent="space-between">
                             <Typography
-                              variant="body2"
+                              gutterBottom
+                              variant="h5"
+                              component="div"
                               color="#AC5435"
-                              align="left"
                             >
-                              Price: ${item.price}
+                              {item.itemTitle}
                             </Typography>
-                            <CardActions sx={{ justifyContent: "end" }}>
-                              <Button
-                                size="small"
-                                color="secondary"
-                                variant="contained"
+                          </Grid>
 
-                                sx={{ borderRadius: 5, maxHeight: 25 }}
-                              >
-                                VIEW
-                              </Button>
-                            </CardActions>
-                          </CardContent>
-                        </CardActionArea>
-                      </Card>
-                    </ListItem>
-                  </>
-                );
-              }
-            )
-
-          }
+                          <Typography
+                            variant="body2"
+                            color="#AC5435"
+                            align="left"
+                          >
+                            Price: ${item.price}
+                          </Typography>
+                          <CardActions sx={{ justifyContent: "end" }}>
+                            <Button
+                              size="small"
+                              color="secondary"
+                              variant="contained"
+                              // push to item listing
+                              sx={{ borderRadius: 5, maxHeight: 25 }}
+                            >
+                              VIEW
+                            </Button>
+                          </CardActions>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </ListItem>
+                </>
+              );
+            }
+          )}
         </Carousel>
-
       </div>
-
     </>
-
   );
 }
 
