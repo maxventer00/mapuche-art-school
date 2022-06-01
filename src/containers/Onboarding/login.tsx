@@ -2,7 +2,7 @@ import { Typography, Button, TextField, Container } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import homapageBackground from "../../images/homeBackground.png";
+import homepic from "../../images/Homepic.png";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import app from "../../base";
 import Navbar from "../Shared/Navbar";
@@ -26,6 +26,8 @@ const useStyles = makeStyles((theme) =>
         backgroundColor: "#8A7866",
         boxShadow: "none",
       },
+      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
     },
     outlined: {
       backgroundColor: "transparent",
@@ -48,6 +50,8 @@ const useStyles = makeStyles((theme) =>
       fontSize: 48,
       paddingTop: "250px",
       color: "white",
+      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
     },
     smallBody: {
       fontSize: 22,
@@ -55,6 +59,8 @@ const useStyles = makeStyles((theme) =>
       textDecoration: "underline",
       color: "white",
       paddingBottom: 25,
+      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
     },
     fieldContainer: {
       maxWidth: 500,
@@ -63,9 +69,11 @@ const useStyles = makeStyles((theme) =>
       marginRight: "auto",
       paddingBottom: 80,
       paddingTop: 70,
+      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
     },
     bgImg: {
-      backgroundImage: "url(" + homapageBackground + ")",
+      backgroundImage: "url(" + homepic + ")",
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
@@ -78,6 +86,8 @@ const useStyles = makeStyles((theme) =>
       marginRight: "auto",
       marginBottom: 30,
       fontSize: 35,
+      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
     },
     input: {
       color: "#FFFFFF",
@@ -86,6 +96,8 @@ const useStyles = makeStyles((theme) =>
     label: {
       color: "#767676",
       fontSize: 25,
+      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
     },
   })
 );

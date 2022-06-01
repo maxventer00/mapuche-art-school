@@ -24,7 +24,7 @@ function CustomMap({ google, locations = [] }: any) {
         lat: -38.2555834745345,
         lng: -72.88456333399817,
       }}
-      // zoom={(locations.length = 10)} // add zoom?: any ..to index.d.ts, go to type definition for initialCenter and add it below that.
+       //zoom={(locations.length = 10)} // add zoom?: any ..to index.d.ts, go to type definition for initialCenter and add it below that.
     ></Map>
   );
 }

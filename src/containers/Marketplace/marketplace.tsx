@@ -336,7 +336,7 @@ function Marketplace() {
                       </Grid>
 
                       <Typography variant="body2" color="#AC5435" align="left">
-                        Price: ${item.price}
+                      Precio: ${item.price}
                       </Typography>
                       <CardActions sx={{ justifyContent: "end" }}>
                         <Button
@@ -351,7 +351,7 @@ function Marketplace() {
                           }
                           sx={{ borderRadius: 5, maxHeight: 25 }}
                         >
-                          VIEW
+                          Ver
                         </Button>
                       </CardActions>
                     </CardContent>
@@ -391,64 +391,8 @@ function Marketplace() {
       <Navbar />
 
       <Parallax bgImage={marketplaceBackground} strength={600}>
-        <h1 className={classes.h1_header}>Marketplace</h1>
+        <h1 className={classes.h1_header}>Mercado</h1>
         <MarketplaceBar />
-        
-        <span id = "silversmithing" style={{ display: "none"}}className={classes.silversmithing}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
-        </span>
-        <span id = "textiles" style={{ display: "none"}}className={classes.textiles}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
-        </span>
-        <span id = "basketry" style={{ display: "none"}}className={classes.basketry}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
-        </span>
-        <span id = "pottery" style={{ display: "none"}}className={classes.pottery}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
-        </span>
-        <span id = "woodcarving" style={{ display: "none"}}className={classes.woodcarving}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
-        </span>
       </Parallax>
 
       <Container
@@ -456,9 +400,9 @@ function Marketplace() {
         maxWidth={false}
         className={`${classes.marketContainer}`}
       >
-        <h1 className={classes.subtitle}>Marketplace</h1>
+        <h1 className={classes.subtitle}>Mercado</h1>
         <h2 className={classes.description2}>
-          Click on a listing to view more about it and purchase!
+         Haga clic en un ítem para saber más sobre él y comprarlo!
         </h2>
 
         <div className={classes.searchBar}>
@@ -471,7 +415,7 @@ function Marketplace() {
                 history.push("/listitem");
               }}
             >
-              List an Item
+              Vender un ítem
             </Button>
           ) : null}
 
@@ -482,12 +426,12 @@ function Marketplace() {
             style={{ float: "right" }}
             onClick={() => searchItem()}
           >
-            Search!
+            Busque en
           </Button>
 
           <TextField
             style={{ width: "30%", float: "right", marginBottom: "25px" }}
-            placeholder="Search Items"
+            placeholder="Buscar un ítem"
             onChange={(e) => setSearchKeyword(e.target.value)}
             value={searchKeyword}
             InputProps={{

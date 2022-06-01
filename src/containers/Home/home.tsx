@@ -2,7 +2,7 @@ import { createStyles, makeStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import homapageBackground from "../../images/homeBackground.png";
+import homepic from "../../images/Homepic.png";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import "../../containers/Home/fonts.css";
@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme) =>
       marginTop: 30,
     },
     container: {
-      backgroundImage: "url(" + homapageBackground + ")",
+      backgroundImage: "url(" + homepic + ")",
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
@@ -156,12 +156,12 @@ function Home() {
           </div>
         ) : null}
 
-        <h1 className={`${classes.h1_header}`}>Mapuche Art School</h1>
+        <h1 className={`${classes.h1_header}`}>Nagche Artes y Oficios Escuela</h1>
 
         <span className={`${classes.description}`}>
-        <p>- The School of Arts and Crafts was created in 2018, promoted by CONADI as one of the components of the Puel Nahuelbuta Indigenous Development Area. </p>
-        <p>- The area covered corresponds to the Nagche Territory, which includes the Mapuche communities of Chol Chol, Galvarino, Traiguén, Lumaco, Los Sauces and Purén.</p>
-        <p>- Silversmithing, textiles, pottery, basketry,carving.</p>
+        <p>La Escuela de Artes y Oficios fue creada el año 2018, impulsada desde CONADI como uno de los componentes del Área de Desarrollo Indígena Puel Nahuelbuta.</p>
+        <p>La zona comprendida corresponde al Territorio Nagche, la cual abarca las comunidades mapuche de Chol Chol, Galvarino, Traiguén, Lumaco, Los Sauces y Purén.</p>
+        <p>Platería mapuche, telar mapuche, alfarería mapuche, cestería mapuche y trabajos en madera.</p>
 
         </span>
 

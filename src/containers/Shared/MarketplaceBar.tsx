@@ -304,63 +304,64 @@ export default function MarketplaceBar() {
           <Link onClick={() => {
               silversmith();
             }}>
-            Silversmithing
+            platero
           </Link>
         </Typography>
         <Typography className={classes.link}>
         <Link onClick={() => {
               textiles();
             }}>
-            Textiles
+            Tejido
           </Link>
         </Typography>
         <Typography className={classes.link}>
         <Link onClick={() => {
               basketry();
             }}>
-            Basketry
+            Cestería 
           </Link>
         </Typography>
         <Typography className={classes.link}>
         <Link onClick={() => {
               pottery();
             }}>
-            Pottery
+            Alfarería
           </Link>
         </Typography>
         <Typography className={classes.link}>
         <Link onClick={() => {
               woodcarving();
             }}>
-            Wood Carving
+            Madera
           </Link>
         </Typography>
       </Toolbar>
       <span id = "silversmithing"style={{ display: "none", width: "45%", marginLeft: "27.5%",visibility: "hidden", opacity: "0", transition: "visibility 0s, opacity 0.5s linear"}} className="silversmithing">
-      <p>The Mapuche jeweler's craft is transversal in our society. A jewel not only represents what today we call opulence, but also involves a philosophical, spiritual, socio-political and of course economic sense. Through it, we can know the territorial origin of a person, the marital status or position within the Mapuche society.</p>
-      <p>It obeys, therefore, not only to a technique of metallurgy, but also gives an answer to how life appears and is constructed for the Mapuche.</p>
+      <p>El oficio del joyero mapuche es transversal en nuestra sociedad. Una joya no sólo representa lo que hoy llamamos opulencia, sino además envuelve un sentido filosófico, espiritual, sociopolítico y por supuesto económico. A través de ella, podemos conocer el origen territorial de una persona, el “estado civil”, o su lugar al interior de la sociedad mapuche.</p>
+      <p>Obedece, por tanto, no sólo a una técnica de la metalurgia; sino además, da respuesta a cómo aparece y se construye la vida para el mapuche.</p>
 
         </span>
         <span id = "textiles" style={{ display: "none", width: "45%", marginLeft: "27.5%",visibility: "hidden", opacity: "0", transition: "visibility 0s, opacity 0.5s linear"}}className="textiles">
-        <p>Weaving carries a lot of knowledge as well as rituals at the same time. From the search for the spider's web in the hands of a girl, so that she will be a good weaver, to the respect for the ngen to ask their permission when entering a forest or other natural place in search of leaves, roots, earth, mushrooms, among others, that nature gives for the dyeing of wool.</p>
-        <p>There is a great variety of woven garments for different aspects of life, such as clothing, domestic use and tools. Each of these garments carries with it its own symbolism of the Mapuche cosmology and natural, spiritual and earthly order, encoded in each of the symbols or signs (ñimin) and colours of the garment.</p>
+        <p>El tejido lleva mucho conocimiento, así como rituales al mismo tiempo. Desde la búsqueda de la tela araña a las manos de una niña, para que ésta sea una buena tejedora, hasta el respeto por los ngen para pedirles permiso cuando se entra a un bosque u otro lugar natural en la búsqueda de hojas, raíces, tierra, hongos, entre otros, que la naturaleza da para el teñido de la lana.</p>
+        <p>Existe gran variedad de prendas tejidas, para diferentes aspectos de la vida, como el vestuario, de uso doméstico y aperos. Cada una de estas prendas llevan consigo simbología propia de la cosmología y orden natural, espiritual y terrenal mapuche, cifrado en cada uno de los símbolos o signos (ñimin) y colores de la prenda.</p>
 
         </span>
         <span id = "basketry" style={{ display: "none", width: "45%", marginLeft: "27.5%",visibility: "hidden", opacity: "0", transition: "visibility 0s, opacity 0.5s linear"}}className="basketry">
-        <p>Basketry is a craft or work that predates pottery. It is an art that was born to help in daily chores, as it has facilitated the collection of seeds and fruits, food preservation, cleaning and selection of grains; today it is also part of ornamentation. </p>
-        <p>Mapuche basketry also holds symbolism, as can be seen in a llepu, for example, or in an artefact with a circular bottom, a spiral, which is linked to water and the cult of fertility.
-As the presence of native forest grows and wetlands are maintained in a place, a diversity of plant fibres appear alongside them, allowing the continuity and existence of this craft. </p>
+        <p>La cestería es un oficio o trabajo anterior a la cerámica. Es un arte que nació para ayudar en los quehaceres diarios, pues ella ha facilitado la recolección de semillas y frutos, conservación de alimentos, limpieza y selección de granos; hoy también es parte de la ornamentación. </p>
+        <p>La cestería mapuche también guarda simbología, se reconoce en un yepu, por ejemplo o en un artefacto con fondo circular un espiral, el cual está ligado al agua y al culto a la fertilidad.
+A medida que crece la presencia de bosque nativo y se mantienen los humedales en un lugar, aparece junto a ellos diversidad de fibras vegetales, permitiendo la continuidad y existencia de este oficio. 
+</p>
 
         </span>
         <span id = "pottery" style={{ display: "none", width: "45%", marginLeft: "27.5%",visibility: "hidden", opacity: "0", transition: "visibility 0s, opacity 0.5s linear"}}className="pottery">
-        <p>The collection, creation and processing of clay, obeys a strong tradition rooted in previous generations, which has been maintained to this day. It is an art that has refused technological advances, conserving its original techniques, understanding this as a phenomenon of cultural resistance at the same time.</p>
-        <p>The creations of objects in clay are not only grouped in a purely utilitarian dimension, but they must also be present in each of the Mapuche ceremonies or manifestations, such as the ngillatun, machitun, funerals, marriages, among others. On the other hand, the various clay jars and pipes respond to symbolism of a natural nature, as well as family and social structures.</p>
+        <p>La recolección, creación y tratado de la greda, obedece a una fuerte tradición arraigada de generaciones anteriores, que se mantienen hasta la fecha. Es un arte que se ha negado a los avances tecnológicos, conservando sus técnicas de origen, entendiendo ésta como un fenómeno de resistencia cultural al mismo tiempo.</p>
+        <p>Las creaciones de objetos en greda no sólo se agrupan en una dimensión netamente utilitaria, sino además, éstas deben estar presentes en cada una de las ceremonias o manifestaciones mapuche, como lo son el ngillatun, machitun, funerales, matrimonio, entre otros. Por otro lado, los diversos jarros y pipas de greda, responden a simbologías de carácter natural, así también estructuras familiares y sociales.</p>
 
         </span>
         <span id = "woodcarving" style={{ display: "none", width: "45%", marginLeft: "27.5%",visibility: "hidden", opacity: "0", transition: "visibility 0s, opacity 0.5s linear"}}className="woodcarving">
-        <p>Woodworking is another of the Mapuche people's noble trades, a product of the harvesting of wood from native trees in the territory.</p>
-        <p>Its use is broad and transversal. From domestic to ceremonial. Even today, despite the territorial dispossession experienced by the Mapuche people and the arrival of forestry companies and large agricultural plantations, this raw material has managed to resist in some sectors.</p>
-        <p>From there, the people who work with it have been able to develop their craft in the creation of seats (wanko), kollon (wooden mask, ceremonial), pali ("ball" used for the palin), wiño (crooked, used to hit the pali); spoons, rali (plate), dishes, the latter for domestic use (kitchen). Likewise musical instruments, such as the kultrug, distinguishing at the same time where the user is from, by the type of wood we recognise the territory of origin; the same goes for the pifilka, a wind instrument.</p>
+        <p>El trabajo con madera es otro de los oficios nobles del pueblo mapuche, producto de la recolección de madera de árboles nativos del territorio.</p>
+        <p>Su uso es amplio y transversal. Desde lo doméstico a lo ceremonial. Aún, en la actualidad, pese al despojo territorial que vivió el pueblo mapuche y la llegada de forestales y grandes plantaciones agrícolas, esta materia prima ha logrado resistir en algunos sectores.</p>
+        <p>Desde ahí, los cultores que la trabajan han podido desarrollar su oficio en la creación de asientos (wanko), kollon (máscara de madera, ceremonial), pali (“pelota” que se usa para el palin), wiño (chueca, que se usa para golpear el pali); cucharas, rali (plato), fuentes, estos últimos de uso doméstico (cocina). Asimismo los instrumentos musicales, como el kultrug, distinguiendo al mismo tiempo de dónde es quien lo usa, por el tipo de madera reconocemos el territorio de origen; lo mismo la pifilka, instrumento de viento.</p>
 
         </span>
     </AppBar>  

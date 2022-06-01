@@ -166,19 +166,8 @@ function Crafters() {
     <>
       <Navbar />
       <Parallax bgImage={allCraftersBanner} strength={600}>
-        <h1 className={classes.header}>Crafters</h1>
+        <h1 className={classes.header}>Artesanos</h1>
 
-        <span className={classes.description}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
-        </span>
       </Parallax>
 
       <Container
@@ -186,9 +175,9 @@ function Crafters() {
         maxWidth={false}
         className={classes.maincontainer}
       >
-        <h1 className={classes.subtitle}>All Crafters</h1>
+        <h1 className={classes.subtitle}>Todos los Crafters</h1>
         <h2 className={classes.description2}>
-          Click on a crafter to learn more about them and discover their art!
+            Haga clic en un artesano para saber más y ver la obra.
         </h2>
 
         {isLoading ? (
@@ -241,7 +230,7 @@ function Crafters() {
                       className={classes.crafterHeading}
                       style={{ display: "inline" }}
                     >
-                      Location:{"  "}
+                      ubicación:{"  "}
                     </h2>
                     <h2
                       className={classes.crafterHeading}

@@ -174,7 +174,7 @@ function NagcheRoute() {
           </div>
         ) : null}
 
-        <h1 className={`${classes.h1_header}`}>Nagche Route</h1>
+        <h1 className={`${classes.h1_header}`}>Nagche Ruta</h1>
         <div style={{ width: 300, height: 300 }}>
           <CustomMap />
         </div>

@@ -51,7 +51,7 @@ export default function Signup() {
             }}
             onClick={() => history.push("/signup/customer")}
           >
-            Customer Signup
+            Registro de clientes
           </Button>
         </div>
         <div className={classes.bottomImg}>
@@ -65,7 +65,7 @@ export default function Signup() {
             }}
             onClick={() => history.push("/signup/crafter")}
           >
-            Crafter Signup
+            registro de crafters
           </Button>
         </div>
       </div>

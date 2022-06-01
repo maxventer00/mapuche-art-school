@@ -52,6 +52,8 @@ const useStyles = makeStyles((theme) =>
       fontSize: 48,
       paddingTop: "140px",
       color: "white",
+      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
     },
     smallBody: {
       fontSize: 22,
@@ -78,10 +80,14 @@ const useStyles = makeStyles((theme) =>
     input: {
       color: "#FFFFFF",
       fontSize: 25,
+      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
     },
     label: {
       color: "#767676",
       fontSize: 22,
+      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
     },
   })
 );
