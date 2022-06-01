@@ -269,10 +269,11 @@ function Marketplace() {
             itemDescription: string | undefined;
             photoURL: string | undefined;
             price: number | undefined;
+            itemID: string | undefined;
           }
         ) => {
-          let id = doc.id;
           item = doc.data();
+          let id = item.itemID;
 
           return (
             <>
@@ -292,7 +293,7 @@ function Marketplace() {
                   onClick={() =>
                     history.push({
                       pathname: `/marketplace/${id}`,
-                      state: { itemUid: id },
+                      state: { itemID: id },
                     })
                   }
                 >
