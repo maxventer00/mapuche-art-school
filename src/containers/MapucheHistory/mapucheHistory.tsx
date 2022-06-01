@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { Parallax } from "react-parallax";
 import { styled } from '@mui/material/styles';
-import eljoven from "../../images/eljoven.png";
+import mapucheflag from "../../images/MapucheFlag.png";
 import ethnicgraph from "../../images/ethnicgraph.png";
 import salto from "../../images/salto.jpg";
 import ocupation from "../../images/ocupation.jpg";
@@ -70,9 +70,12 @@ const useStyles = makeStyles((theme) =>
       textShadowColor: "0 0 5px rgba(255,255,255,.5)",
     },
     pictureheader: {
-      fontSize: 48,
-      color: "#AC5435",
+      fontSize: 35,
+      color: "#ffffff",
       fontFamily: "Prata",
+      marginTop: 0,
+      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
     },
     description: {
       color: "#ffffff",
@@ -96,9 +99,10 @@ const useStyles = makeStyles((theme) =>
       margin: "auto",
       textAlign: "center",
       marginTop: 20,
-      fontSize: 18,
+      fontSize: 16,
       display: "inline-block",
       width: 800,
+      height: 546,
       padding: 15,
       paddingBottom: 55,
       overflow: "hidden",
@@ -110,10 +114,11 @@ const useStyles = makeStyles((theme) =>
       color: "#AC5435",
       margin: "auto",
       textAlign: "center",
-      marginTop: 20,
-      fontSize: 14,
+      marginTop: "20%",
+      fontSize: 18,
       display: "inline-block",
       width: 400,
+      height: 961.5,
       padding: 15,
       paddingBottom: 55,
       overflow: "hidden",
@@ -126,9 +131,10 @@ const useStyles = makeStyles((theme) =>
       margin: "auto",
       textAlign: "center",
       marginTop: 20,
-      fontSize: 15,
+      fontSize: 17,
       display: "inline-block",
       width: 350,
+      height: 416.5,
       padding: 10,
       paddingBottom: 55,
       overflow: "hidden",
@@ -172,11 +178,11 @@ const useStyles = makeStyles((theme) =>
     pictures: {
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
-      height: 600,
-      width: "75%",
+      height: 515,
+      width: "65.5%",
       textAlign: "center",
-      marginLeft: "13%",
-      backgroundImage: "url(" + eljoven + ")",
+      marginLeft: "17%",
+      backgroundImage: "url(" + mapucheflag + ")",
     },
     pictures2: {
       backgroundPosition: "center",
@@ -234,6 +240,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function MapucheHistory() {
+  
   const classes = useStyles();
 
   const [loggedIn, setLoggedIn] = useState(true);
@@ -279,50 +286,45 @@ function MapucheHistory() {
             </div>
           ) : null}
 
-          <h1 className={`${classes.h1_header}`}>Mapuche History</h1>
-          <span className={`${classes.description}`}>
-            The Mapuche (/mæˈpʊtʃi/ (Mapuche & Spanish: [maˈputʃe])) are a group of indigenous inhabitants of present-day south-central Chile and southwestern Argentina, including parts of present-day Patagonia. The collective term refers to a wide-ranging ethnicity composed of various groups who shared a common social, religious, and economic structure, as well as a common linguistic heritage as Mapudungun speakers. Their influence once extended from Aconcagua Valley to Chiloé Archipelago and later spread eastward to Puelmapu, a land comprising part of the Argentine pampa and Patagonia. Today the collective group makes up over 80% of the indigenous peoples in Chile, and about 9% of the total Chilean population. The Mapuche are particularly concentrated in the Araucanía region. Many have migrated from rural areas to the cities of Santiago and Buenos Aires for economic opportunities.
-          </span>
+          <h1 className={`${classes.h1_header}`}>EL PUEBLO MAPUCHE</h1>
         </Parallax>
         <Box sx={{ flexGrow: 1 }} className={`${classes.boxes}`}>
           <Grid container spacing={2}>
             <Grid item xs={6} md={8}>
               <Item>
-                <h1 className={`${classes.pictureheader}`}>Lautaro</h1>
                 <Paper square={true} elevation={24} className={`${classes.pictures}`}>
                 </Paper>
                 <span className={`${classes.dummytext}`}>
-                  Lautaro was the son of a Mapuche lonko (a chief who holds office during peacetime) called, Curiñancu (Kurüñamku in the Mapuche language, Mapudungun, ‘aguilucho negro’ meaning ‘black harrier’) and was born in 1533. He lived a normal life until, at the age of 11, he was captured by the Spanish and forced into servitude by Don Pedro de Valdivia and became his personal servant. Since it was difficult for the Spaniards to pronounce Lautaro’s original name, Leftraru, they gave him the name of Felipe Lautaro. Don Pedro de Valdivia was a Spanish conqueror of Chile and then became the captain general of Chile.
+                El pueblo Mapuche, es la nación prehispánica que habitaba prácticamente todo el centro y sur del Chile actual, desde los ríos Itata por el norte, hasta la Isla de Chiloé por el sur. Sin embargo, con la llegada del Imperio Español (entre 1536 a 1541) y luego de los primeros años de enfrentamientos entre ambos pueblos (la Guerra de Arauco de 1541 a 1598), se establece como frontera el río Bio Bio (en la actual región del mismo nombre) que durante casi dos siglos (1598 a 1810), y en una relativa tranquilidad, permitió el desarrollo colonial de los españoles en la zona central de Chile, y el desarrollo económico del pueblo Mapuche al sur del Bio Bio, expandiéndose su dominio hacia las pampas de la actual Argentina. Durante los siglos XVII, XVIII y parte del XIX, el pueblo mapuche pasó de ser un pueblo cazador y recolector, a uno cuya base económica se encontraba en la crianza del ganado, caballar principalmente, controlando el tráfico comercial a ambos lados de la cordillera de Los Andes, desde el océano Pacífico al océano Atlántico. Este periodo marca el surgimiento del ülmen, persona de poder económico, capaz de controlar bastos territorios y ligados a diferentes familias del Wallmapu o territorio mapuche.
+Como es prolíferamente testimoniado por diversos historiadores, el pueblo Mapuche no pudo ser derrotado por los españoles, más bien se establecieron entendimientos mutuos a través de continuos parlamentos, reconocidos por las autoridades españolas en Chile y por la propia corona española. Dicha resistencia, para muchos se debe al tipo de organización de la sociedad mapuche. Ello obedecía a una unidad básica, el lof o comunidad, liderada por un lonko (jefe de la comunidad), el que podía hacer alianzas territoriales de mediana o gran magnitud (rewe, aylla rewe y fütalmapu). Dicha alianza, liderada por un toki o jefe de guerra, podía obedecer a fines específicos o de más largo alcance, pero nunca llegaron a constituir un Estado, y en definitiva, siempre cada lof era autónomo de tomar sus determinaciones. Por ende, y en contraposición al caso de la conquista española de los Aztecas en México o los Incas en Perú, en el pueblo mapuche no tuvieron una cabeza única a quien derrotar. Fortaleza o debilidad, dicha organización se mantiene hasta el día de hoy. Sin embargo, ello no implicó que se generan complejos lazos de parentesco y alianzas militares y económicas entre las distintas identidades territoriales que habitaban los diversos nichos ecológicos del Wallmapu (costa pacífico, cordillera de los Andes y la pampa argentina).
                 </span>
               </Item>
             </Grid>
             <Grid item xs={6} md={4}>
               <Item>
-                <h1 className={`${classes.pictureheader}`}>Etymology</h1>
-                <Paper square={true} elevation={24} className={`${classes.pictures2}`}>
+                <Paper>
                 </Paper>
                 <span className={`${classes.dummytext2}`}>
-                  Nagche: "people of the plains" occupied Nag mapu, "the land of the plains" (located in sectors of the Cordillera de Nahuelbuta and the low zones bordering it). Its epic and literary name is Araucanians and its old autochthonous name is Reche. The ancient Mapuche Toqui ("axe-bearer") like Lef-Traru ("swift hawk", better known as Lautaro), Kallfülikan ("blue quartz stone", better known as Caupolicán – "polished flint") or Pelontraru ("Shining Caracara", better known as Pelantaro) were Nagche.
+                Durante el proceso de independencia de Chile, los mapuche tomaron posiciones divergentes, unos apoyando a los independistas, otros, haciendo valer los acuerdos con los españoles, pelearon contra los criollos (1810-1818). Durante los primeros años de la República chilena, sus gobernantes siguieron la política de la colonia hacia los mapuche, respetando la frontera del Bio Bio. Sin embargo, ya en la segunda mitad del siglo XIX (1860-1881), una vez asentado el Estado chileno, producto de su expansión en el norte (Guerra del Pacífico), y contando con un ejército moderno, se dio a la tarea de invadir el territorio mapuche, lo que eufemísticamente se dio en llamar “la pacificación de la Araucanía[1]”. Esta invasión implicó una drástica disminución de la población mapuche, diezmada por una guerra de exterminio, que se dio en base a una acción conjunta del Estado chileno y argentino, en ambos lados de la Cordillera de los Andes. Junto a ello, le fueron arrebatadas sus tierras más productivas de la zona central de la actuales regiones del Bio Bio, la Araucanía, Los Ríos y Los Lagos, las cuales fueron entregada a colonos de origen europeo. En contraposición, población mapuche sobreviviente, fue arrinconada en “reducciones”, en tierras de baja productividad. Desde este momento comienza la imposición del Estado chileno de todos sus dispositivos, instituciones y ciudades que conformaran el paisaje actual. Aún así, tanto la Corona española, como el Estado chileno, dejaron documentado en parlamentos y títulos de merced, las tierras que se establecían para el pueblo mapuche, lo que es hoy la base de su lucha para la restitución de tierras.
                 </span>
               </Item>
             </Grid>
             <Grid item xs={6} md={4}>
               <Item>
-                <h1 className={`${classes.pictureheader}`}>Cosmology and beliefs</h1>
-                <Paper square={true} elevation={24} className={`${classes.pictures4}`}>
+                <Paper>
                 </Paper>
                 <span className={`${classes.dummytext4}`}>
-                  Central to Mapuche cosmology is the idea of a creator called ngenechen, who is embodied in four components: an older man (fucha/futra/cha chau), an older woman (kude/kuse), a young man and a young woman. They believe in worlds known as the Wenu Mapu and Minche Mapu. Also, Mapuche cosmology is informed by complex notions of spirits that coexist with humans and animals in the natural world, and daily circumstances can dictate spiritual practices.
+                Luego de este repliegue inicial del pueblo mapuche, ya a iniciados la segunda décadas del siglo XX, y producto del proceso de formación de los primeros profesionales mapuche (principalmente profesores) quienes conocen la lengua, cultura y leyes del estado chileno, se dan a la tarea de la conformación de las primeras organizaciones mapuche, tales como la Sociedad Caupolicán o la Federación Araucana, quienes denuncian la condición de su pueblo y buscan avanzar en sus reivindicaciones de tierras y derechos colectivos. Esto inaugura un nuevo periodo en la historia mapuche, en donde mapuche tanto del campo como de la ciudad buscan hacerse escuchar, ya no a través de sus organizaciones tradicionales, sino a través de diversas organizaciones. 
                 </span>
               </Item>
             </Grid>
             <Grid item xs={6} md={8}>
               <Item>
-                <h1 className={`${classes.pictureheader}`}>Incorporation into Chile and Argentina</h1>
-                <Paper square={true} elevation={24} className={`${classes.pictures3}`}>
+                <Paper>
                 </Paper>
                 <span className={`${classes.dummytext3}`}>
-                  In the nineteenth century Chile experienced a fast territorial expansion. Chile established a colony at the Strait of Magellan in 1843, settled Valdivia, Osorno and Llanquihue with German immigrants and conquered land from Peru and Bolivia. Later Chile would also annex Easter Island. In this context Araucanía began to be conquered by Chile due to two reasons. First, the Chilean state aimed for territorial continuity and second it remained the sole place for Chilean agriculture to expand.
+                En este mismo esfuerzo, los intelectuales mapuche, comienzan a abrirse paso en los partidos políticos de representación popular, y así logran elegir a diferentes diputados, quienes tratan de representar sus interese como pueblo en la política chilena. Dicho proceso va en ascenso, en conjunto con los procesos de reforma agraria que comienzan a abrirse en la segunda mitad del siglo XX en toda América Latina, los que luego van a tener un serio repliegue con el surgimiento de las dictaduras militares, de la cual Chile no tuvo exento. Aún así, persiste durante los años 70’ y 80’ la representación indirecta del pueblo mapuche, a través de los partidos políticos chilenos del más amplio espectro. Dicho proceso, sufre un momento de inflexión con la conmemoración de los 500 años del “descubrimiento” de América a principios de los años ´90, con el surgimiento del movimiento zapatista en México y el auge del movimiento indígena en Guatema, Ecuador y Bolivia, entre otros, que lleva a que las organizaciones mapuche se replanteen de manera independiente a los partidos políticos chilenos, y el surgimiento de organizaciones propias. Ello, unido al desarrollo del derecho internacional, coloca en la palestra política demanda por autonomía, tema que marcará la política entre el Estado chileno y el pueblo mapuche, en la naciente democracia de finales del siglo XX y principios del XXI.
+
                 </span>
               </Item>
             </Grid>

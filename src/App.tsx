@@ -5,6 +5,7 @@ import theme from "./core/theme";
 import Footer from "./containers/Shared/footer";
 import { useState, createContext, Dispatch, SetStateAction } from "react";
 
+
 type AppContextState = { language: string };
 
 const LanguageContextDefault = {

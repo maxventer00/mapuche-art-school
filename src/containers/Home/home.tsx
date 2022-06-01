@@ -12,6 +12,7 @@ import Navbar from "../Shared/Navbar";
 import { Typography, Button, TextField } from "@mui/material";
 import app from "../../base";
 import Footer from "../Shared/footer";
+import { Trans, useTranslation } from "react-i18next";
 
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
@@ -110,10 +111,14 @@ const useStyles = makeStyles((theme) =>
 const theme = createTheme();
 
 function Home() {
+  
+
   const classes = useStyles();
   const history = useHistory();
 
   const [loggedIn, setLoggedIn] = useState(true);
+  const { t, i18n } = useTranslation();
+
 
   const userCheck = () => {
     app.auth().onAuthStateChanged(function (user) {
@@ -135,6 +140,7 @@ function Home() {
   }, []);
 
   return (
+    
     <>
       <Container
         disableGutters
@@ -159,10 +165,9 @@ function Home() {
         <h1 className={`${classes.h1_header}`}>Mapuche Art School</h1>
 
         <span className={`${classes.description}`}>
-        <p>- The School of Arts and Crafts was created in 2018, promoted by CONADI as one of the components of the Puel Nahuelbuta Indigenous Development Area. </p>
-        <p>- The area covered corresponds to the Nagche Territory, which includes the Mapuche communities of Chol Chol, Galvarino, Traiguén, Lumaco, Los Sauces and Purén.</p>
-        <p>- Silversmithing, textiles, pottery, basketry,carving.</p>
-
+        <p>{t("homepage.label1")}</p>
+        <p>{t("homepage.label2")}</p>
+        <p>{t("homepage.label3")}</p>
         </span>
 
         {loggedIn ? null : (

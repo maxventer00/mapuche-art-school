@@ -33,6 +33,7 @@ import placeholderImage from "../../images/profilePlaceholder.png";
 import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
 import LoadingAnimation from "../LoadingAnimation";
+import { Trans, useTranslation } from "react-i18next";
 //import { getUserType } from "./FirebaseQuearys/MarketpalceQuearys";
 
 const useStyles = makeStyles((theme) =>
@@ -182,6 +183,7 @@ const useStyles = makeStyles((theme) =>
 const theme = createTheme();
 
 function Marketplace() {
+  const { t, i18n } = useTranslation();
   {
     /* */
   }

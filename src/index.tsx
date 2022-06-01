@@ -1,13 +1,34 @@
-import React from 'react';
+import React,{Suspense} from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import '../src/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import "./i18n";
 ReactDOM.render(
   <React.StrictMode>
+    <style>{"\
+    .css-1160xiw-MuiPaper-root-MuiDrawer-paper {\
+      background: 0 !important;\
+      top: 4rem !important;\
+      box-shadow: none !important;\
+    }\
+    .css-1vfk20j-MuiTypography-root {\
+      margin: 0 !important;\
+      font-family: Lato,Prata !important;\
+      font-weight: 500 !important;\
+      font-size: 1.2rem !important;\
+      line-height: 1.5 !important;\
+      display: block !important;\
+    }\
+    .css-185z3ai-MuiPaper-root {\
+      margin-bottom: 0.75% !important;\
+    }\
+    "}</style>
+    <Suspense fallback={<div>Loading...</div>}>
     <App />
+    </Suspense>
   </React.StrictMode>,
+  
   document.getElementById('root')
 );
 

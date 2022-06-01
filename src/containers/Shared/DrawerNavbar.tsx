@@ -15,7 +15,7 @@ import { useContext, useEffect, useState } from "react";
 import { LanguageContext } from "../../App";
 import LanguageMenu from "./LanguageMenu";
 import MenuIcon from "@mui/icons-material/Menu";
-
+import '../../index.css';
 type Anchor = "top" | "left" | "bottom" | "right";
 
 export default function TemporaryDrawer() {
@@ -44,7 +44,7 @@ export default function TemporaryDrawer() {
   const list = (anchor: Anchor) => (
     <Box
       sx={{
-      color: "#fff",
+      color: "#000",
       "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
       textShadowColor: "0 0 5px rgba(255,255,255,.5)",
       width: anchor === "top" || anchor === "bottom" ? "auto" : 225,
