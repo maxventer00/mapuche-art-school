@@ -195,6 +195,8 @@ function CraftersPage() {
 
   const [blogPosts, setBlogPosts] = useState<any>([]);
   const [userProducts, setUserProducts] = useState<any>([]);
+  const [setUserProductDetails, setUserProductsDetails] = useState<any>([]);
+
 
 
   const userCheck = () => {
@@ -246,6 +248,7 @@ function CraftersPage() {
           userProducts.includes(doc.data()) === false
         ) {
           setUserProducts((arr: any) => [...arr, doc.data()]);
+
         }
       });
     }
@@ -452,9 +455,13 @@ function CraftersPage() {
                   itemDescription: string | undefined;
                   photoURL: string | undefined;
                   price: number | undefined;
+                  itemID: string | undefined;
+
                 }
               ) => {
 
+
+                let id = userProducts.id;
 
                 return (
                   <>
@@ -499,6 +506,13 @@ function CraftersPage() {
                                 size="small"
                                 color="secondary"
                                 variant="contained"
+                                // push to item listing
+                                onClick={() =>
+                                  history.push({
+                                    pathname: `/marketplace/${id}`,
+                                    state: { itemID: id },
+                                  })
+                                }
 
                                 sx={{ borderRadius: 5, maxHeight: 25 }}
                               >
