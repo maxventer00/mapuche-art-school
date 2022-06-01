@@ -69,6 +69,7 @@ const useStyles = makeStyles((theme) =>
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
+      height: "100%",
     },
     textFld: {
       width: 500,

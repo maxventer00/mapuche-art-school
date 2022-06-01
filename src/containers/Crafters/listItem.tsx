@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Container, createTheme, Grid, Paper, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  createTheme,
+  Grid,
+  Paper,
+  TextField,
+} from "@mui/material";
 import { useHistory } from "react-router";
 import Footer from "../Shared/footer";
 import { createStyles, makeStyles } from "@mui/styles";
-import { styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 import {
   getDownloadURL,
   ref,
@@ -108,23 +116,21 @@ const useStyles = makeStyles((theme) =>
       textAlign: "center",
       margin: "auto",
       marginTop: "110px",
-
     },
     carousel: {
       margin: "auto",
       height: "100%",
       width: "100%",
       content: "contain",
-
     },
   })
 );
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#b8a088',
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#b8a088",
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  textAlign: 'center',
+  textAlign: "center",
   color: theme.palette.text.secondary,
 }));
 
@@ -142,10 +148,8 @@ function ListItem() {
   const [listingUserEmail, setListingUserEmail] = useState<any>();
   const [listButton, setListButton] = useState(false);
 
-
   const location = useLocation<any>();
   // const [listingUserName, setListingUserName] = useState<any>();
-
 
   const userCheck = async () => {
     app.auth().onAuthStateChanged(async function (user) {
@@ -207,10 +211,10 @@ function ListItem() {
             itemsListed: listingUser.itemsListed + 1,
             itemsListedId: listingUser.itemsListedId + "," + res.id,
           });
-          alert(
-            "Item has been sucessfully listed! You can now view your listing in the marketplace!"
-          );
-          history.push("/marketplace");
+        alert(
+          "Item has been sucessfully listed! You can now view your listing in the marketplace!"
+        );
+        history.push("/marketplace");
       } else {
         // No user is signed in.
       }
@@ -293,48 +297,30 @@ function ListItem() {
           <Grid container spacing={5}>
             <Grid item xs={6} md={7}>
               <Item>
-
-                <Paper square={true} elevation={24} className={`${classes.pictures}`}>
-
+                <Paper
+                  square={true}
+                  elevation={24}
+                  className={`${classes.pictures}`}
+                >
                   <Carousel
                     className={classes.carousel}
                     navButtonsAlwaysVisible={true}
                   >
-                    {
-                      photoURLs.map(
-                        (
-                          url: string, index: number
-                        ) => {
-                          return (
-
-                            <img
-                              key={index}
-                              src={url}
-                              alt="item"
-                              className={`${classes.image}`}
-                              style={{
-                                height: "100%",
-                                width: "100%",
-
-                              }}
-                            />
-
-                          );
-                        }
-                      )
-
-                    }
+                    {photoURLs.map((url: string, index: number) => {
+                      return (
+                        <img
+                          key={index}
+                          src={url}
+                          alt="item"
+                          className={`${classes.image}`}
+                          style={{
+                            height: "100%",
+                            width: "100%",
+                          }}
+                        />
+                      );
+                    })}
                   </Carousel>
-
-
-
-
-
-
-
-
-
-
 
                   {/* Loop hough photoURLs Array */}
                   {/* <img
@@ -378,9 +364,6 @@ function ListItem() {
                     }}
                   /> */}
                 </Paper>
-
-
-
               </Item>
             </Grid>
             <Grid item xs={6} md={5}>
@@ -462,7 +445,6 @@ function ListItem() {
                   }}
                   onChange={(e) => setItemDescription(e.target.value)}
                 />
-
               </Item>
               <Item className={`${classes.buttons}`}>
                 <Button
@@ -487,7 +469,9 @@ function ListItem() {
                           const tempArray = [];
                           for (var i = 0; i < e.target.files.length; i++) {
                             tempArray.push(e.target.files[i]);
-                            console.log("Added image " + e.target.files[i].name);
+                            console.log(
+                              "Added image " + e.target.files[i].name
+                            );
                           }
                           setImages(tempArray);
                         }
@@ -499,27 +483,20 @@ function ListItem() {
                 {listButton ? (
                   <Button
                     size="medium"
-
                     variant="contained"
                     style={{
                       fontSize: "13px",
                       maxWidth: "50%",
-
                     }}
                     onClick={() => ListItemToFireBase()}
                   >
                     List Item
                   </Button>
                 ) : null}
-
               </Item>
             </Grid>
-
-
-
           </Grid>
         </Box>
-
       </Container>
     </>
   );

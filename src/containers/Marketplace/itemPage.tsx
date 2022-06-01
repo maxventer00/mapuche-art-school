@@ -1,9 +1,5 @@
 import { createStyles, makeStyles } from "@mui/styles";
-import {
-
-  useEffect,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Container from "@mui/material/Container";
@@ -26,7 +22,8 @@ import {
 import app from "../../base";
 import { getDocs } from "firebase/firestore";
 import Footer from "../Shared/footer";
-import EmailIcon from '@mui/icons-material/Email';
+import EmailIcon from "@mui/icons-material/Email";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -120,7 +117,6 @@ const useStyles = makeStyles((theme) =>
       paddingLeft: "35px",
       paddingRight: "15px",
       borderRadius: "5px",
-
     },
     itemEditTitle: {
       fontSize: "28px",
@@ -152,6 +148,9 @@ const useStyles = makeStyles((theme) =>
 const theme = createTheme();
 
 function ItemPage() {
+  let myHeaders = new Headers();
+  myHeaders.append("apikey", "nTP3CtpU299252QthkvXRhbcNi7Jq9Zq");
+
   const classes = useStyles();
   const history = useHistory();
 
@@ -173,12 +172,19 @@ function ItemPage() {
 
   const [itemTitle, setItemTitle] = useState(itemData.itemTitle);
   const [price, setPrice] = useState(itemData.itemPrice);
-  const [itemDescription, setItemDescription] = useState(itemData.itemDescription);
+
+  const [priceUSD, setPriceUSD] = useState<String>();
+  const [priceCLP, setPriceCLP] = useState<String>();
+
+  const [itemDescription, setItemDescription] = useState(
+    itemData.itemDescription
+  );
   const [itemStock, setItemStock] = useState(itemData.itemStock);
   const [listerEmail, setListerEmail] = useState(itemData.listerEmail);
 
   const crafterID = location.state.crafterID;
 
+  const [productCurrency, setProductCurrency] = useState("CLP");
 
   const userCheck = () => {
     app.auth().onAuthStateChanged(function (user) {
@@ -194,8 +200,6 @@ function ItemPage() {
     });
   };
 
-
-
   const getItemData = () => {
     const firestore = app.firestore();
 
@@ -210,8 +214,6 @@ function ItemPage() {
     }
   };
 
-
-
   const updateListing = () => {
     const firestore = app.firestore();
     const itemRef = firestore.collection("productData").doc(itemId);
@@ -221,20 +223,13 @@ function ItemPage() {
       price: price,
       itemDescription: itemDescription,
       itemStock: itemStock,
-
     });
   };
-
-
-
-
 
   useEffect(() => {
     window.scrollTo(0, 0);
     userCheck();
     getItemData();
-    console.log("user email: " + listerEmail);
-
   }, []);
 
   useEffect(() => {
@@ -242,15 +237,12 @@ function ItemPage() {
       if (itemData.listingUser === userID) {
         setIsOwner(true);
         setAllowItemEdit(true);
-
       } else {
         setIsOwner(false);
         setAllowItemEdit(false);
-
       }
     }
   }, [itemData]);
-
 
   return (
     <>
@@ -285,7 +277,10 @@ function ItemPage() {
                       </Typography>
                       <br />
                       <Typography variant="body2" color="#AC5435" align="left">
-                        Price: ${itemData.price}
+                        Price (USD): ${priceUSD}
+                      </Typography>
+                      <Typography variant="body2" color="#AC5435" align="left">
+                        Price (CLP): ${priceCLP}
                       </Typography>
                       <br />
                       <Typography variant="body2" color="#AC5435" align="left">
@@ -305,7 +300,6 @@ function ItemPage() {
                   </CardActionArea>
                 </Card>
               </ListItem>
-
             </List>
             <div style={{ paddingBottom: "35px" }}>
               {allowItemEdit ? (
@@ -319,41 +313,45 @@ function ItemPage() {
                     Manage Listing
                   </Button>
                 </div>
-              ) : <div className={classes.signoutButtonContainer}>
-                <Button
-                  style={{ maxWidth: "255px" }}
-                  className={classes.outlined}
-                  variant="outlined"
-                  onClick={() => window.location.href = 'mailto:' + itemData.listingUserEmail + '?subject=I want to buy your item, ' + itemData.itemTitle + '&body=Hi, I would like to buy your item, ' + itemData.itemTitle}
-
-
-                >
-                  <EmailIcon />
-                  Email Seller
-                </Button>
-
-              </div>}
-
-
+              ) : (
+                <div className={classes.signoutButtonContainer}>
+                  <Button
+                    style={{ maxWidth: "255px" }}
+                    className={classes.outlined}
+                    variant="outlined"
+                    onClick={() =>
+                      (window.location.href =
+                        "mailto:" +
+                        itemData.listingUserEmail +
+                        "?subject=I want to buy your item, " +
+                        itemData.itemTitle +
+                        "&body=Hi, I would like to buy your item, " +
+                        itemData.itemTitle)
+                    }
+                  >
+                    <EmailIcon />
+                    Email Seller
+                  </Button>
+                </div>
+              )}
             </div>
             {openItemEdit ? (
               <div className={classes.itemEditContainer}>
-                <p className={classes.itemEditDescription}>Edit Your Listing
+                <p className={classes.itemEditDescription}>
+                  Edit Your Listing
                   <Button
                     style={{
                       maxWidth: "255px",
 
-
                       float: "right",
-
                     }}
                     className={classes.contained}
                     variant="contained"
                     onClick={() => updateListing()}
                   >
                     Update Listing
-                  </Button></p>
-
+                  </Button>
+                </p>
 
                 <TextField
                   className={classes.itemEditTitle}
@@ -384,8 +382,6 @@ function ItemPage() {
                   onChange={(e) => setItemStock(e.target.value)}
                 />
 
-
-
                 <TextField
                   className={classes.itemEditDescription}
                   variant="outlined"
@@ -398,15 +394,9 @@ function ItemPage() {
                   margin="normal"
                   onChange={(e) => setItemDescription(e.target.value)}
                 />
-
-
               </div>
             ) : null}
-
           </div>
-
-
-
 
           <div className={`${classes.photo}`}>
             <List sx={{ columns: 1, gap: 3 }}>
@@ -427,9 +417,7 @@ function ItemPage() {
               </ListItem>
             </List>
           </div>
-
         </Container>
-
       </Container>
     </>
   );
