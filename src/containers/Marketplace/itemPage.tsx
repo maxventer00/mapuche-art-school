@@ -196,7 +196,6 @@ function ItemPage() {
 
   const getItemData = () => {
     const firestore = app.firestore();
-    console.log(itemID);
 
     if (itemID) {
       const itemInfo = firestore
