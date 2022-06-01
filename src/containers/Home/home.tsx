@@ -2,7 +2,7 @@ import { createStyles, makeStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import homapageBackground from "../../images/homeBackground.png";
+import homepic from "../../images/Homepic.png";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import "../../containers/Home/fonts.css";
@@ -79,8 +79,8 @@ const useStyles = makeStyles((theme) =>
       textOverflow: "ellipsis",
       wordWrap: "break-word",
       fontFamily: "ABeeZee, sans-serif",
-      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
-      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
+      "text-shadow": "0px 2px 5px rgba(0,0,0,0.99)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.9)",
     },
     contactUs: {
       width: 200,
@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme) =>
       marginTop: 30,
     },
     container: {
-      backgroundImage: "url(" + homapageBackground + ")",
+      backgroundImage: "url(" + homepic + ")",
       backgroundPosition: "center",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
