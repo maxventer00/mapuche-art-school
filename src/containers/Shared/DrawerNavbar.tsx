@@ -15,7 +15,91 @@ import { useContext, useEffect, useState } from "react";
 import { LanguageContext } from "../../App";
 import LanguageMenu from "./LanguageMenu";
 import MenuIcon from "@mui/icons-material/Menu";
-import '../../index.css';
+import { createStyles, makeStyles } from "@mui/styles";
+
+<style>{"\
+.css-1160xiw-MuiPaper-root-MuiDrawer-paper {\
+  background: 0 !important;\
+  top: 4rem !important;\
+  box-shadow: none !important;\
+}\
+.css-1vfk20j-MuiTypography-root {\
+  margin: 0 !important;\
+  font-family: Lato,Prata !important;\
+  font-weight: 500 !important;\
+  font-size: 1.2rem !important;\
+  line-height: 1.5 !important;\
+  display: block !important;\
+}\
+.css-185z3ai-MuiPaper-root {\
+  margin-bottom: 0.75% !important;\
+}\
+"}</style>
+const useStyles = makeStyles(
+  (theme: { breakpoints: { down: (arg0: string) => any } }) =>
+    createStyles({
+      //styling for components
+      breakpoints: {
+        values: {
+          xs: 0,
+          sm: 600,
+          md: 900,
+          lg: 1200,
+          xl: 1700,
+        },
+      },
+      toolbar: {
+        diplay: "flex",
+        justifyContent: "flex-start",
+        backgroundColor: "transparent",
+        color: "transparent",
+      },
+      flag: {
+        height: "4rem",
+        width: "4rem",
+        [theme.breakpoints.down("sm")]: {
+          height: "3rem",
+          width: "3rem",
+        },
+        paddingRight: "100px",
+      },
+      link: {
+        fontFamily: "Proza Libre",
+        color: "Black",
+        fontWeight: 800,
+        "font-size": "1.05rem",
+        "text-shadow": "0 0 15px #FFFFFF",
+        textShadowColor: "0 50px 18px rgba(255,255,255,0.5)",
+        [theme.breakpoints.down("md")]: {
+          "font-size": "1rem",
+        },
+        [theme.breakpoints.down("sm")]: {
+          "font-size": "0.55rem",
+          "margin-top": "1.5rem",
+        },
+      },
+      linkMain: {
+        float: "left",
+        "margin-top": ".1rem!important",
+        fontFamily: "Prata!important",
+        "margin-left": "-5rem!important",
+        "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
+        textShadowColor: "0 0 5px rgba(255,255,255,.5)",
+        "font-size": "1.75rem!important",
+
+        [theme.breakpoints.down("lg")]: {
+          "font-size": "1.75rem",
+          "margin-left": "-2.5rem",
+        },
+        [theme.breakpoints.down("md")]: {
+          display: "none",
+        },
+      },
+      drawer: {
+        marginLeft: "auto",
+      },
+    })
+);
 type Anchor = "top" | "left" | "bottom" | "right";
 
 export default function TemporaryDrawer() {
@@ -44,7 +128,7 @@ export default function TemporaryDrawer() {
   const list = (anchor: Anchor) => (
     <Box
       sx={{
-      color: "#000",
+      color: "#fff",
       "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
       textShadowColor: "0 0 5px rgba(255,255,255,.5)",
       width: anchor === "top" || anchor === "bottom" ? "auto" : 225,
