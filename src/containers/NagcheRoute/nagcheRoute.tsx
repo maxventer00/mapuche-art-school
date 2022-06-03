@@ -54,14 +54,13 @@ const useStyles = makeStyles((theme) =>
       marginTop: "55px",
     },
     h1_header: {
-      fontSize: 48,
+      fontSize: "5rem",
       color: "#ffffff",
       padding: 15,
-      paddingTop: 150,
+      paddingTop: 120,
       fontFamily: "Prata",
-      marginTop: 0,
-      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
-      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
+      "text-shadow": "0 0 30px rgba(0,0,0,.99), 0 0 10px rgba(0,0,0,.99)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.99)",
     },
     description: {
       color: "#ffffff",

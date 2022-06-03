@@ -7,8 +7,8 @@ import Navbar from "../Shared/Navbar";
 import { Button} from "@mui/material";
 import app from "../../base";
 import { Parallax } from "react-parallax";
-import cholchol from "../../images/cholchol.jpg";
-import mapucheflag from "../../images/MapucheFlag.png";
+import carbon from "../../images/carbon.png";
+import mountain from "../../images/mountain.png";
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -53,14 +53,13 @@ const useStyles = makeStyles((theme) =>
       marginTop: "55px",
     },
     h1_header: {
-      fontSize: 48,
+      fontSize: "5rem",
       color: "#ffffff",
       padding: 15,
-      paddingTop: 150,
+      paddingTop: 120,
       fontFamily: "Prata",
-      marginTop: 0,
-      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
-      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
+      "text-shadow": "0 0 30px rgba(0,0,0,.99), 0 0 10px rgba(0,0,0,.99)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.99)",
     },
     pictureheader: {
       fontSize: 48,
@@ -113,18 +112,19 @@ const useStyles = makeStyles((theme) =>
       height: 900,
       paddingTop: 20,
       maxHeight: 900,
-      backgroundImage: "url(" + cholchol + ")",
+      backgroundImage: "url(" + carbon + ")",
       backgroundColor: "rgba(100, 100, 100, 0.9)",
       backgroundBlendMode: "multiply",
     },
     pictures: {
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
-      height: 600,
-      width: "75%",
+      height: 800,
+      //width: "100%",
       textAlign: "center",
-      marginLeft: "13%",
-      backgroundImage: "url(" + mapucheflag + ")",
+      //marginLeft: "13%",
+      backgroundImage: "url(" + mountain + ")",
+      marginBottom: "500"
     },
     maincontainer: {
       backgroundColor: "#F7ECE1",
@@ -175,7 +175,7 @@ function NagcheHistory() {
         className={`${classes.maincontainer}`}
       >
         <Navbar />
-        <Parallax bgImage={cholchol} strength={600}>
+        <Parallax bgImage={carbon} strength={600}>
         {loggedIn ? (
           <div className={classes.signoutButtonContainer}>
             <Button
@@ -192,6 +192,7 @@ function NagcheHistory() {
         <h1 className={`${classes.h1_header}`}>Nagche</h1>
          </Parallax>
         <span className={`${classes.dummytext}`}>
+        <Paper square={true} elevation={24} className={`${classes.pictures}`}></Paper>
         <p>Tal como se señaló, el pueblo Mapuche desde tiempos prehispánico, ocupó los diferentes nichos ecológicos del sur de Chile, desde la costa pacífico, la cordillera de los Andes y la pampa argentina. Si bien en su vida de pueblo independiente (que dataremos hasta 1881 con su derrota militar en Tucapel y la fundación de Temuco), el pueblo mapuche se desplazaba por los diferentes espacios descritos, de acuerdo con sus necesidades económicas, de intercambio comercial y la crianza de su ganado caballar. Luego de estos episodios, se establecieron de manera más permanente y forzada, en dichos territorios. </p>
         <p>Desde el presente, las identidades territoriales del pueblo Mapuche que más se conocen son la Identidad Williche, que cubre el füta willi mapu (la gran tierra del sur) que abarca las actuales regiones de Los Ríos y Los Lagos. La identidad Peweche, que bordea la zona oeste de la cordillera de los Andes, entre las actuales regiones del Bio Bio y la Araucanía. La identidad Wenteche aún ocupa parte del valle central de la región de la Araucanía. Allende de la cordillera de los Andes, tenemos al pueblo Puelche y Tehuelche. En la zona costera del océano Pacífico, de las actuales regiones del Bio Bio y la Araucanía, se ubica la identidad Lafkenche. </p>
         <p>La identidad territorial Nagche, ocupa el este de la Cordillera de la Costa o Cordillera de Nawelfüta (El gran tigre), entre las actuales regiones del Bio Bio y la Araucanía, concentrándose principalmente en las actuales comunas de Purén, Lumaco, Traiguén, Galvarino y Chol Chol. De ahí deriva el Nombre de la actual Área de Desarrollo Indígena (ADI) Puel Nawelfüta, haciendo referencia al este de esta cordillera (puel: este). Desde el inicio de la conquista española y luego en la guerra con el ejército chileno, este territorio fue la primera línea de resistencia y contención del avance extranjero, lo que caracteriza su espíritu guerrero. Sus montañas, de bosques nativos en sus orígenes, junto a zonas de quebradas y valles internos, permitieron hacer de esta zona un lugar de refugio para los kona (guerrero mapuche) y sus familias, los que fueron utilizadas también para emboscadas y escaramuzas que le aseguraban el éxito en sus acciones, dado su dominio del terreno.</p>
