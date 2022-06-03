@@ -44,7 +44,8 @@ export default function TemporaryDrawer() {
   const list = (anchor: Anchor) => (
     <Box
       sx={{
-      color: "#000",
+      bgcolor: "transparent",
+      color: "#fff",
       "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
       textShadowColor: "0 0 5px rgba(255,255,255,.5)",
       width: anchor === "top" || anchor === "bottom" ? "auto" : 225,
@@ -53,47 +54,59 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       
-      <List sx={{bgcolor: "transparent" }}>
-        <ListItem button>
-          <ListItemText primary="Home" onClick={() => history.push("/home")} />
+      <List sx={{bgcolor: "transparent",fontSize: "1.2rem" }}>
+        <ListItem sx={{fontSize: "1.2rem" }} button  >
+          <ListItemText sx={{fontSize: "1.2rem" }} disableTypography  primary="Home" onClick={() => history.push("/home")} />
         </ListItem>
-        <ListItem button>
-          <ListItemText
+        <ListItem sx={{fontSize: "1.2rem" }} button>
+          <ListItemText 
+            sx={{fontSize: "1.2rem" }}
+            disableTypography 
             primary="Mapuche History"
             onClick={() => history.push("/mapucheHistory")}
           />
         </ListItem>
-        <ListItem button>
+        <ListItem sx={{fontSize: "1.2rem" }} button>
           <ListItemText
+            sx={{fontSize: "1.2rem" }}
+            disableTypography 
             primary="Nagche History"
             onClick={() => history.push("/nagcheHistory")}
           />
         </ListItem>
-        <ListItem button>
+        <ListItem sx={{fontSize: "1.2rem" }} button>
           <ListItemText
+            sx={{fontSize: "1.2rem" }}
+            disableTypography 
             primary="Nagche Route"
             onClick={() => history.push("/nagcheRoute")}
           />
         </ListItem>
-        <ListItem button>
+        <ListItem sx={{fontSize: "1.2rem" }} button>
           <ListItemText
+            sx={{fontSize: "1.2rem" }}
+            disableTypography 
             primary="Crafters"
             onClick={() => history.push("/crafters")}
           />
         </ListItem>
-        <ListItem button>
+        <ListItem sx={{fontSize: "1.2rem" }} button>
           <ListItemText
+            sx={{fontSize: "1.2rem" }}
+            disableTypography 
             primary="Marketplace"
             onClick={() => history.push("/marketplace")}
           />
         </ListItem>
-        <ListItem button>
+        <ListItem sx={{fontSize: "1.2rem" }} button>
           <ListItemText
+            sx={{fontSize: "1.2rem" }}
+            disableTypography 
             primary="Login/Sign Up"
             onClick={() => history.push("/login")}
           />
         </ListItem>
-        <ListItem button>
+        <ListItem sx={{fontSize: "1.2rem" }} button>
           <LanguageMenu />
         </ListItem>
       </List>
@@ -128,6 +141,20 @@ export default function TemporaryDrawer() {
             {anchor}
           </MenuIcon>
           <Drawer
+          PaperProps={{
+            sx: {
+              elevation: 0,
+              bgcolor: "transparent",
+              color: "red",
+              top: "4rem",
+              boxShadow: 0,
+              margin: 0,
+              fontweight: 500,
+              lineheight: "1.5",
+              fontSize: "1.2rem",
+              display: "block",
+            }
+          }}
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
