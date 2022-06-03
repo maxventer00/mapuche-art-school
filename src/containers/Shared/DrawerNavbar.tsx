@@ -128,10 +128,7 @@ export default function TemporaryDrawer() {
   const list = (anchor: Anchor) => (
     <Box
       sx={{
-<<<<<<< HEAD
       bgcolor: "transparent",
-=======
->>>>>>> df9dd18ce438fa415561debae2b9db4cfeea18bf
       color: "#fff",
       "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
       textShadowColor: "0 0 5px rgba(255,255,255,.5)",
