@@ -31,7 +31,7 @@ function MyComponent() {
           }}
       >
        
-        <KmlLayer url="https://firebasestorage.googleapis.com/v0/b/mapuche-art.appspot.com/o/kmlData%2FKML%20TEST.kmz?alt=media&token=8c55854c-a51a-4ae9-94c2-ce832cda172b" />
+        <KmlLayer url="https://firebasestorage.googleapis.com/v0/b/mapuche-art.appspot.com/o/kmlData%2FCopy%20of%20Ruta%20de%20los%20Cultores%20Nagche.kmz?alt=media&token=d7d63991-b427-432f-ad63-cd2046534819" />
         
       </GoogleMap>
     </LoadScript>
