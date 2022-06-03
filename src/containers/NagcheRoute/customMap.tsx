@@ -13,7 +13,7 @@ function MyComponent() {
   const { height, width } = useWindowDimensions();
   const containerStyle = {
     width: width,
-    height: '300%'
+    height: height
   };
   return (
 
