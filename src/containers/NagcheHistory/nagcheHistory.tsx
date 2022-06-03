@@ -8,7 +8,7 @@ import { Button} from "@mui/material";
 import app from "../../base";
 import { Parallax } from "react-parallax";
 import cholchol from "../../images/cholchol.jpg";
-import mapucheflag from "../../images/mapucheflag.png";
+import mapucheflag from "../../images/MapucheFlag.png";
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
   createStyles({

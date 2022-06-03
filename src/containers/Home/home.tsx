@@ -63,8 +63,8 @@ const useStyles = makeStyles((theme) =>
       padding: 15,
       paddingTop: 120,
       fontFamily: "Prata",
-      "text-shadow": "0px 2px 5px rgba(0,0,0,0.92)",
-      textShadowColor: "0 0 5px rgba(255,255,255,.5)",
+      "text-shadow": "0 0 30px rgba(0,0,0,.99), 0 0 10px rgba(0,0,0,.99)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.99)",
     },
     description: {
       color: "#ffffff",
@@ -80,8 +80,8 @@ const useStyles = makeStyles((theme) =>
       textOverflow: "ellipsis",
       wordWrap: "break-word",
       fontFamily: "ABeeZee, sans-serif",
-      "text-shadow": "0px 2px 5px rgba(0,0,0,0.99)",
-      textShadowColor: "0 0 5px rgba(255,255,255,.9)",
+      "text-shadow": "0 0 20px rgba(0,0,0,.99), 0 0 10px rgba(0,0,0,.99)",
+      textShadowColor: "0 0 5px rgba(255,255,255,.99)",
     },
     contactUs: {
       width: 200,
