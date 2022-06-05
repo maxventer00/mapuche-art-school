@@ -303,25 +303,13 @@ function ItemPage() {
                       </Typography>
                       <br />
                       <Typography variant="body2" color="#AC5435" align="left">
-                        Price (USD): ${priceUSD}
-                      </Typography>
-                      <Typography variant="body2" color="#AC5435" align="left">
-                        Price (CLP): ${priceCLP}
+                        Price (CLP): ${itemData.price}
                       </Typography>
                       <br />
                       <Typography variant="body2" color="#AC5435" align="left">
                         listed by: {itemData.listingUserName}
                       </Typography>
-                      <CardActions sx={{ justifyContent: "end" }}>
-                        <Button
-                          size="small"
-                          color="secondary"
-                          variant="contained"
-                          sx={{ borderRadius: 25, maxHeight: 25 }}
-                        >
-                          BUY
-                        </Button>
-                      </CardActions>
+
                     </CardContent>
                   </CardActionArea>
                 </Card>
@@ -346,13 +334,13 @@ function ItemPage() {
                     className={classes.outlined}
                     variant="outlined"
                     onClick={() =>
-                      (window.location.href =
-                        "mailto:" +
-                        itemData.listingUserEmail +
-                        "?subject=I want to buy your item, " +
-                        itemData.itemTitle +
-                        "&body=Hi, I would like to buy your item, " +
-                        itemData.itemTitle)
+                    (window.location.href =
+                      "mailto:" +
+                      itemData.listingUserEmail +
+                      "?subject=I want to buy your item, " +
+                      itemData.itemTitle +
+                      "&body=Hi, I would like to buy your item, " +
+                      itemData.itemTitle)
                     }
                   >
                     <EmailIcon />
