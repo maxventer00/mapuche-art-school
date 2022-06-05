@@ -25,6 +25,8 @@ import Footer from "../Shared/footer";
 import EmailIcon from "@mui/icons-material/Email";
 import axios from "axios";
 
+var BASE_URL = 'https://api.apilayer.com/exchangerates_data/convert?to=CLP&from=USD&amount=135'
+var convertedPrice;
 const useStyles = makeStyles((theme) =>
   createStyles({
     container: {
@@ -144,6 +146,12 @@ const useStyles = makeStyles((theme) =>
     },
   })
 );
+var myHeaders = new Headers();
+myHeaders.append("apikey", "b8lSHsCqdj3GmMjnJ1Sc3vuaFHkW6aP0");
+var requestOptions = {
+
+  headers: myHeaders
+};
 
 const theme = createTheme();
 
@@ -168,7 +176,7 @@ function ItemPage() {
   const [price, setPrice] = useState(itemData.itemPrice);
 
   const [priceUSD, setPriceUSD] = useState<String>();
-  const [priceCLP, setPriceCLP] = useState<String>();
+  const [priceCLP, setPriceCLP] = useState<Number>();
 
   const [itemDescription, setItemDescription] = useState(
     itemData.itemDescription
@@ -219,13 +227,27 @@ function ItemPage() {
       itemStock: itemStock,
     });
   };
-
+  const convertCurrency = () => {
+    if(!BASE_URL.toString().includes("undefined"))
+    {
+    fetch(BASE_URL, requestOptions)
+  .then(response => response.json())
+  .then(result =>{
+    var rounded = Math.round(result.result * 100) / 100;
+    rounded.toFixed(2);
+    
+    setPriceCLP(rounded);
+  })
+  .catch(error => console.log('error', error));
+}
+  };
+  
   useEffect(() => {
     window.scrollTo(0, 0);
     userCheck();
     getItemData();
   }, []);
-
+ 
   useEffect(() => {
     if (itemData) {
       if (itemData.listingUser === userID) {
@@ -235,8 +257,18 @@ function ItemPage() {
         setIsOwner(false);
         setAllowItemEdit(false);
       }
+      setPriceUSD(itemData.price);
+      
+      BASE_URL= "https://api.apilayer.com/exchangerates_data/convert?to=CLP&from=USD&amount="+itemData.price;
+   
+      convertCurrency();
+      
     }
   }, [itemData]);
+
+  useEffect(() => {
+  
+  }, []);
 
   return (
     <>

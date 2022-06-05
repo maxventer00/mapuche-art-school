@@ -14,6 +14,7 @@ import app from "../../base";
 import Footer from "../Shared/footer";
 import { Trans, useTranslation } from "react-i18next";
 
+
 // Way to add EXTRA css values
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -96,7 +97,7 @@ const useStyles = makeStyles((theme) =>
       backgroundRepeat: "no-repeat",
       height: 1180,
       paddingTop: 60,
-      maxHeight: 1180,
+     
     },
     tint: {
       maxHeight: 1180,
