@@ -11,16 +11,12 @@ import {
   CardActionArea,
   CardActions,
   Grid,
-  List,
-  ListItem,
-  Input,
   TextField,
   InputAdornment,
   IconButton,
 } from "@mui/material";
 import { useHistory } from "react-router";
 import marketplaceBackground from "../../images/marketplaceBackground.jpg";
-import Footer from "../Shared/footer";
 import Navbar from "../Shared/Navbar";
 import MarketplaceBar from "../Shared/MarketplaceBar";
 import app from "../../base";
@@ -34,8 +30,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
 import LoadingAnimation from "../LoadingAnimation";
 import { Trans, useTranslation } from "react-i18next";
-//import { getUserType } from "./FirebaseQuearys/MarketpalceQuearys";
 
+// This contains all the styling options for the page
 const useStyles = makeStyles((theme) =>
   createStyles({
     contained: {
@@ -140,7 +136,6 @@ const useStyles = makeStyles((theme) =>
     },
     outlined: {
       backgroundColor: "#AC5435",
-      //color: "white",
       boxShadow: "none",
       borderWidth: "4px",
       borderColor: "white",
@@ -180,12 +175,9 @@ const useStyles = makeStyles((theme) =>
 );
 
 const theme = createTheme();
-
+// This function will be called when the user enters an items page and will run multiple other functions to get the data from the database and display it on the page.
 function Marketplace() {
-  const { t, i18n } = useTranslation();
-  {
-    /* */
-  }
+  // This effect ensures the users will always start at the top of the page when loaded
   useEffect(() => {
     window.scrollTo(0, 0);
     Aos.init({ duration: 2000 });
@@ -200,14 +192,13 @@ function Marketplace() {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [searchResponse, setSearchResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
   const firestore = app.firestore();
   const collectionRef = firestore.collection("productData");
 
+  // This function will get the data of items from the database and set it to the state
   const getData = async () => {
     setIsLoading(true);
     const querySnapshot = await getDocs(collectionRef);
-
     querySnapshot.forEach((doc) => {
       if (shopData.includes(doc.data()) === false) {
         setShopData((arr: any) => [...arr, doc]);
@@ -217,6 +208,7 @@ function Marketplace() {
     setIsLoading(false);
   };
 
+  //This function checks if the user is logged in and if they are a crafter or a normal user
   const userCheck = async () => {
     app.auth().onAuthStateChanged(async function (user) {
       if (user) {
@@ -235,31 +227,28 @@ function Marketplace() {
     });
   };
 
+  // This function will search a users input against items in the marketplace and display the results
   const searchItem = async () => {
     setShopData([]);
     setIsLoading(true);
-
     const querySnapshot = await getDocs(collectionRef);
-
     querySnapshot.forEach((doc) => {
       let productTitle = doc.data().itemTitle;
-
       if (productTitle.includes(searchKeyword)) {
         if (shopData.includes(doc.data()) === false) {
           setShopData((arr: any) => [...arr, doc]);
         }
       }
-
       if (shopData.length === 0) {
         setSearchResponse(
           "Sorry no results for this searh keyword were found!"
         );
       }
     });
-
     setIsLoading(false);
   };
 
+  // This function uses the item data and creates a card for each item
   const memoMap = useMemo(
     () =>
       shopData.map(
@@ -367,6 +356,7 @@ function Marketplace() {
     [shopData]
   );
 
+  // This effect will enable default marketplace to be loaded when search bar field has not been used
   useEffect(() => {
     if (searchKeyword.length === 0) {
       setShopData([]);
@@ -374,10 +364,12 @@ function Marketplace() {
     }
   }, [searchKeyword]);
 
+  // This effect runs the user check function
   useEffect(() => {
     userCheck();
   }, []);
 
+  // This effect checks the user type and assigns accordingly
   useEffect(() => {
     if (userInfo) {
       if (userInfo.userType === "Crafter") {

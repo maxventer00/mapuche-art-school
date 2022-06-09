@@ -9,7 +9,6 @@ import {
   TextField,
 } from "@mui/material";
 import { useHistory } from "react-router";
-import Footer from "../Shared/footer";
 import { createStyles, makeStyles } from "@mui/styles";
 import { styled } from "@mui/material/styles";
 import {
@@ -20,11 +19,11 @@ import {
 } from "firebase/storage";
 import app from "../../base";
 import Navbar from "../Shared/Navbar";
-import profilePlaceholder from "../../images/profilePlaceholder.png";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Carousel from "react-material-ui-carousel";
 import { useLocation } from "react-router-dom";
 
+// This contains all the styling options for the page
 const useStyles = makeStyles((theme) =>
   createStyles({
     title: {
@@ -139,18 +138,14 @@ const theme = createTheme();
 function ListItem() {
   const classes = useStyles();
   const history = useHistory();
-
   const [itemTitle, setItemTitle] = useState("");
   const [price, setPrice] = useState("");
   const [itemDescription, setItemDescription] = useState("");
   const [itemStock, setItemStock] = useState("");
   const [listingUser, setListingUser] = useState<any>();
-  const [listingUserEmail, setListingUserEmail] = useState<any>();
   const [listButton, setListButton] = useState(false);
 
-  const location = useLocation<any>();
-  // const [listingUserName, setListingUserName] = useState<any>();
-
+  // This function checks if the user is logged in
   const userCheck = async () => {
     app.auth().onAuthStateChanged(async function (user) {
       if (user) {
@@ -167,14 +162,12 @@ function ListItem() {
     });
   };
 
+  // This effect runs the user check function
   useEffect(() => {
     userCheck();
   }, []);
 
-  {
-    /* Make sure they are a crafter */
-  }
-
+  // This effect checks if the user is logged in as a crafter
   useEffect(() => {
     if (listingUser) {
       if (listingUser.crafterApproved === false) {
@@ -186,6 +179,7 @@ function ListItem() {
     }
   }, [listingUser]);
 
+  // This function will upload the item to the database when called
   const ListItemToFireBase = async () => {
     try {
       const firestore = app.firestore();
@@ -243,6 +237,7 @@ function ListItem() {
   const [images, setImages] = useState<any[]>([]);
   const imageTarget = images.length - 1;
 
+  // This function will upload the images to the database when called
   const uploadPhoto = async () => {
     if (images.length === 0) return;
 
@@ -282,20 +277,7 @@ function ListItem() {
     // Now we have finished loading!
   };
 
-  // OLD ATTEMPT
-  // const storage = getStorage();
-  // const imageRef = ref(storage, "images/" + image.name);
-
-  // uploadBytesResumable(imageRef, image)
-  //     .then((snapshot) => {
-  //         getDownloadURL(snapshot.ref).then((url) => {
-  //             setPhotoURL(url);
-  //         });
-  //     })
-  //     .catch((error) => {
-  //         console.error("Upload failed", error);
-  //     });
-
+  // This effect runs the upload photo function
   useEffect(() => {
     uploadPhoto();
   }, [images]);
@@ -337,48 +319,6 @@ function ListItem() {
                       );
                     })}
                   </Carousel>
-
-                  {/* Loop hough photoURLs Array */}
-                  {/* <img
-                    src={
-                      photoURLs[0]}
-
-                    style={{
-                      maxHeight: 200,
-                      maxWidth: "20%",
-                      marginTop: "10%",
-                    }}
-                  />
-                  <img
-                    src={
-                      photoURLs[1]}
-
-                    style={{
-                      maxHeight: 200,
-                      maxWidth: "20%",
-                      marginTop: "10%",
-                    }}
-                  />
-                  <img
-                    src={
-                      photoURLs[2]}
-
-                    style={{
-                      maxHeight: 200,
-                      maxWidth: "20%",
-                      marginTop: "10%",
-                    }}
-                  />
-                  <img
-                    src={
-                      photoURLs[3]}
-
-                    style={{
-                      maxHeight: 200,
-                      maxWidth: "20%",
-                      marginTop: "10%",
-                    }}
-                  /> */}
                 </Paper>
               </Item>
             </Grid>
