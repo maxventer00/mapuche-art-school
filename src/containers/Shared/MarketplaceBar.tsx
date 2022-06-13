@@ -327,7 +327,7 @@ export default function MarketplaceBar() {
               
               pottery();
             }}>
-            {t("Pottery.head")}
+            {t("Poterry.head")}
           </Link>
         </Typography>
         <Typography className={classes.link}>

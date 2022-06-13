@@ -1,0 +1,56 @@
+[debug] [2022-06-13T09:10:40.977Z] ----------------------------------------------------------------------
+[debug] [2022-06-13T09:10:40.978Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\kenne\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2022-06-13T09:10:40.978Z] CLI Version:   11.0.1
+[debug] [2022-06-13T09:10:40.978Z] Platform:      win32
+[debug] [2022-06-13T09:10:40.978Z] Node Version:  v16.14.0
+[debug] [2022-06-13T09:10:40.979Z] Time:          Mon Jun 13 2022 21:10:40 GMT+1200 (New Zealand Standard Time)
+[debug] [2022-06-13T09:10:40.979Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-06-13T09:10:41.023Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-06-13T09:10:41.023Z] > authorizing via signed-in user (kenneth.s97@gmail.com)
+[debug] [2022-06-13T09:10:41.023Z] [iam] checking project mapuche-art for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-06-13T09:10:41.024Z] > refreshing access token with scopes: []
+[debug] [2022-06-13T09:10:41.025Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-06-13T09:10:41.366Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","date":"Mon, 13 Jun 2022 09:10:40 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-06-13T09:10:41.372Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/mapuche-art:testIamPermissions [none]
+[debug] [2022-06-13T09:10:41.373Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mapuche-art:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-06-13T09:10:42.580Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/mapuche-art:testIamPermissions 200
+[debug] [2022-06-13T09:10:42.580Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mapuche-art:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-06-13T09:10:42.581Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/mapuche-art/serviceAccounts/mapuche-art@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2022-06-13T09:10:42.581Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/mapuche-art/serviceAccounts/mapuche-art@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2022-06-13T09:10:43.135Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/mapuche-art/serviceAccounts/mapuche-art@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2022-06-13T09:10:43.135Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/mapuche-art/serviceAccounts/mapuche-art@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2022-06-13T09:10:43.136Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mapuche-art [none]
+[debug] [2022-06-13T09:10:43.813Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mapuche-art 200
+[debug] [2022-06-13T09:10:43.813Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mapuche-art {"projectId":"mapuche-art","projectNumber":"309297311436","displayName":"Mapuche Art ","name":"projects/mapuche-art","resources":{"hostingSite":"mapuche-art","storageBucket":"mapuche-art.appspot.com","locationId":"asia-southeast2"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'mapuche-art'...
+[info] 
+[info] i  deploying functions, hosting 
+[debug] [2022-06-13T09:10:43.815Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mapuche-art [none]
+[debug] [2022-06-13T09:10:44.371Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mapuche-art 200
+[debug] [2022-06-13T09:10:44.371Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mapuche-art {"projectId":"mapuche-art","projectNumber":"309297311436","displayName":"Mapuche Art ","name":"projects/mapuche-art","resources":{"hostingSite":"mapuche-art","storageBucket":"mapuche-art.appspot.com","locationId":"asia-southeast2"},"state":"ACTIVE"}
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2022-06-13T09:10:44.373Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapuche-art/services/cloudfunctions.googleapis.com [none]
+[debug] [2022-06-13T09:10:44.373Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapuche-art/services/runtimeconfig.googleapis.com [none]
+[debug] [2022-06-13T09:10:44.374Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapuche-art/services/cloudbuild.googleapis.com [none]
+[debug] [2022-06-13T09:10:44.374Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapuche-art/services/artifactregistry.googleapis.com [none]
+[debug] [2022-06-13T09:10:45.826Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapuche-art/services/runtimeconfig.googleapis.com 200
+[debug] [2022-06-13T09:10:45.826Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapuche-art/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2022-06-13T09:10:45.848Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapuche-art/services/cloudfunctions.googleapis.com 200
+[debug] [2022-06-13T09:10:45.848Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapuche-art/services/cloudfunctions.googleapis.com [omitted]
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2022-06-13T09:10:45.869Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapuche-art/services/cloudbuild.googleapis.com 200
+[debug] [2022-06-13T09:10:45.869Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapuche-art/services/cloudbuild.googleapis.com [omitted]
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2022-06-13T09:10:45.876Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapuche-art/services/artifactregistry.googleapis.com 200
+[debug] [2022-06-13T09:10:45.876Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapuche-art/services/artifactregistry.googleapis.com [omitted]
+[debug] [2022-06-13T09:10:45.876Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mapuche-art/adminSdkConfig [none]
+[debug] [2022-06-13T09:10:46.442Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mapuche-art/adminSdkConfig 200
+[debug] [2022-06-13T09:10:46.442Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mapuche-art/adminSdkConfig {"projectId":"mapuche-art","storageBucket":"mapuche-art.appspot.com","locationId":"asia-southeast2"}
+[debug] [2022-06-13T09:10:46.442Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/mapuche-art/configs [none]
+[debug] [2022-06-13T09:10:47.155Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/mapuche-art/configs 200
+[debug] [2022-06-13T09:10:47.156Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/mapuche-art/configs {}
+[info] i  functions: preparing codebase default for deployment 
