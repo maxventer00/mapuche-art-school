@@ -14,17 +14,17 @@ import {
   Card,
   CardMedia,
   CardContent,
+  CardActions,
   Button,
   TextField,
+  IconButton,
 } from "@mui/material";
 import app from "../../base";
+import { getDocs } from "firebase/firestore";
+import Footer from "../Shared/footer";
 import EmailIcon from "@mui/icons-material/Email";
 import axios from "axios";
 
-var BASE_URL = 'https://api.apilayer.com/exchangerates_data/convert?to=CLP&from=USD&amount=135'
-var convertedPrice;
-
-// This contains all the styling options for the page
 const useStyles = makeStyles((theme) =>
   createStyles({
     container: {
@@ -153,31 +153,39 @@ var requestOptions = {
 
 const theme = createTheme();
 
-// This function will be called when the user enters an items page and will run multiple other functions to get the data from the database and display it on the page.
 function ItemPage() {
   const classes = useStyles();
   const history = useHistory();
+
   const [itemData, setItemData] = useState<any>([]);
+  const [crafterData, setCrafterData] = useState<any>([]);
   const location = useLocation<any>();
   let itemID = location.state.itemID;
+
   const [userID, setUserID] = useState<any>();
+
   const [loggedIn, setLoggedIn] = useState(true);
+  const [userInfo, setUserInfo] = useState<any>();
   const [isOwner, setIsOwner] = useState(false);
   const [allowItemEdit, setAllowItemEdit] = useState(false);
   const [openItemEdit, setOpenItemEdit] = useState(false);
+
   const [itemTitle, setItemTitle] = useState(itemData.itemTitle);
   const [price, setPrice] = useState(itemData.itemPrice);
+
   const [priceUSD, setPriceUSD] = useState<String>();
-  const [priceCLP, setPriceCLP] = useState<Number>();
+  const [priceCLP, setPriceCLP] = useState<String>();
+
   const [itemDescription, setItemDescription] = useState(
     itemData.itemDescription
   );
   const [itemStock, setItemStock] = useState(itemData.itemStock);
   const [listerEmail, setListerEmail] = useState(itemData.listerEmail);
+
   const crafterID = location.state.crafterID;
+
   const [productCurrency, setProductCurrency] = useState("CLP");
 
-  // This function checks if the currentuser is the owner of the item
   const userCheck = () => {
     app.auth().onAuthStateChanged(function (user) {
       if (user) {
@@ -192,7 +200,6 @@ function ItemPage() {
     });
   };
 
-  // This function gets all the data for a specific item and sets the state
   const getItemData = () => {
     const firestore = app.firestore();
 
@@ -207,7 +214,6 @@ function ItemPage() {
     }
   };
 
-  // This function will update a listing and update the listing in firebase
   const updateListing = () => {
     const firestore = app.firestore();
     const itemRef = firestore.collection("productData").doc(itemID);
@@ -220,29 +226,12 @@ function ItemPage() {
     });
   };
 
-  // This function gets the set price in USD and converts it into CLP rounded to 2dp
-  const convertCurrency = () => {
-    if (!BASE_URL.toString().includes("undefined")) {
-      fetch(BASE_URL, requestOptions)
-        .then(response => response.json())
-        .then(result => {
-          var rounded = Math.round(result.result * 100) / 100;
-          rounded.toFixed(2);
-
-          setPriceCLP(rounded);
-        })
-        .catch(error => console.log('error', error));
-    }
-  };
-
-  // This effect runs the user check and item data get functions, It also ensure the user is at the top of the page when loaded
   useEffect(() => {
     window.scrollTo(0, 0);
     userCheck();
     getItemData();
   }, []);
 
-// This is the code for setting the item price using existing data and runniong it against a currency conversion API
   useEffect(() => {
     if (itemData) {
       if (itemData.listingUser === userID) {
@@ -252,12 +241,6 @@ function ItemPage() {
         setIsOwner(false);
         setAllowItemEdit(false);
       }
-      setPriceUSD(itemData.price);
-
-      BASE_URL = "https://api.apilayer.com/exchangerates_data/convert?to=CLP&from=USD&amount=" + itemData.price;
-
-      convertCurrency();
-
     }
   }, [itemData]);
 
@@ -294,13 +277,25 @@ function ItemPage() {
                       </Typography>
                       <br />
                       <Typography variant="body2" color="#AC5435" align="left">
-                        Price (CLP): ${itemData.price}
+                        Price (USD): ${priceUSD}
+                      </Typography>
+                      <Typography variant="body2" color="#AC5435" align="left">
+                        Price (CLP): ${priceCLP}
                       </Typography>
                       <br />
                       <Typography variant="body2" color="#AC5435" align="left">
                         listed by: {itemData.listingUserName}
                       </Typography>
-
+                      <CardActions sx={{ justifyContent: "end" }}>
+                        <Button
+                          size="small"
+                          color="secondary"
+                          variant="contained"
+                          sx={{ borderRadius: 25, maxHeight: 25 }}
+                        >
+                          BUY
+                        </Button>
+                      </CardActions>
                     </CardContent>
                   </CardActionArea>
                 </Card>
@@ -325,13 +320,13 @@ function ItemPage() {
                     className={classes.outlined}
                     variant="outlined"
                     onClick={() =>
-                    (window.location.href =
-                      "mailto:" +
-                      itemData.listingUserEmail +
-                      "?subject=I want to buy your item, " +
-                      itemData.itemTitle +
-                      "&body=Hi, I would like to buy your item, " +
-                      itemData.itemTitle)
+                      (window.location.href =
+                        "mailto:" +
+                        itemData.listingUserEmail +
+                        "?subject=I want to buy your item, " +
+                        itemData.itemTitle +
+                        "&body=Hi, I would like to buy your item, " +
+                        itemData.itemTitle)
                     }
                   >
                     <EmailIcon />
