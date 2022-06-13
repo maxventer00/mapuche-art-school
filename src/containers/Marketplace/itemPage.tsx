@@ -148,7 +148,7 @@ const useStyles = makeStyles((theme) =>
 );
 //API key for exchange rate API
 var myHeaders = new Headers();
-myHeaders.append("apikey", "b8lSHsCqdj3GmMjnJ1Sc3vuaFHkW6aP0");
+myHeaders.append("apikey", "9H1Hi2eiNmLk9nXeTnXzr23J9tKrJB4w");
 var requestOptions = {
 
   headers: myHeaders
