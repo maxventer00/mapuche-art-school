@@ -142,7 +142,7 @@ function Crafters() {
 
       const querySnapshot = await getDocs(collectionRef);
       querySnapshot.forEach((doc) => {
-        // Only add crafters
+        // Only add crafters not normal users
         if (
           doc.data().userType === "Crafter" &&
           doc.data().crafterApproved &&

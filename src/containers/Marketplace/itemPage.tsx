@@ -25,6 +25,8 @@ import Footer from "../Shared/footer";
 import EmailIcon from "@mui/icons-material/Email";
 import axios from "axios";
 
+var BASE_URL = 'https://api.apilayer.com/exchangerates_data/convert?to=CLP&from=USD&amount=135'
+var convertedPrice;
 const useStyles = makeStyles((theme) =>
   createStyles({
     container: {
@@ -144,10 +146,11 @@ const useStyles = makeStyles((theme) =>
     },
   })
 );
-
+//API key for exchange rate API
 var myHeaders = new Headers();
-myHeaders.append("apikey", "XwKwt76umYtmXL99orGWSbnzgb2ywit1");
+myHeaders.append("apikey", "b8lSHsCqdj3GmMjnJ1Sc3vuaFHkW6aP0");
 var requestOptions = {
+
   headers: myHeaders
 };
 
@@ -174,7 +177,7 @@ function ItemPage() {
   const [price, setPrice] = useState(itemData.itemPrice);
 
   const [priceUSD, setPriceUSD] = useState<String>();
-  const [priceCLP, setPriceCLP] = useState<String>();
+  const [priceCLP, setPriceCLP] = useState<Number>();
 
   const [itemDescription, setItemDescription] = useState(
     itemData.itemDescription
@@ -226,12 +229,28 @@ function ItemPage() {
     });
   };
 
+  //Method to covert USD to CLP
+  const convertCurrency = () => {
+    if(!BASE_URL.toString().includes("undefined"))
+    {
+    fetch(BASE_URL, requestOptions)
+  .then(response => response.json())
+  .then(result =>{
+    var rounded = Math.round(result.result * 100) / 100;
+    rounded.toFixed(2);
+    
+    setPriceCLP(rounded);
+  })
+  .catch(error => console.log('error', error));
+}
+  };
+  
   useEffect(() => {
     window.scrollTo(0, 0);
     userCheck();
     getItemData();
   }, []);
-
+ 
   useEffect(() => {
     if (itemData) {
       if (itemData.listingUser === userID) {
@@ -241,8 +260,19 @@ function ItemPage() {
         setIsOwner(false);
         setAllowItemEdit(false);
       }
+      setPriceUSD(itemData.price);
+      
+      //REST API URL
+      BASE_URL= "https://api.apilayer.com/exchangerates_data/convert?to=CLP&from=USD&amount="+itemData.price;
+   
+      convertCurrency();
+      
     }
   }, [itemData]);
+
+  useEffect(() => {
+  
+  }, []);
 
   return (
     <>
@@ -277,25 +307,13 @@ function ItemPage() {
                       </Typography>
                       <br />
                       <Typography variant="body2" color="#AC5435" align="left">
-                        Price (USD): ${priceUSD}
-                      </Typography>
-                      <Typography variant="body2" color="#AC5435" align="left">
                         Price (CLP): ${priceCLP}
                       </Typography>
                       <br />
                       <Typography variant="body2" color="#AC5435" align="left">
                         listed by: {itemData.listingUserName}
                       </Typography>
-                      <CardActions sx={{ justifyContent: "end" }}>
-                        <Button
-                          size="small"
-                          color="secondary"
-                          variant="contained"
-                          sx={{ borderRadius: 25, maxHeight: 25 }}
-                        >
-                          BUY
-                        </Button>
-                      </CardActions>
+
                     </CardContent>
                   </CardActionArea>
                 </Card>
@@ -320,13 +338,13 @@ function ItemPage() {
                     className={classes.outlined}
                     variant="outlined"
                     onClick={() =>
-                      (window.location.href =
-                        "mailto:" +
-                        itemData.listingUserEmail +
-                        "?subject=I want to buy your item, " +
-                        itemData.itemTitle +
-                        "&body=Hi, I would like to buy your item, " +
-                        itemData.itemTitle)
+                    (window.location.href =
+                      "mailto:" +
+                      itemData.listingUserEmail +
+                      "?subject=I want to buy your item, " +
+                      itemData.itemTitle +
+                      "&body=Hi, I would like to buy your item, " +
+                      itemData.itemTitle)
                     }
                   >
                     <EmailIcon />

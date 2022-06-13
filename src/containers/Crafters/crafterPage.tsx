@@ -222,6 +222,7 @@ function CraftersPage() {
     });
   };
 
+  // Get crafter details for useage
   const getCrafterDetails = async () => {
     const firestore = app.firestore();
 
@@ -236,6 +237,7 @@ function CraftersPage() {
       .doc(crafterID)
       .collection("blogPosts");
 
+    // Get their blogposts
     const querySnapshot = await getDocs(collectionRef);
     querySnapshot.forEach((doc) => {
       if (blogPosts.includes(doc.data()) === false) {
