@@ -162,7 +162,7 @@ function Home() {
           </div>
         ) : null}
 
-        <h1 className={`${classes.h1_header}`}>Nagche Arts & Crafts school</h1>
+        <h1 className={`${classes.h1_header}`}>Nagche Arts & Crafts School</h1>
 
         <span className={`${classes.description}`}>
         <p>{t("homepage.label1")}</p>
