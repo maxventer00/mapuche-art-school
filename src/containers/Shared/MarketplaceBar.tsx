@@ -122,7 +122,8 @@ const Styles = makeStyles(
     })
 );
 
-//components and functions here
+//the maerketplace bar is used to display the marketplace bar at the top of the page and the links to the different categories of the marketplace (silversmithing, textiles, pottery, woodcarving, basketry)
+//it can hide and show the different categories of the marketplace with information for each category.
 export default function MarketplaceBar() {
   const { t, i18n } = useTranslation();
   const classes = Styles();
@@ -326,7 +327,7 @@ export default function MarketplaceBar() {
               
               pottery();
             }}>
-            {t("Poterry.head")}
+            {t("Pottery.head")}
           </Link>
         </Typography>
         <Typography className={classes.link}>
